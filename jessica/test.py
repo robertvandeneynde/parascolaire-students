@@ -1,26 +1,51 @@
+# jessica.qiu@gmail.com
+"""
 a = 2
-b = 5
+b = 6
+c = 1
 
-if a < b:
-    print(a)
+print (a,b,c)
 
-if b > a:
-    print(b)
+if c < a:
+    if c < b:
+        print (c)
 
+        if c < a < b:
+            print(a)
 
+            if b > a and b > c:
+                print(b)
 
-print (a, b)
+d = 1
+e = 9
+f = 8
+"""
+"""
+if d < e < f:
+    print (d,e,f)
 
-h = 15
-m = 00
+if f < e < d:
+    print (f,e,d)
 
-print (h, m)
+if e < f < d
+"""
 
-if m < 59:
-    m = 0
-    h = 16
-print(h, m)
+x = 12
+y = 47
+z = 47
 
+if x < y:
+    if z > y:
+        print (x,y,z)
+    if z < y:
+        print (x,z,y)
+    if z < x:
+        print (z,x,y)
 
-
-
+else:
+    if z < x:
+        print (y,z,x)
+    if z > x:
+        print (y,x,z)
+    if z < y:
+        print (z,y,x)
