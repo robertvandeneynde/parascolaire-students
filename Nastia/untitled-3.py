@@ -1,3 +1,4 @@
+# nastiavdb@GMAIL.COM 
 a = 3
 b = 1
 c = 2
@@ -16,13 +17,16 @@ elif b < a < c :
 elif c < a < b : 
  print (c,a,b)
  
-if a < b : 
-  print 
- 
- 
- 
- 
- 
- 
- 
+if a < b  :
+ if c < b :
+  if c > a :
+   print (a,c,b)
+  else :
+   print (c,a,b)
+ else :
+  print (a,b,c)
+else :
+ print ()
+
+
 

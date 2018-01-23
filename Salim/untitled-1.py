@@ -1,3 +1,1 @@
-a = 2
-b = 6
-c = 1
+# salimbenseddiq2002@gmail.com

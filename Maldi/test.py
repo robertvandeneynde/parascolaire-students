@@ -1,11 +1,12 @@
+# maldiniyulheri@hotmail.com
 a = 15
-b = 31
-if a < b :
-    print (15)
-    print (31)
+b = 59
+
+if b == 59:
+    print (a+1,"h",b-59)
+else:
+    print (a,"h",b+1)
+
+
     
-h = 15 
-m = 30 
-if h < m :
-    print (15,30)
     
