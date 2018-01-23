@@ -30,6 +30,7 @@ if f < e < d:
 if e < f < d
 """
 
+# exercice 3
 x = 12
 y = 47
 z = 47
@@ -49,3 +50,5 @@ else:
         print (y,x,z)
     if z < y:
         print (z,y,x)
+        
+

@@ -1,13 +1,16 @@
 print("coucou")
-a = 5
-b = 2
+
+
+a = 1
+b = 5
 
 if a > b :
+    print(a)
+    print(b)
 
-
-print (a)
-print (b)
-
+else :
+    print(b)
+    print(a)
 
 
 
