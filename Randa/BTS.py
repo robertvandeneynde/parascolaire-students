@@ -1,7 +1,9 @@
-h =15
-m =30
-print(h)
-print(m)
+h = 15
+m = 59
 
-  h=15
-m=31
+if m != 59:
+    print(h)
+    print(m+1)
+else:
+    print(h+1)
+    print(m-59)
