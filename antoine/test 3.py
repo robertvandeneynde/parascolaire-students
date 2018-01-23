@@ -1,12 +1,11 @@
+
+     #pygame0_code_minimal.py #White #Dark #txt #download 
+ 
 #!coding: utf-8
 from __future__ import print_function, division
 
 import pygame
 pygame.init()
-
-XD_X = 100
-XD_Y = 100
-
 
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
@@ -16,7 +15,8 @@ BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
-
+#debut
+ma_position=[150,80]
 clock = pygame.time.Clock()
 
 fini = 0
@@ -25,36 +25,20 @@ while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
-
-            if XD_X > 700:
-                XD_X = 700
-
-            if XD_Y >700:
-                XD_Y = 700
-
+    # tick
     
-    pressed = pygame.key.get_pressed()
-
-
-    if pressed[276]:
-        XD_X = XD_X - 6
-    
-    if pressed[275]:
-        XD_X = XD_X + 6
-    
-    if pressed[274]: 
-        XD_Y = XD_Y + 6
-        
-    if pressed[273]:
-        XD_Y = XD_Y - 6 
-        
+    #dessin
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [XD_X,XD_Y, 10,40])
-
+    pygame.draw.rect(ecran, ROUGE, [600,300, 20,40])
+    pygame.draw.circle(ecran, BLEU, [100,200], 40)
+    pygame.draw.circle(ecran, VERT, [150,80], 10)
     
     pygame.display.flip()
     
     clock.tick(60)
     
 pygame.quit()
+
+
+

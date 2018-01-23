@@ -1,6 +1,6 @@
-a=8
+a=5
 b=8
-c=8
+c=10
 if a<=b<=c:
     print(a,b,c)
 elif a<=c<=b:

@@ -12,45 +12,22 @@ BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
-AQUA = [127, 255, 212]
-MEDIUMBLUE = [0, 0, 205]
 
-sens = 1 # 5 == gauche, -5 == droite
-ma_position = 100
 clock = pygame.time.Clock()
-
-# DÉBUT
 
 fini = 0
 while fini == 0:
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            fini = 80
-            
-    
-    # TICK
-    
-    if ma_position == 700:
-        ma_position = ma_position -1
-    else:
-        ma_position = ma_position -1  
-        
-
-   
-   
-    
-          
-    print(ma_position)
-    
-    # DESSIN
+            fini = 1
     
     ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
-    pygame.draw.circle(ecran, VERT, [100,200], 20)
-    pygame.draw.circle(ecran, AQUA, [150, 80], 10)
-    pygame.draw.circle(ecran, MEDIUMBLUE, [ma_position, 80], 15)
+    pygame.draw.circle(ecran, BLEU, [100,200], 20)
+    pygame.draw.circle(ecran, VERT, [150, 80], 10)
+    
     pygame.display.flip()
     
     clock.tick(60)

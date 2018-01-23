@@ -1,4 +1,4 @@
-a=1
+a=9
 b=1
 c=0
 if c<a and c<b :

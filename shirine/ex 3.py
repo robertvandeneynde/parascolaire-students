@@ -11,8 +11,11 @@ if b > a:
         else:
             print(b,c,a)
 else:
-    if a > b:
-        if  c > a:
-            print(c,a,b)
+    # a > b
+    if  c < b:
+            print(a,b,c)
     else:
-    
+        if c > a :
+            print(c,a,b)
+        else:
+            print(a,c,b)
