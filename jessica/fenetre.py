@@ -29,8 +29,19 @@ while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 80
+            # elif est un raccourci pour "if... else... if ... else..."
+        elif event.type == pygame.KEYDOWN:
+                    print("La touche numero", event.key)  
+                    if event.key == 276:
+                        snape = snape - 100
+                    elif event.key == 275:
+                        snape = snape + 100
+                        
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            print("Clic en", event.pos[0], event.pos[1])
             
-    
+            snape = event.pos[0]             
+     
     # TICK
     if snape >= 700:
         sens = 1
@@ -43,14 +54,14 @@ while fini == 0:
     else :
         snape +=5
         
-    print(snape)
+    #print(snape)
     
     # DESSIN
     
     ecran.fill(BLANC)
     if sens == -1:
         pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
-        
+    pygame.draw.rect(ecran, ROUGE, [100,400, 20,40])
     if sens == 1:
         pygame.draw.circle(ecran, VERT, [100+snape,200], 20)
     if sens == -1:
@@ -70,45 +81,7 @@ while fini == 0:
     pygame.display.flip()
     
     clock.tick(60)
-    
-
-
-
-taille = [700, 500]
-ecran = pygame.display.set_mode(taille)
-
-clock = pygame.time.Clock()
-
-rouge = [255,0,0]
-blanc = [255,255,255]
-
-snape = 10
-
-fini = 0
-while fini == 0:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            fini = 1
-        
-        # elif est un raccourci pour "if... else... if ... else..."
-        elif event.type == pygame.KEYDOWN:
-            print("La touche numero", event.key)
-            if event.key == 276: # touche gauche
-                snape = snape - 200
-            elif event.key == 275: # touche droite
-                snape = snape + 200
-        
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            # event.pos est une liste de taille 2 contenant le x et le y
-            print("Clic en", event.pos[0], event.pos[1])
-            snape = event.pos[0]
-    
-    # dessin
-    ecran.fill(blanc)
-    pygame.draw.rect(ecran, rouge, [snape, 20, 100, 200])
-    
-    pygame.display.flip()
-    
-    clock.tick(60)
-
 pygame.quit()
+
+
+

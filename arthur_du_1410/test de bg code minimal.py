@@ -30,7 +30,12 @@ while fini == 0:
             elif event.key == 275:  # touche droite
                 ma_position2 = ma_position2 + 100
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            ecran.fill(BLANC)
+            print("Clic en", event.pos[0], event.pos[1])
+            x,y =  event.pos
+            if 10 <= x <= 30:
+                if 10 <= y <= 30:
+                    print("yep")
+
     if sens == + 1:
         ma_position = ma_position + 5
     if sens == - 1:
@@ -43,9 +48,18 @@ while fini == 0:
 
     x = 20
     y = 20
-    for p in range (0 , 5):
-        for i in range (0, 5):
-            pygame.draw.circle(ecran, VERT, [x + i * 40 , y + p * 40], 10)
+
+    # for p in range (0 , 5):
+    #   for k in range(5):
+    p = 0
+    k = 0
+    pygame.draw.circle(ecran, VERT, [x + k * 40 , y + p * 40], 10)
+    # 20, 20 + 0 // p  = 0
+    # 20, 20 + 40 // p  = 1
+    # x, 20 + 80 // p  = 2
+    # x, 20 + 120 // p  = 3
+    # x,  20 + 160 // p  = 4
+
 
     pygame.display.flip()
 
