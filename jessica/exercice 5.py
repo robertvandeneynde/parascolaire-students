@@ -2,21 +2,17 @@
 # exercice 5
 
 
-l = [ 32, 102 , 156 , 46 ]
+l = [ 32, 102 , 156 , 46, 56 ]
 
 m = l[0]
 
 print (l)
 
-if m <= l[1]:
-   m = l[1]
-   
-if m <= l[2]:
-   m = l[2]
+i = 1
+while i < len(l):
+   if m <= l[i]:
+      m = l[i]
 
-if m <= l[3]:
-   m = l[3]
-
-        
+   i = i + 1
     
 print (m)

@@ -1,5 +1,5 @@
 a= 2
-b= 1
+b= 0
 c= 1
 
 if b > a:
@@ -11,4 +11,8 @@ if b > a:
         else:
             print(b,c,a)
 else:
+    if a > b:
+        if  c > a:
+            print(c,a,b)
+    else:
     
