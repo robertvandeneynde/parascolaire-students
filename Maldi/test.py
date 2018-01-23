@@ -1,4 +1,4 @@
-# maldiniyulheri@hotmail.com
+
 a = 15
 b = 59
 
