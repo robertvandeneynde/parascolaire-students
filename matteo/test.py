@@ -1,0 +1,3 @@
+print("helle")
+a = helle
+
