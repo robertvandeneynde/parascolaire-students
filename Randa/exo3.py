@@ -1,15 +1,15 @@
-a = 2
-b = 6
-c = 1
-print(c)
-print(a)
-print(b)
 
-if a < c <b:
-    print (a , c ,b)
+a = 1   
+b = 2   
+c = 5
 
-    
-if a < c== b:
-    print (a)
-    print (c)
-    print (b)
+if b<:
+    if a<b:
+        print(a,b,c)
+    else:
+        if a<c:
+            print(b,a,c)
+        else:
+            print(b,c,a)
+else:
+    ...

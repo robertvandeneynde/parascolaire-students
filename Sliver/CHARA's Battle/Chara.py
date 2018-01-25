@@ -122,22 +122,19 @@ while fini == 0:
 
 
     pressed = pygame.key.get_pressed()
-
-    if pressed[276]:
-        if Combat == 0:
-            X = X - 3
-
-    if pressed[275]:
-        if Combat == 0:
-            X = X + 3
-
-    if pressed[273]:
-        if Combat == 0:
-            Y = Y - 3
-
-    if pressed[274]:
-        if Combat == 0:
-            Y = Y + 3
+    
+    if Combat == 0:
+        if pressed[276]:
+            X = X - 5
+            
+        if pressed[275]:
+            X = X + 5
+            
+        if pressed[273]:
+            Y = Y - 5
+            
+        if pressed[274]:
+            Y = Y + 5
 
 
 
@@ -172,6 +169,8 @@ while fini == 0:
     else:
         PV = PV - 1
         damage.play()
+        
+    #IMAGES/DESSINS
 
     ecran.fill(NOIR)
 
@@ -207,6 +206,6 @@ while fini == 0:
         ecran.blit(GAME_OVER, [0, 0])
     pygame.display.flip()
 
-    clock.tick(60)
+    clock.tick(30)
 
 pygame.quit()

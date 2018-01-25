@@ -13,8 +13,9 @@ VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
 # DÉBUT
-tosh = 5
-slm = 10
+sens = 1
+tosh = 5 # 10
+slm = 10 # 20
 clock = pygame.time.Clock()
 
 fini = 0
@@ -25,16 +26,28 @@ while fini == 0:
             fini = 1
     
     # TICK
-    tosh = tosh + 5
-    slm = slm + 3
-    ecran.fill(BLANC)
+    if sens == 1:
+        slm = slm + 5
+    else:
+        slm = slm -5
+    if sens == 1:
+        tosh = tosh + 5
+    else:
+        tosh = tosh - 5
+
     
+    slm = slm + 10
+    if tosh > 500:
+        sens = - 1
+    
+        
     # DESSIN
     
-    pygame.draw.rect(ecran, ROUGE, [slm,100,200, 40])
-    pygame.draw.circle(ecran, BLEU, [slm,200], 40)
-    pygame.draw.circle(ecran, BLEU, [slm,200], 40)
+    ecran.fill(BLANC)
     
+    pygame.draw.rect(ecran, ROUGE, [tosh+100,50,200, 50]) # 115
+    pygame.draw.circle(ecran, BLEU, [slm,200], 40)        # 30
+    pygame.draw.circle(ecran, BLEU, [slm+100,200], 40)    # 130
     pygame.display.flip()
     
     clock.tick(60)
