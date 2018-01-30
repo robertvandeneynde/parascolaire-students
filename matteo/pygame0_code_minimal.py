@@ -34,9 +34,9 @@ while fini == 0:
     print(a)
     if a > 700:
         sens = -1
-    else: 
-        a < 700:
-        sens = 1
+    else:    
+        if a < 0:
+            sens = 1
 
     
     ecran.fill(BLANC)
@@ -44,8 +44,9 @@ while fini == 0:
     # DESSIN
     
     pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
-    pygame.draw.circle(ecran, BLEU, [100,200], 20)
+    pygame.draw.circle(ecran, BLEU, [20,200], 20)
     pygame.draw.circle(ecran, VERT, [a, 80], 50)
+    pygame.draw.circle(ecran, VERT, [200, 0], 50)
     
     pygame.display.flip()
     

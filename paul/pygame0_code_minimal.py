@@ -45,11 +45,16 @@ while fini == 0:
     # DESSIN
     ecran.fill(BLANC)
 
+
     if sense == 1:
-        pygame.draw.polygon(ecran, NOIR, [[400,250], [300,200], [300,300]])
+        pygame.draw.polygon(ecran, VERT, [[475,250], [375,200], [375,300]])
+        pygame.draw.polygon(ecran, ROUGE, [[my_position+50, 450], [my_position-50, 400], [my_position-50, 500]])
+        pygame.draw.polygon(ecran, NOIR, [[225, 250], [325, 200], [325, 300]])
 
     if sense == -1:
-        pygame.draw.polygon(ecran, NOIR, [[300,250], [400,200], [400,300]])
+        pygame.draw.polygon(ecran, VERT, [[225,250], [325,200], [325,300]])
+        pygame.draw.polygon(ecran, ROUGE, [[my_position-50, 450], [my_position+50, 400], [my_position+50, 500]])
+        pygame.draw.polygon(ecran, NOIR, [[475, 250], [375, 200], [375, 300]])
 
     pygame.draw.rect(ecran, ROUGE, [100,200, 32,100])
     pygame.draw.circle(ecran, BLEU, [100,200], 50)

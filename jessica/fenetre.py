@@ -17,13 +17,18 @@ MEDIUMBLUE = [0, 0, 205]
 JAUNE = [225, 225, 0]
 MAGENTAFONCE = [128, 0, 128]
 HOOKER = [27, 79, 8]
+ROUGEPALE = [255, 125, 125]
+JAUNEPALE = [224, 243, 169]
+ORONGEPALE = [254, 211, 165]
 
 
 sens = 1 # 5 == gauche, -5 == droite
+sens1 = 1
 snape = 100
 potter = 5
 granger = 800
 neville = 50
+albus = 250
 clock = pygame.time.Clock()
 
 # DÉBUT
@@ -79,50 +84,65 @@ while fini == 0:
         sens = 1
     if snape <= 0:
         sens = -1     
-
           
     if sens == 1:
         snape -=5
     else :
         snape +=5
         
+        
+    if neville >= 900:
+        sens = 1
+    if neville <= 0:
+        sens = -1
+        
+    if sens == 1:
+        neville -=5
+    else:
+        neville +=5
+        
+   
+        
     #print(snape)
     
     # DESSIN
     
     
-    ecran.fill(BLANC)
-    pygame.draw.rect (ecran, NOIR, [15, 15, ecran.get_width() -30,  ecran.get_height() -30 ])
-   
+    ecran.fill(ROUGEPALE)
+    pygame.draw.rect (ecran, ORONGEPALE, [15, 15, ecran.get_width() -30,  ecran.get_height() -30 ])
     
-    if sens == -1:
-        pygame.draw.rect(ecran, ROUGE, [potter,200, 20,40])
+    pygame.draw.rect (ecran, JAUNEPALE, [30, 30, ecran.get_width() -60,  ecran.get_height() -60 ])
     
+    pygame.draw.rect (ecran, JAUNEPALE, [45, 45, ecran.get_width() -90,  ecran.get_height() -90 ])
+
     pygame.draw.rect(ecran, JAUNE, [100+weasley,400, 20,40])
     
     if sens == 1:
         pygame.draw.circle(ecran, VERT, [100+snape,200], 20)
     else:
-        pygame.draw.circle(ecran, VERT, [100+luna,200], 20)
-        
+        pygame.draw.circle(ecran, VERT, [100,potter], 20)
+        if potter == 600:
+            potter = 200
     if sens == -1:
         pygame.draw.circle(ecran, AQUA, [luna, 80], 10)
     else:
-        pygame.draw.circle(ecran, AQUA, [150, 120], 10)
+        pygame.draw.circle(ecran, AQUA, [150, snape], 10)
     
     pygame.draw.circle(ecran, MAGENTAFONCE, [granger, 80], 15)
     
-    pygame.draw.circle(ecran, HOOKER, [neville, 300], 20)
+    pygame.draw.circle(ecran, HOOKER, [albus, neville], 20)
+    
+   
     
     if sens == 1:
         offset_y = 200
-        pygame.draw.polygon(ecran, BLANC, [
+        pygame.draw.polygon(ecran, NOIR, [
             [0 + snape, 0 + offset_y],
             [-25 + snape, 25 + offset_y],
             [0 + snape, 50 + offset_y ]])
     else: 
         offset_y = 100
-        pygame.draw.polygon(ecran, BLANC, [
+        pygame.draw.polygon(ecran, NOIR, [
             [0+snape,0 + offset_y],
             [25+snape, 25 + offset_y],
             [0+snape, 50 + offset_y]])
