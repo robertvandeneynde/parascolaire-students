@@ -1,6 +1,3 @@
-#!coding: utf-8
-from __future__ import print_function, division
-
 import pygame
 pygame.init()
 
@@ -11,10 +8,9 @@ NOIR = [0, 0, 0]
 BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
-BLEU = [0, 0, 255]
-ORANGE  = [255, 128, 64]  
-DEAN = 2
-# DÃ‰BUT
+BLEU = [0, 0, 255] 
+TAEMIN =  1 
+# DÉBUT
 
 clock = pygame.time.Clock()
 
@@ -26,23 +22,22 @@ while fini == 0:
             fini = 1
     
     # TICK
-    
-    print(DEAN)
-    
-    DEAN = DEAN + 2
-    if DEAN > 255:
-        print("coucou")
-    
+    print(TAEMIN)
+    TAEMIN = TAEMIN + 1 
+    if TAEMIN == 150:
+        TAEMIN == 0 
+        
+
+
     # DESSIN
-    ecran.fill(BLANC)
+    ecran.fill(BLEU)
     
-    pygame.draw.rect(ecran, ROUGE, [DEAN,200, 20,40])
-    pygame.draw.circle(ecran, BLEU, [100,200], 20)
+    pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
+    pygame.draw.circle(ecran, BLANC, [255, 0], 0 )
     pygame.draw.circle(ecran, VERT, [150, 80], 10)
-    # pygame.draw.circle(ecran, ORANGE, [150+20, 80], 10)
     
     pygame.display.flip()
     
-    clock.tick(60)
+    clock.tick(10)
     
 pygame.quit()

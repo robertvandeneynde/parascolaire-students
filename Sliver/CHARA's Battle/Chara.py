@@ -22,11 +22,13 @@ def deroulementDuCombat():
         #Afficher le coeur et g??rer son comportement
 joueurEstMort = 0
 
+class Frisk:
+    pass
+Frisk.X1 = 30
+Frisk.Y1 = 450
+Frisk.X2 = Frisk.X1 + 16
+Frisk.Y2 = Frisk.Y1 + 16
 
-X = 30
-Y = 450
-X2 = X + 16
-Y2 = Y + 16
 Zone_X = 185
 Zone_Y = 180
 Combat = 1
@@ -82,42 +84,42 @@ while fini == 0:
         elif event.type == pygame.KEYDOWN:
             if Combat == 1:
                 if event.key == 276:
-                    X = X - 160
+                    Frisk.X1 = Frisk.X1 - 160
                 if event.key == 275:
-                    X = X + 160
+                    Frisk.X1 = Frisk.X1 + 160
                 if event.key == 13:
-                    if X == 30:
-                        if Y == 450:
+                    if Frisk.X1 == 30:
+                        if Frisk.Y1 == 450:
                             deroulementDuCombat()
     
                             PVCHARA = PVCHARA -25
                             Combat = 0
-                            X = 334
-                            Y = 275
+                            Frisk.X1 = 334
+                            Frisk.Y1 = 275
                             attack.play()
-                    if X == 190:
-                        if Y == 450:
+                    if Frisk.X1 == 190:
+                        if Frisk.Y1 == 450:
                             Zone = ACTIONInfo
                             Zone_X = 85
-                            X = 105
-                            Y = 215
+                            Frisk.X1 = 105
+                            Frisk.Y1 = 215
                             Combat = 2
             elif Combat == 2:
                 if event.key == 276:
-                    X = X - 265
+                    Frisk.X1 = Frisk.X1 - 265
                 if event.key == 275:
-                    X = X + 265
+                    Frisk.X1 = Frisk.X1 + 265
                 if event.key == 303:
                     if Zone == ACTIONInfo:
                         Combat == 1
                         Zone == Zone
-                        X == 30
-                        Y == 450
+                        Frisk.X1 == 30
+                        Frisk.Y1 == 450
                         
-                if X < 105:
-                    X = 105
-                if X > 370:
-                    X = 370
+                if Frisk.X1 < 105:
+                    Frisk.X1 = 105
+                if Frisk.X1 > 370:
+                    Frisk.X1 = 370
 
 
 
@@ -125,46 +127,46 @@ while fini == 0:
     
     if Combat == 0:
         if pressed[276]:
-            X = X - 5
+            Frisk.X1 = Frisk.X1 - 3
             
         if pressed[275]:
-            X = X + 5
+            Frisk.X1 = Frisk.X1 + 3
             
         if pressed[273]:
-            Y = Y - 5
+            Frisk.Y1 = Frisk.Y1 - 3
             
         if pressed[274]:
-            Y = Y + 5
+            Frisk.Y1 = Frisk.Y1 + 3
 
 
 
     if Combat ==1:
-        if X < 30:
-            X = 30
-        if X > 510:
-            X = 510
+        if Frisk.X1 < 30:
+            Frisk.X1 = 30
+        if Frisk.X1 > 510:
+            Frisk.X1 = 510
 
     if Combat == 0:
-        if X < 189:
-            X = 189
-        if X > 465:
-            X = 465
-        if Y < 184:
-            Y = 184
-        if Y > 360:
-            Y = 360
+        if Frisk.X1 < 189:
+            Frisk.X1 = 189
+        if Frisk.X1 > 465:
+            Frisk.X1 = 465
+        if Frisk.Y1 < 184:
+            Frisk.Y1 = 184
+        if Frisk.Y1 > 360:
+            Frisk.Y1 = 360
 
     if PV > 99:
         PV = 99
 
 
-    if X < enemi_X1:  # perso est trop ?? gauche
+    if Frisk.X1 < enemi_X1:  # perso est trop ?? gauche
         PV == PV
-    elif X > enemi_X2:  # perso est trop ?? droite
+    elif Frisk.X1 > enemi_X2:  # perso est trop ?? droite
         PV == PV
-    elif Y < enemi_Y1:  # perso est trop en haut
+    elif Frisk.Y1 < enemi_Y1:  # perso est trop en haut
         PV == PV
-    elif Y > enemi_Y2:  # perso est trop en bas
+    elif Frisk.Y1 > enemi_Y2:  # perso est trop en bas
         PV == PV
     else:
         PV = PV - 1
@@ -181,7 +183,7 @@ while fini == 0:
     ecran.blit (CLEMENCE, [502, 435])
     ecran.blit (Zone, [Zone_X, Zone_Y])
     ecran.blit (Knife, [enemi_X1, enemi_Y1])
-    ecran.blit (Coeur, [X, Y])
+    ecran.blit (Coeur, [Frisk.X1, Frisk.Y1])
 
     for element in listeElementMenu:
         element.dessiner()
@@ -197,15 +199,17 @@ while fini == 0:
 
     #GAME OVER
 
-    if PV < 0 and joueurEstMort == 0:
+    if PV < 1 and joueurEstMort == 0:
         musique.stop()
         Determination.play(loops=-1, maxtime=0, fade_ms=0)
         joueurEstMort = 1
 
     if joueurEstMort == 1:
         ecran.blit(GAME_OVER, [0, 0])
+        Frisk.X1 == 0
+        Frisk.Y1 == 0
     pygame.display.flip()
 
-    clock.tick(30)
+    clock.tick(60)
 
 pygame.quit()

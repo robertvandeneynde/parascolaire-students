@@ -4,25 +4,19 @@ pygame.init()
 
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
-grosseur = 20
-
 
 clock = pygame.time.Clock()
 
 blanc = [255, 255, 255]
 bleu = [0, 0, 255]
 
-listeDeBalles = []
-class balle :
-    def __init__(self, couleur, rayon, x, y):
-        self.couleur = couleur
-        self.rayon = rayon
-        self.x = x
-        self.y = y
-
-
 bu1 = 100
 bu2 = 200
+grosseur = 20
+KEY_Q = 97
+KEY_D = 100
+KEY_Z = 119
+KEY_S = 115
 
 #musique = pygame.mixer.Sound("Megalovania.ogg")
 grandir = pygame.mixer.Sound("grandir.wav")
@@ -30,7 +24,7 @@ retrecir = pygame.mixer.Sound("retrecir.wav")
 #musique.play()
 
 fini = 0
-while fini == 0:
+while fini == 0:d
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
@@ -57,26 +51,31 @@ while fini == 0:
         if grosseur < 2:
             grosseur = 1
     
-    if pressed[119]:
+    if pressed[KEY_Z]:
         bu2 = bu2 - 5
         
-    if pressed[115]:
+    if pressed[KEY_S]:
         bu2 = bu2 + 5
     
-    if pressed[97]:
+    if pressed[KEY_Q]:
         bu1 = bu1 - 5
         
-    if pressed[100]:
+    if pressed[KEY_D]:
         bu1 = bu1 + 5
+                       
+    if bu1 > 700 - grosseur:
+        bu1 = 700 - grosseur
         
+    if bu1 < grosseur:
+        bu1 = grosseur
         
+    if bu2 > 500 - grosseur:
+        bu2 = 500 - grosseur
         
-        
-        
-        
-
-
-
+    if bu2 < grosseur:
+        bu2 = grosseur
+    
+    # dessin
     ecran.fill(blanc)
     pygame.draw.circle(ecran, bleu, [bu1, bu2], grosseur)
 

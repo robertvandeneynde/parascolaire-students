@@ -35,7 +35,9 @@ while fini == 0:
             if 10 <= x <= 30:
                 if 10 <= y <= 30:
                     print("yep")
-
+            if 55 <= x <= 75:
+                if 10 <= y <= 30:
+                    print("yep")
     if sens == + 1:
         ma_position = ma_position + 5
     if sens == - 1:
@@ -44,7 +46,7 @@ while fini == 0:
         sens = -1
     if ma_position < 0:
         sens = + 1
-    ecran.fill(BLANC)
+    ecran.fill(NOIR)
 
     x = 20
     y = 20
@@ -54,6 +56,9 @@ while fini == 0:
     p = 0
     k = 0
     pygame.draw.circle(ecran, VERT, [x + k * 40 , y + p * 40], 10)
+    pygame.draw.circle(ecran, VERT, [x + 25 + k * 40 , y + p * 40], 10)
+    pygame.draw.circle(ecran, VERT, [x + k * 40 , y + 25 + p * 40], 10)
+    pygame.draw.circle(ecran, VERT, [x + 25 + k * 40 , y + 25 + p * 40], 10)
     # 20, 20 + 0 // p  = 0
     # 20, 20 + 40 // p  = 1
     # x, 20 + 80 // p  = 2

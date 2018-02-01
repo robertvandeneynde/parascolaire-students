@@ -15,13 +15,20 @@ DROITE = 275
 HAUT = 273 
 BAS = 274
 
-Y = 50
+Y = 200
 ball_x= 100
 ball_y= 100
 sens_x= 100
 sens_y= 100
+
+
 rect1 =40
 rect2 =760
+sensrect1=100
+
+ball2 = 100
+sensball2 = 100
+
 clock = pygame.time.Clock()
 
 fini = 0
@@ -43,6 +50,42 @@ while fini == 0:
     else:
         ball_x = ball_x -5
 
+
+
+    if ball_y > 500:
+        sens_y = -1
+    if ball_y < 0:
+        sens_y = 1
+            
+    if sens_y == 1:
+        ball_y = ball_y +5
+        
+    else:
+        ball_y = ball_y -5
+
+
+
+    if ball2 > 500:
+        sensball2 = -1
+    if ball2 < 0:
+        sensball2 = 1
+        
+    if sensball2 == 1:
+        ball2= ball2 +5
+        
+    else:
+        ball2 = ball2 -5
+        
+    
+    if Y > 500 - 50:
+        Y = 500 - 50 
+    
+    if Y < 0:
+        Y = 0
+    
+    
+        
+    # clavier
     pressed = pygame.key.get_pressed()
 
     if pressed[HAUT]:
@@ -51,10 +94,12 @@ while fini == 0:
     if pressed[BAS]:
         Y += 5
 
+    # dessin
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, CYAN, [rect1,Y, 20, 50 ])
+    pygame.draw.rect(ecran, CYAN, [rect1, Y, 20, 50])
     pygame.draw.circle(ecran, VERT, [ball_x, ball_y], 10)
+    pygame.draw.circle(ecran, CYAN, [600, ball2], 10) 
     pygame.display.flip()
     
     clock.tick(60)
