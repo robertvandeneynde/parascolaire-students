@@ -27,16 +27,16 @@ while fini == 0:
     
     # TICK
     if sens == 1:
-        a += 5
-    else:
         a -= 5
+    else:
+        a += 5
                     
     print(a)
     if a > 700:
-        sens = -1
+        sens = 1
     else:    
         if a < 0:
-            sens = 1
+            sens = -1
 
     
     ecran.fill(BLANC)
@@ -46,10 +46,12 @@ while fini == 0:
     pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
     pygame.draw.circle(ecran, BLEU, [20,200], 20)
     pygame.draw.circle(ecran, VERT, [a, 80], 50)
-    pygame.draw.circle(ecran, VERT, [200, 0], 50)
+    pygame.draw.rect(ecran, ROUGE, [400, 80, 50, 20])
+    pygame.draw.polygon(ecran, ROUGE, [[a,50], [a+100,0], [a+100,100]])
     
     pygame.display.flip()
     
     clock.tick(60) # 60 images par sec, 60 fps
     
 pygame.quit()
+

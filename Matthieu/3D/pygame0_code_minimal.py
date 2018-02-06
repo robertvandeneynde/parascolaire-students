@@ -5,6 +5,7 @@ from OpenGL.GL import *
 from OpenGL.GL import shaders
 
 from vec3_utils import farray
+from vec3_utils import *
 import pygame
 pygame.init()
 
@@ -15,21 +16,21 @@ ecran = pygame.display.set_mode(taille, pygame.OPENGL|pygame.DOUBLEBUF)
 
 
 vertices = farray([
-    -0.5, 0.0, 0.5, 
-    0.0, 0.5, 0.6, 
+    -0.5, 0.0, 0.4, 
+    0.0, 0.5, 0.5, 
     0.5, 0.0, 0.4, 
     
-    -0.25, 0, 0.0, 
-    0.0 , 0.0, 0.0, 
-    -0.25, -0.6, 0.0, 
+    -0.25, 0, 0.3, 
+    0.0 , 0.0, 0.4, 
+    -0.25, -0.6, 0.4, 
     
-    -0.25, -0.6, 0.0, 
-    0, 0.0, 0.0, 
-    0.25, -0.6, 0.0, 
+    -0.25, -0.6, 0.4, 
+    0, 0.0, 0.4, 
+    0.25, -0.6, 0.4, 
     
-    0.25, 0, 0.0, 
-    0.0, 0.0, 0.0, 
-    0.25, -0.6, 0.0, 
+    0.25, 0, 0.4, 
+    0.0, 0.0, 0.4, 
+    0.25, -0.6, 0.4, 
 ])
 
 colors = farray([
@@ -55,13 +56,13 @@ vertex_shader ='''
 #version 330
 in vec3 position;
 in vec3 color;
-uniform vec3 translation;
-uniform float grand;
+
+uniform mat4 thematrix;
 out vec3 fcolor;
 
 void main()
 {
-    gl_Position = vec4(grand * position * translation, 1); // et on l'écrit
+    gl_Position = thematrix * vec4(position, 1);
     fcolor = color;
 }'''
 
@@ -127,22 +128,35 @@ while fini == 0:
     translation = farray((0.5, 0.2, 0.1))
     
     # DESSIN
-    glClearColor(0.6, 0.3, 0.4, 1.0) # jaune
+    glClearColor(0, 1, 0.55555444668, 1.0) # jaune
     glClear(GL_COLOR_BUFFER_BIT) # fill  
     
     glUseProgram(shader_program)
     
     if t ==10:
         t -=1
+        
     else:
         t +=1
     
-    translation = t*farray((0.1, 0.2, 0))
-    loc_translation = glGetUniformLocation(shader_program, 'translation')
-    glUniform3fv(loc_translation, 1, translation)
     
-    loc_grand = glGetUniformLocation(shader_program, 'grand')
-    glUniform1f(loc_grand, 0.5*t)
+    #translation = t*farray((0.010, 0.015, 0))
+    #loc_translation = glGetUniformLocation(shader_program, 'translation')
+    #glUniform3fv(loc_translation, 1, translation)
+    
+    P = PerspectiveMatrix(45, 1.0 * 700/500, 0.01, 10)
+        
+    # build view matrix (lookAt)
+    V = LookAtMatrix(vec3(2,0,1), (0, 0, 0), (0, 0, 1))    
+    
+    T = TranslationMatrix(t*farray((0.010, 0.015, 0.02)))
+    S = ScaleMatrix(0.5)
+    R = RotationMatrix(45*t, (0,0,1))
+    M = R @ T @ S
+    glUniformMatrix4fv(glGetUniformLocation(shader_program, 'thematrix'), 1, True, P @ V @ M)
+    
+    #loc_grand = glGetUniformLocation(shader_program, 'grand')
+    # glUniform1f(loc_grand, 0.7)
     
     glBindVertexArray(vertex_array_object)
     glDrawArrays(GL_TRIANGLES, 0, 12) # on a 3 points, on commence au point numéro 0, faire des TRIANGLES.

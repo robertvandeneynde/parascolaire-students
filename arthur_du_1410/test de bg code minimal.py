@@ -17,6 +17,29 @@ BLEU = [0, 0, 255]
 
 clock = pygame.time.Clock()
 
+class Boule: 
+    pass
+
+haut_gauche = Boule()
+haut_gauche.x = 20
+haut_gauche.y = 20
+haut_gauche.bombe = 0
+
+haut_droite = Boule()
+haut_droite.x = 20 + 30
+haut_droite.y = 20
+haut_droite.bombe = 1
+
+bas_gauche = Boule()
+bas_gauche.x = 20
+bas_gauche.y = 20 + 30
+bas_gauche.bombe = 1
+
+bas_droite = Boule()
+bas_droite.x = 20 + 30
+bas_droite.y = 20 + 30
+bas_droite.bombe = 0
+
 fini = 0
 while fini == 0:
 
@@ -48,17 +71,14 @@ while fini == 0:
         sens = + 1
     ecran.fill(NOIR)
 
-    x = 20
-    y = 20
-
     # for p in range (0 , 5):
     #   for k in range(5):
-    p = 0
-    k = 0
-    pygame.draw.circle(ecran, VERT, [x + k * 40 , y + p * 40], 10)
-    pygame.draw.circle(ecran, VERT, [x + 25 + k * 40 , y + p * 40], 10)
-    pygame.draw.circle(ecran, VERT, [x + k * 40 , y + 25 + p * 40], 10)
-    pygame.draw.circle(ecran, VERT, [x + 25 + k * 40 , y + 25 + p * 40], 10)
+
+    pygame.draw.circle(ecran, VERT, [haut_gauche.x , haut_gauche.y], 10)
+    pygame.draw.circle(ecran, VERT, [haut_droite.x , haut_droite.y], 10)
+    pygame.draw.circle(ecran, VERT, [bas_gauche.x , bas_gauche.y], 10)
+    pygame.draw.circle(ecran, VERT, [bas_droite.x , bas_droite.y], 10)
+        
     # 20, 20 + 0 // p  = 0
     # 20, 20 + 40 // p  = 1
     # x, 20 + 80 // p  = 2
