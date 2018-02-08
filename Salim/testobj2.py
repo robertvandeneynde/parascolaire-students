@@ -14,7 +14,21 @@ x = 450
 y = 250
 z = 30
 
-bleus = [random.randrange(601), random.randrange(601), random.randrange(601)]
+class Glace:
+    pass
+
+
+glace1 = Glace()
+glace1.x = random.randrange(601)
+glace1.w = 100
+
+glace2 = Glace()
+glace2.x = random.randrange(601)
+glace2.w = 80
+
+glace3 = Glace()
+glace3.x = random.randrange(601)
+glace3.w = 60
 
 clock = pygame.time.Clock()
 
@@ -48,9 +62,9 @@ while fini == 0:
         
     if z >= 510:  
         z = 0
-        bleus[0] = random.randrange(601)
-        bleus[1] = random.randrange(601)
-        bleus[2] = random.randrange(601)
+        glace1.x = random.randrange(601)
+        glace2.x = random.randrange(601)
+        glace3.x = random.randrange(601)
 
     # TICK.
     
@@ -59,11 +73,9 @@ while fini == 0:
     ecran.fill(BLANC)
     
     pygame.draw.circle(ecran, BLEU, [x, y ], 50)
-    
-    pygame.draw.rect(ecran, BLEU,[bleus[0],z, 100,40])
-    pygame.draw.rect(ecran, BLEU,[bleus[1],z, 80,40])
-    pygame.draw.rect(ecran, BLEU,[bleus[2],z, 60,40])
-    
+    pygame.draw.rect(ecran, BLEU,[glace1.x, z, glace1.w,40])
+    pygame.draw.rect(ecran, BLEU,[glace2.x, z, glace2.w,40])
+    pygame.draw.rect(ecran, BLEU,[glace3.x, z, glace3.w,40])
     pygame.display.flip()
     
     clock.tick(60)

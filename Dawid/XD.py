@@ -89,10 +89,16 @@ while fini == 0:
     pressed = pygame.key.get_pressed()
 
     if pressed[HAUT]:
-        Y -= 5
+        Y -= 8
 
     if pressed[BAS]:
-        Y += 5
+        Y += 8
+
+    if ball_x < rect1 + 20 and Y < ball_y < Y + 50:
+        sens_x = 1
+    
+
+
 
     # dessin
     ecran.fill(BLANC)

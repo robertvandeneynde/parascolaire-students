@@ -30,6 +30,7 @@ while fini == 0:
     ma_position = ma_position +1
     if ma_position > 700:
         ma_position= 0
+        
     # DESSIN
     ecran.fill(BLANC)
     

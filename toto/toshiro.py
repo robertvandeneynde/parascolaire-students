@@ -9,6 +9,7 @@ clock = pygame.time.Clock()
 
 blanc = [255, 255, 255]
 bleu = [0, 0, 255]
+rouge = [255, 0, 0]
 
 bu1 = 100
 bu2 = 200
@@ -24,7 +25,7 @@ retrecir = pygame.mixer.Sound("retrecir.wav")
 #musique.play()
 
 fini = 0
-while fini == 0:d
+while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
@@ -75,10 +76,12 @@ while fini == 0:d
     if bu2 < grosseur:
         bu2 = grosseur
     
+    
+    
     # dessin
     ecran.fill(blanc)
     pygame.draw.circle(ecran, bleu, [bu1, bu2], grosseur)
-
+    pygame.draw.circle(ecran, rouge, [bu1, bu2], grosseur)
     pygame.display.flip()
 
     clock.tick(60)
