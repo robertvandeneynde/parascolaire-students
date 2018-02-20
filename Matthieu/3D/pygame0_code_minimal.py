@@ -9,7 +9,9 @@ from vec3_utils import *
 import pygame
 pygame.init()
 
-taille = [700, 500]
+
+tick = 0
+taille = [1280, 720]
 ecran = pygame.display.set_mode(taille, pygame.OPENGL|pygame.DOUBLEBUF)
 
 
@@ -17,10 +19,10 @@ ecran = pygame.display.set_mode(taille, pygame.OPENGL|pygame.DOUBLEBUF)
 
 vertices = farray([
     -0.5, 0.0, 0.4, 
-    0.0, 0.5, 0.5, 
+    0.0, 0.5, 0.4,
     0.5, 0.0, 0.4, 
     
-    -0.25, 0, 0.3, 
+    -0.25, 0, 0.4, 
     0.0 , 0.0, 0.4, 
     -0.25, -0.6, 0.4, 
     
@@ -115,7 +117,8 @@ BLEU = [0, 0, 255]
 # DÉBUT
 
 clock = pygame.time.Clock()
-
+inconnuerotation = 0
+sens = 1
 t = 0
 fini = 0
 while fini == 0:
@@ -125,33 +128,42 @@ while fini == 0:
             fini = 1
     
     # TICK
+    if tick == 300:
+        tick = 0
+    else:
+        tick +=1
+    t = tick * 0.1
     translation = farray((0.5, 0.2, 0.1))
-    
+    if inconnuerotation == 300:
+        sens =0
+    if inconnuerotation == -300:
+        sens =1
+        sens = 1
+    if sens == 1:
+        inconnuerotation += 1
+    if sens == 0:
+        inconnuerotation -=1
     # DESSIN
-    glClearColor(0, 1, 0.55555444668, 1.0) # jaune
+    glClearColor(0, 0.2, 0.4, 0.8) # jaune
     glClear(GL_COLOR_BUFFER_BIT) # fill  
     
     glUseProgram(shader_program)
     
-    if t ==10:
-        t -=1
-        
-    else:
-        t +=1
+    
     
     
     #translation = t*farray((0.010, 0.015, 0))
     #loc_translation = glGetUniformLocation(shader_program, 'translation')
     #glUniform3fv(loc_translation, 1, translation)
     
-    P = PerspectiveMatrix(45, 1.0 * 700/500, 0.01, 10)
+    P = PerspectiveMatrix(45*(t+1), 1.0 * 1280/720, 0.01, 10)
         
     # build view matrix (lookAt)
-    V = LookAtMatrix(vec3(2,0,1), (0, 0, 0), (0, 0, 1))    
+    V = LookAtMatrix((t*0.15)*vec3(2,0,1), (0, 0, 0), (0, 0, 1))    
     
-    T = TranslationMatrix(t*farray((0.010, 0.015, 0.02)))
-    S = ScaleMatrix(0.5)
-    R = RotationMatrix(45*t, (0,0,1))
+    T = TranslationMatrix(farray((0.010, 0.015, 0.02)))
+    S = ScaleMatrix(t*0.08)
+    R = RotationMatrix(inconnuerotation*8, (0,0,1))
     M = R @ T @ S
     glUniformMatrix4fv(glGetUniformLocation(shader_program, 'thematrix'), 1, True, P @ V @ M)
     
@@ -169,6 +181,6 @@ while fini == 0:
     
     pygame.display.flip()
     
-    clock.tick(10)
+    clock.tick(60)
     
 pygame.quit()

@@ -39,7 +39,7 @@ while fini == 0:
     if pos <=0:
         s = 1     
     
-
+   
     # DESSIN
     ecran.fill(BLANC)
     
@@ -52,5 +52,5 @@ while fini == 0:
     pygame.display.flip()
     
     clock.tick(60)
-    
+    #miss a ete ici :)
 pygame.quit()
