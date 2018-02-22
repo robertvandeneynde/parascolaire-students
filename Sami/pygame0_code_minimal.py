@@ -42,11 +42,12 @@ while fini == 0:
    
     # DESSIN
     ecran.fill(BLANC)
-    
-    pygame.draw.rect(ecran, NOIR, [0,0, 10,500])
+    #Dessin du contour
+    pygame.draw.rect(ecran, NOIR, [0,490, 750,10])
     pygame.draw.rect(ecran, NOIR, [0,0, 750,10])
-    pygame.draw.rect(ecran, NOIR, [730,0, 200,750])
+    pygame.draw.rect(ecran, NOIR, [690,0, 200,750])
     pygame.draw.rect(ecran, NOIR, [0,0, 10,500])
+    ##
     pygame.draw.polygon(ecran, ROUGE, [[pos,250], [350,200], [350,300]])
     pygame.draw.circle(ecran, VERT, [pos, 250], 10)
     pygame.display.flip()

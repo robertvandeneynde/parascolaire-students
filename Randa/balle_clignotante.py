@@ -13,8 +13,8 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 ORANGE  = [255, 128, 64]  
-DEAN = 0
-POSITION = 0
+COULEUR_VARIABLE = 0
+POSITION = 500
 # DÉBUT
 
 clock = pygame.time.Clock()
@@ -28,18 +28,20 @@ while fini == 0:
     
     # TICK
     
-    print(DEAN)
+    print(COULEUR_VARIABLE)
     
-    DEAN = DEAN + 2
-    if DEAN >255:
+    COULEUR_VARIABLE = COULEUR_VARIABLE + 2
+    if COULEUR_VARIABLE >255:
         print("coucou")
-        DEAN = 2
+        COULEUR_VARIABLE = 0
         
     print(POSITION)
     
-    POSITION = POSITION + 2
+    POSITION = POSITION - 2
     if POSITION >700:
         POSITION = 0
+    if  POSITION <0:
+        POSITION= 700
     
     
         
@@ -48,7 +50,7 @@ while fini == 0:
     
     pygame.draw.rect(ecran, ROUGE, [50,200, 20,40])
     pygame.draw.circle(ecran, BLEU, [100,200], 20)
-    pygame.draw.circle(ecran, [DEAN,DEAN,DEAN], [POSITION, 80], 10)
+    pygame.draw.circle(ecran, [150,COULEUR_VARIABLE,COULEUR_VARIABLE], [POSITION, 80], 10)
     # pygame.draw.circle(ecran, ORANGE, [150+20, 80], 10)
     
     pygame.display.flip()

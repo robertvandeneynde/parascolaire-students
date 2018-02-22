@@ -21,7 +21,9 @@ rect_1 = 120
 rect_2 = 200
 rekt_3 = 350
 taille = [900 ,900]
-egg = 3141592653589793238
+jeme_suia_chete_unpe_nissan_hor = 12
+
+
 
 
 ecran = pygame.display.set_mode(taille)
@@ -40,9 +42,14 @@ paysage = [bsod,cpa,mairo,tft,tardis,tr,sys32,ff,cat,LV,caca]
 clock = pygame.time.Clock()
 missile = pygame.image.load('chevre.png').convert_alpha()
 michel = missile
-
+yep = 0
+egg = yep
 fini = 0
 while fini == 0:
+    monsieur_puel = jeme_suia_chete_unpe_nissan_hor
+    cyka_blyat = monsieur_puel
+    cucurbitace = cyka_blyat
+    jeme_suia_chete_unpe_nissan_hor = cucurbitace    
     p = 12
     avancement += 10
     d = int(a*2/10)
@@ -86,6 +93,8 @@ while fini == 0:
     if p[276]:
         ma_position = ma_position - 10
         print("computer")
+        egg -= 1
+        
     if avancement >= 250:
         tir = 0
     if p[104]:
@@ -93,6 +102,9 @@ while fini == 0:
     if p[275]:
         ma_position += 10
         print("yep yep yep")
+        egg += 1
+
+
     if p[pygame.K_F15]:
         print("egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu ")
     if p[pygame.K_UP]:
@@ -115,7 +127,7 @@ while fini == 0:
     miro = pygame.image.load('lololol.png').convert_alpha()
     deni = pygame.image.load('denis.png').convert_alpha()
 
-    while egg < 28:
+    if egg < 28:
         ecran.blit(michel , [imposer_la_force_vers_l_ovanium ,congolexicomatization])
 
 

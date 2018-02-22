@@ -13,7 +13,7 @@ BLEU = [0, 0, 255]
 x = 450
 y = 250
 z = 30
-
+r = 40
 class Glace:
     pass
 
@@ -74,7 +74,7 @@ while fini == 0:
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.circle(ecran, BLEU, [x, y ], 50)
+    pygame.draw.circle(ecran, BLEU, [x, y ], r)
     pygame.draw.rect(ecran, BLEU,[glace1.x, z, glace1.w, 40])
     pygame.draw.rect(ecran, BLEU,[glace2.x, z, glace2.w, 40])
     pygame.draw.rect(ecran, BLEU,[glace3.x, z, glace3.w, 40])

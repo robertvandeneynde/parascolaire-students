@@ -45,10 +45,11 @@ while fini == 0:
         sens_x = 1
         
     if sens_x == 1:
-        ball_x = ball_x +5
+        ball_x = ball_x +4
+    
     
     else:
-        ball_x = ball_x -5
+        ball_x = ball_x -4
 
 
 
@@ -58,25 +59,11 @@ while fini == 0:
         sens_y = 1
             
     if sens_y == 1:
-        ball_y = ball_y +5
+        ball_y = ball_y +4
         
     else:
-        ball_y = ball_y -5
-
-
-
-    if ball2 > 500:
-        sensball2 = -1
-    if ball2 < 0:
-        sensball2 = 1
+        ball_y = ball_y -4
         
-    if sensball2 == 1:
-        ball2= ball2 +5
-        
-    else:
-        ball2 = ball2 -5
-        
-    
     if Y > 500 - 50:
         Y = 500 - 50 
     
@@ -104,8 +91,7 @@ while fini == 0:
     ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, CYAN, [rect1, Y, 20, 50])
-    pygame.draw.circle(ecran, VERT, [ball_x, ball_y], 10)
-    pygame.draw.circle(ecran, CYAN, [600, ball2], 10) 
+    pygame.draw.circle(ecran, VERT, [ball_x, ball_y], 10) 
     pygame.display.flip()
     
     clock.tick(60)

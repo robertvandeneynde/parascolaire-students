@@ -10,13 +10,13 @@ BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
+
 x = 450
 y = 250
 z = 30
 
 class Glace:
     pass
-
 
 glace1 = Glace()
 glace1.x = random.randrange(601)
@@ -40,7 +40,7 @@ while fini == 0:
             fini = 1
             
     z = z + 2
-    #
+    #mouvement
     pressed = pygame.key.get_pressed()
     if pressed[276]:
         x = x - 3
@@ -50,7 +50,7 @@ while fini == 0:
         x = x + 3
     if pressed[273]:
         y = y - 3
-        #colision
+    #colision
     if x > 650 :
         x = 650
     if x < 50:
@@ -62,20 +62,25 @@ while fini == 0:
         
     if z >= 510:  
         z = 0
-        x_bleu = random.randrange(601)
-        x_bleu1 = random.randrange(601)
-        x_bleu2 = random.randrange(601)
+        glace1.x = random.randrange(601)
+        glace2.x = random.randrange(601)
+        glace3.x = random.randrange(601)
 
-    # TICK.
+    # TICK
+    
+    if glace1.x <= x <= glace1.x + glace1.w:
+        print('coucou')
     
 
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.circle(ecran, BLEU, [x, y ], 50)
-    pygame.draw.rect(ecran, BLEU,[x_bleu, z, w_bleu,40])
-    pygame.draw.rect(ecran, BLEU,[x_bleu1, z, w_bleu2,40])
-    pygame.draw.rect(ecran, BLEU,[x_bleu2, z, w_bleu3,40])
+    pygame.draw.circle(ecran, BLEU, [x, y ], 5)
+    
+    pygame.draw.rect(ecran, BLEU,[glace1.x, z, glace1.w, 40])
+    #pygame.draw.rect(ecran, BLEU,[glace2.x, z, glace2.w, 40])
+    #pygame.draw.rect(ecran, BLEU,[glace3.x, z, glace3.w, 40])
+    
     pygame.display.flip()
     
     clock.tick(60)

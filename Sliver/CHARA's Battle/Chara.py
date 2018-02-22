@@ -19,15 +19,14 @@ def deroulementDuCombat():
     while(fini):
         pygame
 
-        #Afficher le coeur et g??rer son comportement
+        #Afficher le coeur et ger son comportement
 joueurEstMort = 0
 
 class Frisk:
     pass
 Frisk.X1 = 30
 Frisk.Y1 = 450
-Frisk.X2 = Frisk.X1 + 16
-Frisk.Y2 = Frisk.Y1 + 16
+
 
 Zone_X = 185
 Zone_Y = 180
@@ -38,8 +37,10 @@ Action = 0
 attaque = 0
 enemi_X1 = 200
 enemi_Y1 = 200
-enemi_X2 = enemi_X1 + 83
-enemi_Y2 = enemi_Y1 + 22
+
+
+
+timer = 0
 
 Coeur = pygame.image.load('Heart.png').convert_alpha()
 Zone = pygame.image.load('Zone.png').convert_alpha()
@@ -90,10 +91,11 @@ while fini == 0:
                 if event.key == 13:
                     if Frisk.X1 == 30:
                         if Frisk.Y1 == 450:
-                            deroulementDuCombat()
-    
-                            PVCHARA = PVCHARA -25
+                            damage = random.randrange(25)
+                            realdamage = damage + 25
+                            PVCHARA = PVCHARA - realdamage
                             Combat = 0
+                            timer = 1
                             Frisk.X1 = 334
                             Frisk.Y1 = 275
                             attack.play()
@@ -121,7 +123,10 @@ while fini == 0:
                 if Frisk.X1 > 370:
                     Frisk.X1 = 370
 
-
+    Frisk.X2 = Frisk.X1 + 16
+    Frisk.Y2 = Frisk.Y1 + 16
+    enemi_X2 = enemi_X1 + 83
+    enemi_Y2 = enemi_Y1 + 22
 
     pressed = pygame.key.get_pressed()
     
@@ -138,7 +143,16 @@ while fini == 0:
         if pressed[274]:
             Frisk.Y1 = Frisk.Y1 + 3
 
+        #timer start
+    if timer >= 1:
+        timer = timer + 1
 
+    if timer > 200:
+        timer = 0
+        Combat = 1
+        Frisk.X1 = 30
+        Frisk.Y1 = 450
+        #timer end
 
     if Combat ==1:
         if Frisk.X1 < 30:
@@ -160,17 +174,19 @@ while fini == 0:
         PV = 99
 
 
-    if Frisk.X1 < enemi_X1:  # perso est trop ?? gauche
+    if Frisk.X2 < enemi_X1:  # perso est trop à gauche
         PV == PV
-    elif Frisk.X1 > enemi_X2:  # perso est trop ?? droite
+    elif Frisk.X1 > enemi_X2:  # perso est trop à droite
         PV == PV
-    elif Frisk.Y1 < enemi_Y1:  # perso est trop en haut
+    elif Frisk.Y2 < enemi_Y1:  # perso est trop en haut
         PV == PV
     elif Frisk.Y1 > enemi_Y2:  # perso est trop en bas
         PV == PV
     else:
         PV = PV - 1
         damage.play()
+
+    print (timer)
         
     #IMAGES/DESSINS
 

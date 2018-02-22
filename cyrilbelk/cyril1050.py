@@ -13,8 +13,8 @@ ecran = pygame.display.set_mode(taille)
 
 NOIR = [0, 0, 0]
 BLANC = [255, 255, 255]
-ROUGE = [255, 0, 0]
-VERT = [0, 255, 0]
+ROUGE = [159, 200, 52]
+VERT = [0, 0, 0]
 BLEU = [0, 0, 255]
 
 clock = pygame.time.Clock()
@@ -37,21 +37,22 @@ while fini == 0:
 
 
     if pressed[276]:
-        XD_X = XD_X - 6
+        XD_X = XD_X - 4
     
     if pressed[275]:
-        XD_X = XD_X + 6
+        XD_X = XD_X + 4
     
     if pressed[274]: 
-        XD_Y = XD_Y + 6
+        XD_Y = XD_Y + 4
         
     if pressed[273]:
-        XD_Y = XD_Y - 6 
-        
+        XD_Y = XD_Y - 4
+    
     ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, ROUGE, [XD_X,XD_Y, 10,40])
 
+    pygame.draw.carré(ecran, VERT, [40,45,20,25])
     
     pygame.display.flip()
     
