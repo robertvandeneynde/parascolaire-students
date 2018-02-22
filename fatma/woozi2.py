@@ -20,21 +20,23 @@ clock = pygame.time.Clock()
 
 fini = 0
 while fini == 0:
+  
+    
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
     
     # TICK
-    print (TAEMIN)
-    TAEMIN= TAEMIN + 1
-     if TAEMIN == 150 
-     print(TAEMIN)
-
+    print(TAEMIN)
+    TAEMIN = TAEMIN + 5
+    if TAEMIN == 150:
+        print("coucou")
+        
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
+    pygame.draw.rect(ecran, ROUGE, [TAEMIN,200, 20,40])
     pygame.draw.circle(ecran, BLEU, [100,200], 20)
     pygame.draw.circle(ecran, VERT, [150, 80], 10)
     

@@ -18,9 +18,21 @@ BLEU = [0, 0, 255]
 
 clock = pygame.time.Clock()
 
-Xplayer = 350
-Yplayer = 250
-Sizeplayer = 10
+class Player:
+    pass
+
+player = Player()
+player.x = 350
+player.y = 250
+player.size = 10
+
+class Mob:
+    pass
+
+kh = Mob()
+kh.x = 695
+kh.y = 495
+kh.length = 15
 
 fini = 0
 while fini == 0:
@@ -35,41 +47,41 @@ while fini == 0:
     # à chaque tick...
     # si Gauche est enfoncée
     if pressed[276]:
-        Xplayer -= 5
-        if Xplayer < Sizeplayer:
-            Xplayer = Sizeplayer
+        player.x -= 5
+        if player.x < player.size:
+            player.x = player.size
     if pressed[275]:
-        Xplayer += 5
-        if Xplayer > 700 - Sizeplayer:
-            Xplayer = 700 - Sizeplayer
+        player.x += 5
+        if player.x > 700 - player.size:
+            player.x = 700 - player.size
     if pressed[274]:
-        Yplayer += 5
-        if Yplayer > 500 - Sizeplayer:
-            Yplayer = 500 - Sizeplayer
+        player.y += 5
+        if player.y > 500 - player.size:
+            player.y = 500 - player.size
     if pressed[273]:
-        Yplayer -=5
-        if Yplayer < Sizeplayer:
-            Yplayer = Sizeplayer
+        player.y -=5
+        if player.y < player.size:
+            player.y = player.size
 
     buttons = pygame.mouse.get_pressed()  # liste contenant l'état des touches de la souris : gauche/milieu/droit
 
     if buttons[0]:  # si le bouton de gauche de la souris est enfoncé
         position_souris = pygame.mouse.get_pos()  # liste de taille 2 avec x,y
-        Xplayer = position_souris[0]
-        if Xplayer < Sizeplayer:
-            Xplayer = Sizeplayer
-        if Xplayer > 700 - Sizeplayer:
-            Xplayer = 700 - Sizeplayer
-        Yplayer = position_souris[1]
-    if Yplayer < Sizeplayer:
-        Yplayer = Sizeplayer
-    if Yplayer > 500 - Sizeplayer:
-        Yplayer = 500 - Sizeplayer
+        player.x = position_souris[0]
+        if player.x < player.size:
+            player.x = player.size
+        if player.x > 700 - player.size:
+            player.x = 700 - player.size
+        player.y = position_souris[1]
+        if player.y < player.size:
+            player.y = player.size
+        if player.y > 500 - player.size:
+            player.y = 500 - player.size
 
     # DESSIN
     ecran.fill(NOIR)
 
-    pygame.draw.circle(ecran, BLEU, [Xplayer, Yplayer], Sizeplayer)
+    pygame.draw.circle(ecran, BLEU, [player.x, player.y], player.size)
 
     pygame.display.flip()
 

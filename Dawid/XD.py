@@ -9,6 +9,7 @@ VERT = [0, 255, 0]
 BLANC = [255, 255, 255]
 BLEU = [0, 0, 255]
 CYAN = [24, 156, 171]
+ROUGE = [255, 0, 0]
 
 GAUCHE = 276
 DROITE = 275
@@ -16,14 +17,15 @@ HAUT = 273
 BAS = 274
 
 Y = 200
+Y2 = 200
 ball_x= 100
 ball_y= 100
 sens_x= 100
 sens_y= 100
 
 
-rect1 =40
-rect2 =760
+rect1 =50
+rect2 =730
 sensrect1=100
 
 ball2 = 100
@@ -70,8 +72,8 @@ while fini == 0:
     if Y < 0:
         Y = 0
     
+  
     
-        
     # clavier
     pressed = pygame.key.get_pressed()
 
@@ -80,8 +82,11 @@ while fini == 0:
 
     if pressed[BAS]:
         Y += 8
-
-    if ball_x < rect1 + 20 and Y < ball_y < Y + 50:
+        #colision
+    if ball_x <= rect1 + 20 and Y < ball_y < Y + 50:
+        sens_x = 1
+        
+    if ball_x >= rect2  and Y2 < ball_y < Y2 + 50:
         sens_x = 1
     
 
@@ -92,7 +97,9 @@ while fini == 0:
     
     pygame.draw.rect(ecran, CYAN, [rect1, Y, 20, 50])
     pygame.draw.circle(ecran, VERT, [ball_x, ball_y], 10) 
+    pygame.draw.rect(ecran, ROUGE, [rect2, ball_y-25, 20, 50])
     pygame.display.flip()
+
     
     clock.tick(60)
     

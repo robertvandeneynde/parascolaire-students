@@ -1,6 +1,10 @@
 #!coding: utf-8
 from __future__ import print_function, division
 
+from vec3_utils import *
+
+print(cosd(30))
+
 import pygame
 pygame.init()
 
@@ -37,6 +41,7 @@ imagen_defondo = pygame.image.load("espace.jpg").convert()
 weasley = 10
 luna = 5
 
+t = 0
 fini = 0
 while fini == 0:
     
@@ -59,6 +64,7 @@ while fini == 0:
     pressed = pygame.key.get_pressed()
     
     # TICK
+    t = t + 1
     potter = potter + 1
     
     if pressed[275]:
@@ -110,18 +116,26 @@ while fini == 0:
     
     # DESSIN
     
-    
     ecran.fill(ROUGEPALE)
     
     ecran.blit(imagen_defondo, [0,0])
     
-    pygame.draw.rect (ecran, ORONGEPALE, [15, 15, ecran.get_width() -30,  ecran.get_height() -30 ])
+    pygame.draw.rect(ecran, ORONGEPALE, [
+        15, 15,
+        ecran.get_width() - 30,  ecran.get_height() - 30
+    ])
     
-    pygame.draw.rect (ecran, JAUNEPALE, [30, 30, ecran.get_width() -60,  ecran.get_height() -60 ])
+    pygame.draw.rect(ecran, JAUNEPALE, [
+        30, 30,
+        ecran.get_width() - 60,  ecran.get_height() - 60
+    ])
     
-    pygame.draw.rect (ecran, JAUNEPALE, [45, 45, ecran.get_width() -90,  ecran.get_height() -90 ])
+    pygame.draw.rect(ecran, JAUNEPALE, [
+        45, 45,
+        ecran.get_width() - 90,  ecran.get_height() - 90
+    ])
 
-    pygame.draw.rect(ecran, JAUNE, [100+weasley,400, 20,40])
+    pygame.draw.rect(ecran, JAUNE, [100 + weasley, 400, 20,40])
     
     if sens == 1:
         pygame.draw.circle(ecran, VERT, [100+snape,200], 20)
@@ -138,7 +152,7 @@ while fini == 0:
     
     pygame.draw.circle(ecran, HOOKER, [albus, neville], 20)
     
-   
+    pygame.draw.circle(ecran, [255,0,0], [int(200 + 100*cosd(t)), int(200 + 100*sind(t))], 20)    
     
     if sens == 1:
         offset_y = 200

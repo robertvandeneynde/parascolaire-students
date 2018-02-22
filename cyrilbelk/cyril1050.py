@@ -47,12 +47,17 @@ while fini == 0:
         
     if pressed[273]:
         XD_Y = XD_Y - 4
+        
+    if XD_X <= 0:
+        XD_X=0
     
+    if XD_X >= 660:
+        XD_X=660
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [XD_X,XD_Y, 10,40])
+    pygame.draw.rect(ecran, ROUGE, [XD_X,XD_Y,40,50])
 
-    pygame.draw.carré(ecran, VERT, [40,45,20,25])
+    pygame.draw.rect(ecran, VERT, [60,45,30,25])
     
     pygame.display.flip()
     

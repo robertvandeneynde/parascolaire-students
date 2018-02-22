@@ -10,6 +10,7 @@ clock = pygame.time.Clock()
 blanc = [255, 255, 255]
 bleu = [0, 0, 255]
 rouge = [255, 0, 0]
+blanc = [255, 255, 255]
 
 bu1 = 100
 bu2 = 200
@@ -18,23 +19,28 @@ KEY_Q = 97
 KEY_D = 100
 KEY_Z = 119
 KEY_S = 115
+KEY_C = 99
+KEY_V = 118
+ballex = 50
+balley = 50
 
 #musique = pygame.mixer.Sound("Megalovania.ogg")
 grandir = pygame.mixer.Sound("grandir.wav")
 retrecir = pygame.mixer.Sound("retrecir.wav")
 #musique.play()
-
+print('x')
 fini = 0
 while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
-            print("La touche numero", event.key)
+            
         elif event.type == pygame.KEYDOWN:
             print(event.key)
-            if event.key == 273:
+            print("La touche numero", event.key)
+            if event.key == KEY_C:
                 grandir.play()
-            if event.key == 274:
+            if event.key == KEY_V:
                 retrecir.play()
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -43,10 +49,10 @@ while fini == 0:
 
     pressed = pygame.key.get_pressed()
 
-    if pressed[273]:
+    if pressed[KEY_C]:
         grosseur = grosseur + 2
 
-    if pressed[274]:
+    if pressed[KEY_V]:
         grosseur = grosseur - 2
 
         if grosseur < 2:
@@ -63,6 +69,19 @@ while fini == 0:
         
     if pressed[KEY_D]:
         bu1 = bu1 + 5
+    
+    if pressed[276]:
+        ballex = ballex - 5
+        
+    if pressed[275]:
+        ballex = ballex + 5
+        
+    if pressed[273]:
+        balley = balley - 5
+        
+    if pressed[274]:
+        balley = balley + 5
+
                        
     if bu1 > 700 - grosseur:
         bu1 = 700 - grosseur
@@ -80,8 +99,10 @@ while fini == 0:
     
     # dessin
     ecran.fill(blanc)
-    pygame.draw.circle(ecran, bleu, [bu1, bu2], grosseur)
+    pygame.draw.circle(ecran, bleu, [bu1, bu2], grosseur+5)
     pygame.draw.circle(ecran, rouge, [bu1, bu2], grosseur)
+    pygame.draw.circle(ecran, blanc, [bu1, bu2], grosseur-5)
+    pygame.draw.circle(ecran, rouge, [ballex, balley], grosseur)
     pygame.display.flip()
 
     clock.tick(60)

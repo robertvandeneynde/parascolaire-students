@@ -1,6 +1,7 @@
 
 
 import pygame
+from tkinter import *
 
 
 pygame.init()
@@ -22,10 +23,6 @@ rect_2 = 200
 rekt_3 = 350
 taille = [900 ,900]
 jeme_suia_chete_unpe_nissan_hor = 12
-
-
-
-
 ecran = pygame.display.set_mode(taille)
 bsod = pygame.image.load('bsod.png').convert_alpha()
 cpa = pygame.image.load('cpacorsie.jpg')
@@ -45,6 +42,11 @@ michel = missile
 yep = 0
 egg = yep
 fini = 0
+#fin des variables
+
+
+
+
 while fini == 0:
     monsieur_puel = jeme_suia_chete_unpe_nissan_hor
     cyka_blyat = monsieur_puel
@@ -152,4 +154,3 @@ while fini == 0:
 
 
 pygame.quit()
-2

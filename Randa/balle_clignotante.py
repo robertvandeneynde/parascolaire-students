@@ -40,15 +40,13 @@ while fini == 0:
     POSITION = POSITION - 2
     if POSITION >700:
         POSITION = 0
-    if  POSITION <0:
-        POSITION= 700
+    if  POSITION < 0:
+        POSITION = 700
     
-    
-        
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [50,200, 20,40])
+    pygame.draw.rect(ecran, ROUGE, [300,200, 20,40])
     pygame.draw.circle(ecran, BLEU, [100,200], 20)
     pygame.draw.circle(ecran, [150,COULEUR_VARIABLE,COULEUR_VARIABLE], [POSITION, 80], 10)
     # pygame.draw.circle(ecran, ORANGE, [150+20, 80], 10)

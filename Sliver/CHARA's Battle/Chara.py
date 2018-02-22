@@ -19,7 +19,7 @@ def deroulementDuCombat():
     while(fini):
         pygame
 
-        #Afficher le coeur et ger son comportement
+        #Afficher le coeur et g√©rer son comportement
 joueurEstMort = 0
 
 class Frisk:
@@ -174,9 +174,9 @@ while fini == 0:
         PV = 99
 
 
-    if Frisk.X2 < enemi_X1:  # perso est trop ‡ gauche
+    if Frisk.X2 < enemi_X1:  # perso est trop √† gauche
         PV == PV
-    elif Frisk.X1 > enemi_X2:  # perso est trop ‡ droite
+    elif Frisk.X1 > enemi_X2:  # perso est trop √† droite
         PV == PV
     elif Frisk.Y2 < enemi_Y1:  # perso est trop en haut
         PV == PV
@@ -184,9 +184,8 @@ while fini == 0:
         PV == PV
     else:
         PV = PV - 1
-        damage.play()
+        print (timer)
 
-    print (timer)
         
     #IMAGES/DESSINS
 

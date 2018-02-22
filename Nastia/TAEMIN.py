@@ -13,6 +13,8 @@ BLEU = [0, 0, 255]
 # DÉBUT
 TAEMIN =  0
 SUHO = 0 
+TEN = 0
+TEN_HAUTEUR = 200
 
 clock = pygame.time.Clock()
 
@@ -25,22 +27,30 @@ while fini == 0:
     
     # TICK
     TAEMIN = TAEMIN + 5
-    if TAEMIN >= 300:
+    if TAEMIN >= 700:
         TAEMIN = 0
         
-    SUHO = SUHO + 0
+    SUHO = SUHO + 5
     if SUHO >= 500: 
         SUHO = 0 
+        
+    TEN = TEN + 5
+    if TEN >= 700:
+        TEN = 0 
+    
+    TEN_HAUTEUR += 5
+    if TEN_HAUTEUR >= 500:
+        TEN_HAUTEUR = 0
 
     # DESSIN
     ecran.fill(BLEU)
     
     pygame.draw.rect(ecran, ROUGE, [100,SUHO, 20,40])
-    pygame.draw.circle(ecran, [100, 150 ,0], [200, 70], 20 )
-    pygame.draw.circle(ecran, [0,255,0], [150, 80], 10)
+    pygame.draw.circle(ecran, [100, 150, 0], [TAEMIN, 70], 20 )
+    pygame.draw.rect(ecran, ROUGE, [TEN,TEN_HAUTEUR, 30,60])
     
     pygame.display.flip()
     
-    clock.tick(1)
+    clock.tick(60)
     
 pygame.quit()
