@@ -44,6 +44,26 @@ bas_droite.y = 20 + 30
 bas_droite.bombe = 0
 bas_droite.rayon = 10
 
+boules = []
+boules.append(haut_gauche)
+boules.append(haut_droite)
+boules.append(bas_gauche)
+boules.append(bas_droite)
+
+b = Boule()
+b.x = 100
+b.y = 100
+b.bombe = 1
+b.rayon = 10
+boules.append(b)
+
+b = Boule()
+b.x = 150
+b.y = 100
+b.bombe = 1
+b.rayon = 10
+boules.append(b)
+
 fini = 0
 while fini == 0:
 
@@ -59,18 +79,22 @@ while fini == 0:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             print("Clic en", event.pos[0], event.pos[1])
             x,y =  event.pos
+
             if haut_gauche.x - haut_gauche.rayon <= x <= haut_gauche.x + haut_gauche.rayon:
                 if haut_gauche.y - haut_gauche.rayon <= y <= haut_gauche.y + haut_gauche.rayon:
-                    print("yep")
+                    print("yep","0")
+
             if bas_gauche.x - bas_gauche.rayon <= x <= bas_gauche.x + bas_gauche.rayon:
                 if bas_gauche.y - bas_gauche.rayon <= y <= bas_gauche.y + bas_gauche.rayon:
-                    print("yep")
+                    print("yep","1")
+
             if bas_droite.x - bas_droite.rayon <= x <= bas_droite.x + bas_droite.rayon:
                 if bas_droite.y - bas_droite.rayon <= y <= bas_droite.y + bas_droite.rayon: 
-                    print("yep")
+                    print("yep","2")
+
             if haut_droite.x - haut_droite.rayon <= x <= haut_droite.x + haut_droite.rayon:
                 if haut_droite.y - haut_droite.rayon <= y <= haut_droite.y + haut_droite.rayon:            
-                    print("yep")
+                    print("yep","3")
     if sens == + 1:
         ma_position = ma_position + 5
     if sens == - 1:
@@ -84,11 +108,11 @@ while fini == 0:
     # for p in range (0 , 5):
     #   for k in range(5):
 
-    pygame.draw.circle(ecran, VERT, [haut_gauche.x , haut_gauche.y], 10)
-    pygame.draw.circle(ecran, VERT, [haut_droite.x , haut_droite.y], 10)
-    pygame.draw.circle(ecran, VERT, [bas_gauche.x , bas_gauche.y], 10)
-    pygame.draw.circle(ecran, VERT, [bas_droite.x , bas_droite.y], 10)
-        
+    i = 0
+    while i < len(boules):
+        pygame.draw.circle(ecran, VERT, [boules[i].x, boules[i].y], boules[i].rayon)
+        i = i + 1
+
     # 20, 20 + 0 // p  = 0
     # 20, 20 + 40 // p  = 1
     # x, 20 + 80 // p  = 2

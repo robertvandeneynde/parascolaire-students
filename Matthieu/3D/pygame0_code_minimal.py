@@ -33,6 +33,10 @@ vertices = farray([
     0.25, 0, 0.4, 
     0.0, 0.0, 0.4, 
     0.25, -0.6, 0.4, 
+    
+    0.25, 0.8, 0.4, 
+    0.10, 0, 0.8, 
+    0.10, -0.6, 0.4,     
 ])
 
 colors = farray([
@@ -171,7 +175,7 @@ while fini == 0:
     # glUniform1f(loc_grand, 0.7)
     
     glBindVertexArray(vertex_array_object)
-    glDrawArrays(GL_TRIANGLES, 0, 12) # on a 3 points, on commence au point numéro 0, faire des TRIANGLES.
+    glDrawArrays(GL_TRIANGLES, 0, 15) # on a 3 points, on commence au point numéro 0, faire des TRIANGLES.
     glBindVertexArray(0)
     
     glUseProgram(0)    

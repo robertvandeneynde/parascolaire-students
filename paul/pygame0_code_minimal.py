@@ -2,6 +2,7 @@
 from __future__ import print_function, division
 
 import pygame
+import random
 
 pygame.init()
 
@@ -18,6 +19,8 @@ BLEU = [0, 0, 255]
 
 clock = pygame.time.Clock()
 
+countspawn = 0
+
 class Player:
     pass
 
@@ -29,10 +32,31 @@ player.size = 10
 class Mob:
     pass
 
-kh = Mob()
-kh.x = 695
-kh.y = 495
-kh.length = 15
+gérard = Mob()
+gérard.x  = 680
+gérard.y = 480
+gérard.size = 20
+
+mobs = []
+mobs.append(gérard)
+
+m = Mob()
+m.x  = 680-2*100
+m.y = 480
+m.size = 20
+mobs.append(m)
+
+m = Mob()
+m.x  = 680-100
+m.y = 480
+m.size = 20
+mobs.append(m)
+
+m = Mob()
+m.x  = 680-100*3
+m.y = 480
+m.size = 20
+mobs.append(m)
 
 fini = 0
 while fini == 0:
@@ -77,12 +101,33 @@ while fini == 0:
             player.y = player.size
         if player.y > 500 - player.size:
             player.y = 500 - player.size
+            
+    countspawn += 1
+    if countspawn == 5*60:
+        countspawn = 0
+        aleax = random.randint(0, 700 - m.size)
+        aleay = random.randint(0, 500 - m.size)
+        m = Mob()
+        m.x  = aleax
+        m.y = aleay
+        m.size = 20
+        mobs.append(m)
+        
 
     # DESSIN
     ecran.fill(NOIR)
 
     pygame.draw.circle(ecran, BLEU, [player.x, player.y], player.size)
-
+    
+    #pygame.draw.rect(ecran, ROUGE, [gérard.x, gérard.y, gérard.size, gérard.size])
+    #pygame.draw.rect(ecran, ROUGE, [mobs[1].x, mobs[1].y, mobs[1].size, mobs[1].size])
+    #pygame.draw.rect(ecran, ROUGE, [m.x, m.y, m.size, m.size])
+    
+    i = 0
+    while i < len(mobs):
+        pygame.draw.rect(ecran, ROUGE, [mobs[i].x, mobs[i].y, mobs[i].size, mobs[i].size])    
+        i += 1
+    
     pygame.display.flip()
 
     clock.tick(60)
