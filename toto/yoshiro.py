@@ -12,8 +12,17 @@ bleu = [0, 0, 255]
 rouge = [255, 0, 0]
 blanc = [255, 255, 255]
 
-bu1 = 100
-bu2 = 200
+class Perso:
+    pass
+
+bu = Perso()
+bu.x = 100
+bu.y = 200
+
+balle = Perso()
+balle.x = 50
+balle.y = 50
+
 grosseur = 20
 KEY_Q = 97
 KEY_D = 100
@@ -59,50 +68,62 @@ while fini == 0:
             grosseur = 1
     
     if pressed[KEY_Z]:
-        bu2 = bu2 - 5
+        bu.y = bu.y - 5
         
     if pressed[KEY_S]:
-        bu2 = bu2 + 5
+        bu.y = bu.y + 5
     
     if pressed[KEY_Q]:
-        bu1 = bu1 - 5
+        bu.x = bu.x - 5
         
     if pressed[KEY_D]:
-        bu1 = bu1 + 5
+        bu.x = bu.x + 5
     
     if pressed[276]:
-        ballex = ballex - 5
+        balle.x = balle.x - 5
         
     if pressed[275]:
-        ballex = ballex + 5
+        balle.x = balle.x + 5
         
     if pressed[273]:
-        balley = balley - 5
+        balle.y = balle.y - 5
         
     if pressed[274]:
-        balley = balley + 5
+        balle.y = balle.y + 5
 
                        
-    if bu1 > 700 - grosseur:
-        bu1 = 700 - grosseur
+    if bu.x > 700 - grosseur:
+        bu.x = 700 - grosseur
         
-    if bu1 < grosseur:
-        bu1 = grosseur
+    if bu.x < grosseur:
+        bu.x = grosseur
         
-    if bu2 > 500 - grosseur:
-        bu2 = 500 - grosseur
+    if bu.y > 500 - grosseur:
+        bu.y = 500 - grosseur
         
-    if bu2 < grosseur:
-        bu2 = grosseur
+    if bu.y < grosseur:
+        bu.y = grosseur
+        
+    if balle.x > 700 - grosseur:
+        balle.x = 700 - grosseur
+    
+    if balle.x < grosseur:
+        balle.x = grosseur
+        
+    if balley > 500 - grosseur:
+        balley = 500 - grosseur
+    
+    if balle.y < grosseur:
+        balle.y = grosseur
     
     
     
     # dessin
     ecran.fill(blanc)
-    pygame.draw.circle(ecran, bleu, [bu1, bu2], grosseur+5)
-    pygame.draw.circle(ecran, rouge, [bu1, bu2], grosseur)
-    pygame.draw.circle(ecran, blanc, [bu1, bu2], grosseur-5)
-    pygame.draw.circle(ecran, rouge, [ballex, balley], grosseur)
+    pygame.draw.circle(ecran, bleu, [bu.x, bu.y], grosseur+5)
+    pygame.draw.circle(ecran, rouge, [bu.x, bu.y], grosseur)
+    pygame.draw.circle(ecran, blanc, [bu.x, bu.y], grosseur-5)
+    pygame.draw.circle(ecran, rouge, [balle.x, balle.y], grosseur)
     pygame.display.flip()
 
     clock.tick(60)

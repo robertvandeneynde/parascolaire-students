@@ -1,8 +1,6 @@
 
 
 import pygame
-from tkinter import *
-
 
 pygame.init()
 
@@ -27,6 +25,7 @@ ecran = pygame.display.set_mode(taille)
 bsod = pygame.image.load('bsod.png').convert_alpha()
 cpa = pygame.image.load('cpacorsie.jpg')
 mairo = pygame.image.load('miro.jpg')
+clock = pygame.time.Clock()
 tft = pygame.image.load('tfourtweny.jpg')
 tardis = pygame.image.load('time_and_relative_dimension_in_space.jpg')
 tr = pygame.image.load('tr.jpg')
@@ -36,7 +35,6 @@ cat = pygame.image.load('catapult.jpg')
 LV = pygame.image.load('LAMPAVID.jpg')
 caca = pygame.image.load('osef.png').convert_alpha()
 paysage = [bsod,cpa,mairo,tft,tardis,tr,sys32,ff,cat,LV,caca]
-clock = pygame.time.Clock()
 missile = pygame.image.load('chevre.png').convert_alpha()
 michel = missile
 yep = 0

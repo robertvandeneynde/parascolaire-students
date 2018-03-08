@@ -11,14 +11,30 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
+class Perso:
+    pass
+
+chicken = Perso()
+chicken.x = 450
+chicken.y = 250
+
 x = 450
 y = 250
 z = 0
 
 dead = 0
 
-decor = pygame.image.load('decor.jpg').convert_alpha()
+decor = pygame.image.load('deco.jpg').convert_alpha()
 game_over = pygame.image.load('game over.png').convert_alpha()
+image_perso = pygame.image.load('Angry Chicken.png').convert_alpha()
+
+image_perso = pygame.transform.rotozoom(image_perso, 0, 1/5)
+
+print(image_perso.get_width(), image_perso.get_height())
+
+import sys
+sys.stdout.flush()
+
 class Glace:
     pass
 
@@ -37,6 +53,23 @@ glace3 = Glace()
 glace3.x = random.randrange(601)
 glace3.w = 60
 glace3.h = 40
+
+glaces = [glace1, glace2, glace3]
+
+glaceg = Glace()
+glaceg.x = random.randrange(601)
+glaceg.w = 60
+glaceg.h = 40
+
+glaces.append(glaceg)
+
+glaceg = Glace()
+glaceg.x = random.randrange(601)
+glaceg.w = 60
+glaceg.h = 40
+
+glaces.append(glaceg)
+
 
 clock = pygame.time.Clock()
 
@@ -70,15 +103,22 @@ while fini == 0:
         
     if z >= 510:  
         z = 0
-        glace1.x = random.randrange(601)
-        glace2.x = random.randrange(601)
-        glace3.x = random.randrange(601)
+        r = 0
+        while r < len(glaces):
+            glaces[r].x = random.randrange(601)
+            r = r + 1
+            
+            
+        #glace1.x = random.randrange(601)
+        #glace2.x = random.randrange(601)
+        #glace3.x = random.randrange(601)
 
     # TICK
-    
-    if glace1.x <= x <= glace1.x + glace1.w and z <= y <= glace1.h + z:
-        dead = 1
-    
+    i = 0
+    while i < len(glaces):
+        if glaces[i].x <= x <= glaces[i].x + glaces[i].w and z <= y <= glaces[i].h + z:
+            dead = 1
+        i = i + 1
     
 
     # DESSIN
@@ -87,10 +127,16 @@ while fini == 0:
     ecran.blit (decor, [0, 0])
     
     pygame.draw.circle(ecran, BLEU, [x, y ], 5)
+    ecran.blit(image_perso, [x - image_perso.get_width()/2, y-image_perso.get_height()/2])    
     
-    pygame.draw.rect(ecran, BLEU,[glace1.x, z, glace1.w, glace1.h])
-    #♣pygame.draw.rect(ecran, BLEU,[glace2.x, z, glace2.w, 40])
-    #pygame.draw.rect(ecran, BLEU,[glace3.x, z, glace3.w, 40])
+    i = 0
+    while i < len(glaces):
+        pygame.draw.rect(ecran, BLEU, [glaces[i].x, z, glaces[i].w, glaces[i].h], 1)
+        i = i + 1
+    
+    # for g in glaces:
+    #   pygame.draw.rect(ecran, BLEU, [g.x, z, g.w, g.h], 1)
+    
     if dead == 1:
         ecran.blit (game_over, [0, 0])
     
