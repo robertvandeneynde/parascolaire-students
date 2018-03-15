@@ -11,7 +11,7 @@ blanc = [255, 255, 255]
 bleu = [0, 0, 255]
 rouge = [255, 0, 0]
 blanc = [255, 255, 255]
-
+couleur_de_pd = [244, 11, 239]
 class Perso:
     pass
 
@@ -30,8 +30,7 @@ KEY_Z = 119
 KEY_S = 115
 KEY_C = 99
 KEY_V = 118
-ballex = 50
-balley = 50
+
 
 #musique = pygame.mixer.Sound("Megalovania.ogg")
 grandir = pygame.mixer.Sound("grandir.wav")
@@ -110,8 +109,8 @@ while fini == 0:
     if balle.x < grosseur:
         balle.x = grosseur
         
-    if balley > 500 - grosseur:
-        balley = 500 - grosseur
+    if balle.y > 500 - grosseur:
+        balle.y = 500 - grosseur
     
     if balle.y < grosseur:
         balle.y = grosseur
@@ -124,6 +123,8 @@ while fini == 0:
     pygame.draw.circle(ecran, rouge, [bu.x, bu.y], grosseur)
     pygame.draw.circle(ecran, blanc, [bu.x, bu.y], grosseur-5)
     pygame.draw.circle(ecran, rouge, [balle.x, balle.y], grosseur)
+    pygame.draw.circle(ecran, couleur_de_pd, [balle.x, balle.y], grosseur-5)
+    pygame.draw.circle(ecran, 
     pygame.display.flip()
 
     clock.tick(60)

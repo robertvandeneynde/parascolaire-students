@@ -16,20 +16,19 @@ DROITE = 275
 HAUT = 273 
 BAS = 274
 
-Y = 200
-Y2 = 200
-ball_x= 100
-ball_y= 100
-sens_x= 100
-sens_y= 100
+playerX = 50
+playerY = 200
 
+opponentY = 200
 
-rect1 =50
-rect2 =730
-sensrect1=100
+ball_x = 100
+ball_y = 100
+balle_sens_x = 100
+balle_sens_y = 100
 
-ball2 = 100
-sensball2 = 100
+opponentX = 730
+sensrect1 = 100
+
 
 clock = pygame.time.Clock()
 
@@ -42,62 +41,53 @@ while fini == 0:
             
             
     if ball_x > 800:
-        sens_x = -1
+        balle_sens_x = -1
     if ball_x < 0:
-        sens_x = 1
+        balle_sens_x = 1
         
-    if sens_x == 1:
-        ball_x = ball_x +4
-    
-    
+    if balle_sens_x == 1:
+        ball_x = ball_x + 4
     else:
         ball_x = ball_x -4
 
-
-
     if ball_y > 500:
-        sens_y = -1
+        balle_sens_y = -1
     if ball_y < 0:
-        sens_y = 1
+        balle_sens_y = 1
             
-    if sens_y == 1:
+    if balle_sens_y == 1:
         ball_y = ball_y +4
         
     else:
         ball_y = ball_y -4
         
-    if Y > 500 - 50:
-        Y = 500 - 50 
+    if playerY > 500 - 50:
+        playerY = 500 - 50 
     
-    if Y < 0:
-        Y = 0
-    
-  
+    if playerY < 0:
+        playerY = 0
     
     # clavier
     pressed = pygame.key.get_pressed()
 
     if pressed[HAUT]:
-        Y -= 8
+        playerY -= 8
 
     if pressed[BAS]:
-        Y += 8
-        #colision
-    if ball_x <= rect1 + 20 and Y < ball_y < Y + 50:
-        sens_x = 1
+        playerY += 8
+    # collisions
+    if ball_x <= playerX + 20 and playerY < ball_y < playerY + 50:
+        balle_sens_x = 1
         
-    if ball_x >= rect2  and Y2 < ball_y < Y2 + 50:
-        sens_x = 1
-    
+    if ball_x >= opponentX: # and opponentY < ball_y < opponentY + 50:
+        balle_sens_x = -1
 
-
-
+        ecran.fill(BLANC)
     # dessin
-    ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, CYAN, [rect1, Y, 20, 50])
+    pygame.draw.rect(ecran, CYAN, [playerX, playerY, 20, 50])
     pygame.draw.circle(ecran, VERT, [ball_x, ball_y], 10) 
-    pygame.draw.rect(ecran, ROUGE, [rect2, ball_y-25, 20, 50])
+    pygame.draw.rect(ecran, ROUGE, [opponentX, ball_y-25, 20, 50])
     pygame.display.flip()
 
     

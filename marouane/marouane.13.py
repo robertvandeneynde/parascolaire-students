@@ -1,21 +1,42 @@
-a = 2
-b = 6
-c = 1
 
-if c<a : 
-    if b> a : 
-        print(c,a,b)
-    else : 
-        if b>c :
-            print (c,b,a)
-            else :
-                ...
-                
-                
+#!coding: utf-8
+from __future__ import print_function, division
 
-# comme l'exercice précédent, mais avec 3 valeurs !
-# écris un programme qui affiche les 3 valeurs dans l'ordre croissant
-# ici le programme va donc afficher 1 2 6
-# mais si on avait a=1 b=6 c=2 on aurait aussi eu 1 2 6
-# autre exemple : a=1 b=1 c=0 : affiche 0 1 1
-# indice : on peut mettre des if dans des if !
+import pygame
+pygame.init()
+
+taille = [1600, 900]
+ecran = pygame.display.set_mode(taille)
+
+NOIR = [0, 0, 0]
+BLANC = [255, 255, 255]
+ROUGE = [255, 0, 0]
+VERT = [0, 255, 0]
+BLEU = [0, 0, 255]
+
+# DÃ‰BUT
+
+clock = pygame.time.Clock()
+
+fini = 0
+while fini == 0:
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fini = 1
+    
+    # TICK
+    
+
+    # DESSIN
+    ecran.fill(BLANC)
+    
+    pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
+    pygame.draw.circle(ecran, BLEU, [100,200], 20)
+    pygame.draw.circle(ecran, VERT, [150, 80], 10)
+    
+    pygame.display.flip()
+    
+    clock.tick(60)
+    
+pygame.quit()

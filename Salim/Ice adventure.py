@@ -28,12 +28,11 @@ decor = pygame.image.load('deco.jpg').convert_alpha()
 game_over = pygame.image.load('game over.png').convert_alpha()
 image_perso = pygame.image.load('Angry Chicken.png').convert_alpha()
 
-image_perso = pygame.transform.rotozoom(image_perso, 0, 1/5)
+image_perso = pygame.transform.rotozoom(image_perso, 0, 1/6)
 
 print(image_perso.get_width(), image_perso.get_height())
 
-import sys
-sys.stdout.flush()
+font = pygame.font.SysFont('Calibri', 25)
 
 class Glace:
     pass
@@ -107,11 +106,6 @@ while fini == 0:
         while r < len(glaces):
             glaces[r].x = random.randrange(601)
             r = r + 1
-            
-            
-        #glace1.x = random.randrange(601)
-        #glace2.x = random.randrange(601)
-        #glace3.x = random.randrange(601)
 
     # TICK
     i = 0
@@ -120,11 +114,13 @@ while fini == 0:
             dead = 1
         i = i + 1
     
-
     # DESSIN
     ecran.fill(BLANC)
     
     ecran.blit (decor, [0, 0])
+    
+    image_score = font.render("Score: " +  str(x), True, BLANC)
+    ecran.blit(image_score, [0, 0])
     
     pygame.draw.circle(ecran, BLEU, [x, y ], 5)
     ecran.blit(image_perso, [x - image_perso.get_width()/2, y-image_perso.get_height()/2])    

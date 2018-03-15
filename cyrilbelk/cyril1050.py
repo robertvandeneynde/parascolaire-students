@@ -6,7 +6,7 @@ pygame.init()
 
 XD_X = 100
 XD_Y = 100
-
+egg = 12
 
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
@@ -21,7 +21,8 @@ clock = pygame.time.Clock()
 
 fini = 0
 while fini == 0:
-    
+    while egg < 28:
+        print("jeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeej")
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
@@ -53,6 +54,12 @@ while fini == 0:
     
     if XD_X >= 660:
         XD_X=660
+    
+    if XD_Y <= 0 :
+        XD_Y = 0 
+    
+    if XD_Y >= 450 :
+        XD_Y = 450
     ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, ROUGE, [XD_X,XD_Y,40,50])
