@@ -17,52 +17,56 @@ BLEU = [0, 0, 255]
 
 clock = pygame.time.Clock()
 
-class Boule: 
+class Boule:
     pass
 
-haut_gauche = Boule()
-haut_gauche.x = 20
-haut_gauche.y = 20
-haut_gauche.bombe = 0
-haut_gauche.rayon = 10
+#haut_gauche = Boule()
+#haut_gauche.x = 20
+#haut_gauche.y = 20
+#haut_gauche.bombe = 0
+#haut_gauche.rayon = 10
 
-haut_droite = Boule()
-haut_droite.x = 20 + 30
-haut_droite.y = 20
-haut_droite.bombe = 1
-haut_droite.rayon = 10
+#haut_droite = Boule()
+#haut_droite.x = 20 + 30
+#haut_droite.y = 20
+#haut_droite.bombe = 1
+#haut_droite.rayon = 10
 
-bas_gauche = Boule()
-bas_gauche.x = 20
-bas_gauche.y = 20 + 30
-bas_gauche.bombe = 1
-bas_gauche.rayon = 10
+#bas_gauche = Boule()
+#bas_gauche.x = 20
+#bas_gauche.y = 20 + 30
+#bas_gauche.bombe = 1
+#bas_gauche.rayon = 10
 
-bas_droite = Boule()
-bas_droite.x = 20 + 30
-bas_droite.y = 20 + 30
-bas_droite.bombe = 0
-bas_droite.rayon = 10
+#bas_droite = Boule()
+#bas_droite.x = 20 + 30
+#bas_droite.y = 20 + 30
+#bas_droite.bombe = 0
+#bas_droite.rayon = 10
 
-boules = []
-boules.append(haut_gauche)
-boules.append(haut_droite)
-boules.append(bas_gauche)
-boules.append(bas_droite)
+#boules = []
+#boules.append(haut_gauche)
+#boules.append(haut_droite)
+#boules.append(bas_gauche)
+#boules.append(bas_droite)
+## debut boucle
+   ## modification x et Y
+   ## affichage
+x = 0
+y = 0
+while x <200 or y <200 :
+    if x < 200:
+     x = x + 50
+    else:
+      x = 0
 
-b = Boule()
-b.x = 100
-b.y = 100
-b.bombe = 1
-b.rayon = 10
-boules.append(b)
-
-b = Boule()
-b.x = 150
-b.y = 100
-b.bombe = 1
-b.rayon = 10
-boules.append(b)
+      y = y + 50
+    b = Boule()
+    b.x = x
+    b.y = y
+    b.bombe = 1
+    b.rayon = 10
+    boules.append(b)
 
 fini = 0
 while fini == 0:

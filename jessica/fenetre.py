@@ -35,7 +35,8 @@ neville = 50
 albus = 250
 clock = pygame.time.Clock()
 
-imagen_defondo = pygame.image.load("espace.jpg").convert()
+imagen_defondo = pygame.image.load("espace.jpg").convert_alpha()
+balle = BalleDeFeu.png
 
 # DÉBUT
 weasley = 10
@@ -81,12 +82,12 @@ while fini == 0:
         granger = 900
     
     if pressed[275]:
-        weasley = weasley + 5
-        if weasley >= 220 and weasley <= 380:
-             weasley = weasley + 5
+        balle = balle + 5
+        if balle >= 220 and balle <= 380:
+             balle = balle + 5
              
     if pressed[276]:
-        weasley = weasley - 5
+        balle = balle - 5
         
     
     if snape >= 900:
@@ -119,21 +120,6 @@ while fini == 0:
     ecran.fill(ROUGEPALE)
     
     ecran.blit(imagen_defondo, [0,0])
-    
-    pygame.draw.rect(ecran, ORONGEPALE, [
-        15, 15,
-        ecran.get_width() - 30,  ecran.get_height() - 30
-    ])
-    
-    pygame.draw.rect(ecran, JAUNEPALE, [
-        30, 30,
-        ecran.get_width() - 60,  ecran.get_height() - 60
-    ])
-    
-    pygame.draw.rect(ecran, JAUNEPALE, [
-        45, 45,
-        ecran.get_width() - 90,  ecran.get_height() - 90
-    ])
 
     pygame.draw.rect(ecran, JAUNE, [100 + weasley, 400, 20,40])
     

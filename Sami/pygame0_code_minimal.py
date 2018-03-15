@@ -13,6 +13,9 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
+image_balle = pygame.image.load('BalleDeFeu.png').convert_alpha()
+
+
 # DÉBUT
 pos = 500
 s = 1
@@ -41,7 +44,7 @@ while fini == 0:
     
    
     # DESSIN
-    ecran.fill(BLANC)
+    ecran.fill(NOIR)
     #Dessin du contour
     pygame.draw.rect(ecran, NOIR, [0,490, 750,10])
     pygame.draw.rect(ecran, NOIR, [0,0, 750,10])
@@ -50,8 +53,10 @@ while fini == 0:
     ##
     pygame.draw.polygon(ecran, ROUGE, [[pos,250], [350,200], [350,300]])
     pygame.draw.circle(ecran, VERT, [pos, 250], 10)
+  
+    pygame.draw.circle(ecran, BLEU, [100, 350], 10)
+    ecran.blit(image_balle, [0, 0])
     pygame.display.flip()
-    
     clock.tick(60)
     #miss a ete ici :)
 pygame.quit()

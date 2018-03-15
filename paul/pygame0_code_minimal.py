@@ -46,18 +46,6 @@ m.y = 480
 m.size = 20
 mobs.append(m)
 
-m = Mob()
-m.x  = 680-100
-m.y = 480
-m.size = 20
-mobs.append(m)
-
-m = Mob()
-m.x  = 680-100*3
-m.y = 480
-m.size = 20
-mobs.append(m)
-
 fini = 0
 while fini == 0:
     for event in pygame.event.get():
@@ -101,9 +89,10 @@ while fini == 0:
             player.y = player.size
         if player.y > 500 - player.size:
             player.y = 500 - player.size
+
             
     countspawn += 1
-    if countspawn == 5*60:
+    if countspawn == 2*60:
         countspawn = 0
         aleax = random.randint(0, 700 - m.size)
         aleay = random.randint(0, 500 - m.size)
@@ -112,7 +101,23 @@ while fini == 0:
         m.y = aleay
         m.size = 20
         mobs.append(m)
-        
+
+    i = 0
+    while i < len(mobs):
+        if mobs[i].x + 10 > player.x:
+            mobs[i].x -= 1
+        if mobs[i].x + 10 < player.x:
+            mobs[i].x += 1
+        if mobs[i].y + 10 > player.y:
+            mobs[i].y -= 1
+        if mobs[i].y + 10 < player.y:
+            mobs[i].y += 1
+        i += 1
+
+    dx = mobs[i].x + 10 - player.x
+    dy = mobs[i].y + 10 - player.y
+
+    if dx ** 2 + dy ** 2 < ()
 
     # DESSIN
     ecran.fill(NOIR)
@@ -122,12 +127,12 @@ while fini == 0:
     #pygame.draw.rect(ecran, ROUGE, [gérard.x, gérard.y, gérard.size, gérard.size])
     #pygame.draw.rect(ecran, ROUGE, [mobs[1].x, mobs[1].y, mobs[1].size, mobs[1].size])
     #pygame.draw.rect(ecran, ROUGE, [m.x, m.y, m.size, m.size])
-    
+
     i = 0
     while i < len(mobs):
-        pygame.draw.rect(ecran, ROUGE, [mobs[i].x, mobs[i].y, mobs[i].size, mobs[i].size])    
+        pygame.draw.rect(ecran, ROUGE, [mobs[i].x, mobs[i].y, mobs[i].size, mobs[i].size])
         i += 1
-    
+
     pygame.display.flip()
 
     clock.tick(60)
