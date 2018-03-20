@@ -25,6 +25,10 @@ ROUGEPALE = [255, 125, 125]
 JAUNEPALE = [224, 243, 169]
 ORONGEPALE = [254, 211, 165]
 
+score = 0
+font = pygame.font.SysFont('Calibri', 25, True, True)
+image_nom_joueur = font.render("Jessica", True, BLANC)
+image_score = font.render("Score: " + str(score), True, BLANC)
 
 sens = 1 # 5 == gauche, -5 == droite
 sens1 = 1
@@ -32,14 +36,13 @@ snape = 100
 potter = 5
 granger = 800
 neville = 50
+draco = 50
 albus = 250
 clock = pygame.time.Clock()
 
 imagen_defondo = pygame.image.load("espace.jpg").convert_alpha()
-balle = BalleDeFeu.png
-
+imagen_balledefeu = pygame.image.load("BalleDeFeu.png").convert_alpha()
 # DÉBUT
-weasley = 10
 luna = 5
 
 t = 0
@@ -69,26 +72,17 @@ while fini == 0:
     potter = potter + 1
     
     if pressed[275]:
-        neville = neville + 5
+        draco = draco + 5
     if pressed[276]:
-        neville = neville - 5   
-        if neville >= 220 and neville <= 380:
-            neville = neville - 5
+        draco = draco - 5   
+        if draco >= 220 and draco <= 380:
+            draco = draco - 5
     
     luna = luna + 5
     
     granger = granger - 4
     if granger == 0:
         granger = 900
-    
-    if pressed[275]:
-        balle = balle + 5
-        if balle >= 220 and balle <= 380:
-             balle = balle + 5
-             
-    if pressed[276]:
-        balle = balle - 5
-        
     
     if snape >= 900:
         sens = 1
@@ -117,12 +111,11 @@ while fini == 0:
     
     # DESSIN
     
-    ecran.fill(ROUGEPALE)
+    ecran.fill(NOIR)
     
     ecran.blit(imagen_defondo, [0,0])
+    ecran.blit(imagen_balledefeu, [0,0])
 
-    pygame.draw.rect(ecran, JAUNE, [100 + weasley, 400, 20,40])
-    
     if sens == 1:
         pygame.draw.circle(ecran, VERT, [100+snape,200], 20)
     else:
@@ -137,6 +130,7 @@ while fini == 0:
     pygame.draw.circle(ecran, MAGENTAFONCE, [granger, 80], 15)
     
     pygame.draw.circle(ecran, HOOKER, [albus, neville], 20)
+    pygame.draw.circle(ecran, [255,255,255], [draco, 50], 20)
     
     pygame.draw.circle(ecran, [255,0,0], [int(200 + 100*cosd(t)), int(200 + 100*sind(t))], 20)    
     
@@ -153,6 +147,9 @@ while fini == 0:
             [25+snape, 25 + offset_y],
             [0+snape, 50 + offset_y]])
         
+    ecran.blit(image_nom_joueur, [20,20])
+    ecran.blit(image_score, [600,20])
+    
     pygame.display.flip()
     
     clock.tick(60)

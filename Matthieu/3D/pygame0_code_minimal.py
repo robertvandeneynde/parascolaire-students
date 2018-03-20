@@ -15,8 +15,25 @@ taille = [1280, 720]
 ecran = pygame.display.set_mode(taille, pygame.OPENGL|pygame.DOUBLEBUF)
 
 
+# with open('boomerang.obj') as f:
+with open('boomerang.obj') as f:
+    points = []
+    vertices = []
+    for line in f:
+        d = line.split()
+        if d[0] == 'v':
+            points.append( [float(d[1]), float(d[2]), float(d[3])] )
+        else:
+            if d[0] == 'f':
+                i1 = int(d[1].split('/')[0])
+                i2 = int(d[2].split('/')[0])
+                i3 = int(d[3].split('/')[0])
+                vertices.extend( points[i1 - 1] )    
+                vertices.extend( points[i2 - 1] )  
+                vertices.extend( points[i3 - 1] )
+    vertices = farray(vertices)
 
-
+"""
 vertices = farray([
     -0.5, 0.0, 0.4, 
     0.0, 0.5, 0.4,
@@ -38,24 +55,16 @@ vertices = farray([
     0.10, 0, 0.8, 
     0.10, -0.6, 0.4,     
 ])
+"""
 
-colors = farray([
-    1,0,0,
-    0,1,0,
-    0,0,1,
-    
-    1,0,0,
-    0,1,0,
-    0,0,1,
+import random
 
-    1,0,0,
-    0,1,0,
-    0,0,1,
-    
-    1,0,0,
-    0,1,0,
-    0,0,1,
-])
+colors = []
+for i in range(len(vertices)):
+    x = random.uniform(0, 1)
+    colors.append(x)
+
+colors = farray(colors)
 
 
 vertex_shader =''' 
@@ -132,21 +141,26 @@ while fini == 0:
             fini = 1
     
     # TICK
-    if tick == 300:
-        tick = 0
-    else:
-        tick +=1
-    t = tick * 0.1
+    
+    t = -tick 
     translation = farray((0.5, 0.2, 0.1))
     if inconnuerotation == 300:
         sens =0
     if inconnuerotation == -300:
         sens =1
-        sens = 1
+        sens = 0
     if sens == 1:
         inconnuerotation += 1
+        tick +=1
     if sens == 0:
         inconnuerotation -=1
+        tick -=1
+    if t < 0:
+        u = -t
+    if t == 0:
+        u=1
+    if t >0:
+        u = t
     # DESSIN
     glClearColor(0, 0.2, 0.4, 0.8) # jaune
     glClear(GL_COLOR_BUFFER_BIT) # fill  
@@ -160,14 +174,14 @@ while fini == 0:
     #loc_translation = glGetUniformLocation(shader_program, 'translation')
     #glUniform3fv(loc_translation, 1, translation)
     
-    P = PerspectiveMatrix(45*(t+1), 1.0 * 1280/720, 0.01, 10)
+    P = PerspectiveMatrix(45*(1), 1.0 * 1280/720, 0.01, 10)
         
     # build view matrix (lookAt)
-    V = LookAtMatrix((t*0.15)*vec3(2,0,1), (0, 0, 0), (0, 0, 1))    
+    V = LookAtMatrix((0.15)*vec3(2,0,1), (0, 0, 0), (0, 0, 1))    
     
     T = TranslationMatrix(farray((0.010, 0.015, 0.02)))
-    S = ScaleMatrix(t*0.08)
-    R = RotationMatrix(inconnuerotation*8, (0,0,1))
+    S = ScaleMatrix(t*0.0055*0.08)
+    R = RotationMatrix(20*t, (0,0,1))
     M = R @ T @ S
     glUniformMatrix4fv(glGetUniformLocation(shader_program, 'thematrix'), 1, True, P @ V @ M)
     
@@ -175,7 +189,7 @@ while fini == 0:
     # glUniform1f(loc_grand, 0.7)
     
     glBindVertexArray(vertex_array_object)
-    glDrawArrays(GL_TRIANGLES, 0, 15) # on a 3 points, on commence au point numéro 0, faire des TRIANGLES.
+    glDrawArrays(GL_TRIANGLES, 0, len(vertices) // 3) # on a 3 points, on commence au point numéro 0, faire des TRIANGLES.
     glBindVertexArray(0)
     
     glUseProgram(0)    

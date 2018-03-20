@@ -15,6 +15,8 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
+livecount = 100
+
 # DÉBUT
 
 clock = pygame.time.Clock()
@@ -114,10 +116,29 @@ while fini == 0:
             mobs[i].y += 1
         i += 1
 
-    dx = mobs[i].x + 10 - player.x
-    dy = mobs[i].y + 10 - player.y
+    i = 0
+    while i < len(mobs):
+        dx = mobs[i].x + 10 - player.x
+        dy = mobs[i].y + 10 - player.y
 
-    if dx ** 2 + dy ** 2 < ()
+        if dx ** 2 + dy ** 2 < (mobs[i].size/2 + player.size) ** 2:
+            livecount -= 1
+            print(livecount)
+            if livecount == 0:
+                fini = 1
+        i += 1
+
+    a = random.randint(0, len(mobs)-1)
+    b = random.randint(0, len(mobs)-1)
+
+    if a != b:
+        abx = mobs[a].x + mobs[b].x
+        aby = mobs[a].y + mobs[b].y
+
+        if abx ** 2 + aby ** 2 < (mobs[a].size/2 + mobs[b].size/2) ** 2:
+            del mobs[a]
+            del mobs[b]
+
 
     # DESSIN
     ecran.fill(NOIR)
