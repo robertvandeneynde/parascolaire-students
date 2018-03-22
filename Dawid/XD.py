@@ -19,6 +19,9 @@ BAS = 274
 playerX = 50
 playerY = 200
 
+perso = 100
+image_perso = pygame.image.load('player.png').convert_alpha()
+
 opponentY = 200
 
 ball_x = 100
@@ -82,9 +85,11 @@ while fini == 0:
     if ball_x >= opponentX: # and opponentY < ball_y < opponentY + 50:
         balle_sens_x = -1
 
-        ecran.fill(BLANC)
+    ecran.fill(BLANC)
     # dessin
     
+    ecran.blit(image_perso, [perso -99, 1])
+
     pygame.draw.rect(ecran, CYAN, [playerX, playerY, 20, 50])
     pygame.draw.circle(ecran, VERT, [ball_x, ball_y], 10) 
     pygame.draw.rect(ecran, ROUGE, [opponentX, ball_y-25, 20, 50])

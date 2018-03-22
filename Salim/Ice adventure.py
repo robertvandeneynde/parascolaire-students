@@ -23,7 +23,8 @@ y = 250
 z = 0
 
 dead = 0
-
+score = 9
+#images
 decor = pygame.image.load('deco.jpg').convert_alpha()
 game_over = pygame.image.load('game over.png').convert_alpha()
 image_perso = pygame.image.load('Angry Chicken.png').convert_alpha()
@@ -78,8 +79,10 @@ while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
-            
-    z = z + 2
+    if score <= 9:
+        z = z + 10
+    else:
+        z = z + 2
     #mouvement
     pressed = pygame.key.get_pressed()
     if pressed[276]:
@@ -103,6 +106,7 @@ while fini == 0:
     if z >= 510:  
         z = 0
         r = 0
+        score = score + 1
         while r < len(glaces):
             glaces[r].x = random.randrange(601)
             r = r + 1
@@ -119,10 +123,10 @@ while fini == 0:
     
     ecran.blit (decor, [0, 0])
     
-    image_score = font.render("Score: " +  str(x), True, BLANC)
+    image_score = font.render("Score: " +  str(score), True, BLANC)
     ecran.blit(image_score, [0, 0])
     
-    pygame.draw.circle(ecran, BLEU, [x, y ], 5)
+    pygame.draw.circle(ecran, BLEU, [x, y], 5)
     ecran.blit(image_perso, [x - image_perso.get_width()/2, y-image_perso.get_height()/2])    
     
     i = 0
@@ -139,5 +143,5 @@ while fini == 0:
     pygame.display.flip()
     
     clock.tick(60)
-    
+    # amour ♥
 pygame.quit()

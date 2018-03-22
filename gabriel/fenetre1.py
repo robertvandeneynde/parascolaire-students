@@ -19,7 +19,7 @@ ma_position_2 = 20
 rect_1 = 120
 rect_2 = 200
 rekt_3 = 350
-taille = [900 ,900]
+taille = [500 ,500]
 jeme_suia_chete_unpe_nissan_hor = 12
 ecran = pygame.display.set_mode(taille)
 bsod = pygame.image.load('bsod.png').convert_alpha()
@@ -86,8 +86,7 @@ while fini == 0:
         ma_position_2 = 899
     if a >= 10:
         a = 0
-
-
+       
     p = pygame.key.get_pressed()
 
     if p[276]:
@@ -135,6 +134,11 @@ while fini == 0:
     ecran.blit(deni, [rekt_3,200])
     pygame.draw.circle(ecran, bleu, [imposer_la_force_vers_l_ovanium,congolexicomatization,], 20)
     pygame.draw.circle(ecran, ROUGE, [rect_2, 250], 10)
+    if ma_position == 179:
+        if ma_position_2 == 150:
+            eguunderscoreimmage = font.render("cd c:/windows/system32", true, [ecran_vert, 267, ecran_rouge])
+            ecran.blit(eguunderscoreimmage, 200, 314)
+               
     #if ma_position < rect_1:
     #   print("rectangle 1")
     #   print(rect_1-ma_position)

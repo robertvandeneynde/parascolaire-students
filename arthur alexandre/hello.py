@@ -1,13 +1,51 @@
-#! coding: utf-8
-# h et m sont deux variables qui représentent une heure
-h = 13
-m = 59
-# ici elles représentent l'heure "15h30"
+import pygame,random
+pygame.init()
 
-# Écris un programme qui affiche la minute suivante.
-# Ici le programme affichera 15 31
-# Mais si l'heure était 15h59 ça doit évidemment afficher 16h00
-m=m+1
-if m == 60:
-    h=h+1
-print(h, m)
+taille = [700, 500]
+ecran = pygame.display.set_mode(taille)
+
+NOIR = [0, 0, 0]
+BLANC = [255, 255, 255]
+ROUGE = [255, 0, 0]
+VERT = [0, 255, 0]
+BLEU = [0, 0, 255]
+
+# DÉBUT
+
+clock = pygame.time.Clock()
+
+fini = 0
+vertx=150
+bleux=100
+bleuy=200
+while fini == 0:
+    bleux=bleux+3
+    bleuy=bleuy+3
+    if bleux >= 700  or bleuy >=500:
+        bleux=random.randint(0,700)
+        bleuy=random.randint(0,500)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fini = 1
+        elif event.type == pygame.KEYDOWN:
+            print("La touche numero", event.key)
+            if event.key == 276:
+                vertx = vertx - 10
+            elif event.key == 275:
+                vertx = vertx + 10        
+    # TICK
+    
+
+    # DESSIN
+    ecran.fill(BLANC)
+    
+    pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
+    pygame.draw.circle(ecran, BLEU, [bleux,bleuy], 20)
+    pygame.draw.circle(ecran, VERT, [vertx, 80], 10)
+    
+
+    pygame.display.flip()
+    
+    clock.tick(60)
+    
+pygame.quit()
