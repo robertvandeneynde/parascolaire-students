@@ -56,6 +56,35 @@ vertices = farray([
     0.10, -0.6, 0.4,     
 ])
 """
+vertices_sol = farray([
+    1, 1, 0,
+    1, -1, 0,
+    -1, -1, 0,
+
+    1, 1, 0,
+    -1, -1, 0,
+    -1, 1, 0,
+])
+
+shader_sol_vertex = '''
+#version 330
+in vec3 position;
+uniform mat4 thematrix;
+void main() {
+    gl_Position = thematrix * vec4(position, 1);
+}
+'''
+shader_sol_fragment = '''
+#version 330
+out vec3 fcolor;
+void main() {
+    fcolor = vec3(1, 8, 0);
+}
+'''
+
+shader_program_sol = shaders.compileProgram(
+    shaders.compileShader(shader_sol_vertex, GL_VERTEX_SHADER),
+    shaders.compileShader(shader_sol_fragment, GL_FRAGMENT_SHADER))
 
 import random
 
@@ -97,6 +126,21 @@ shader_program = shaders.compileProgram(
     shaders.compileShader(vertex_shader, GL_VERTEX_SHADER),
     shaders.compileShader(fragment_shader, GL_FRAGMENT_SHADER))
 
+# SOL
+VAO2 = glGenVertexArrays(1)
+glBindVertexArray(VAO2)
+VBO1 = glGenBuffers(1)
+glBindBuffer(GL_ARRAY_BUFFER, VBO1)
+glBufferData(GL_ARRAY_BUFFER, ArrayDatatype.arrayByteCount(vertices_sol), vertices_sol, GL_STATIC_DRAW)
+
+position = glGetAttribLocation(shader_program_sol, 'position')
+if position != -1:
+    glEnableVertexAttribArray(position) # on active l'attribut 0
+    glVertexAttribPointer(position, 3, GL_FLOAT, False, 0, ctypes.c_void_p(0))
+
+glBindVertexArray(0)
+# FIN SOL
+
 vertex_array_object = glGenVertexArrays(1)
 glBindVertexArray(vertex_array_object)
 
@@ -135,20 +179,19 @@ sens = 1
 t = 0
 fini = 0
 while fini == 0:
-    
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
-    
+
     # TICK
-    
-    t = -tick 
+
+    t = -tick
     translation = farray((0.5, 0.2, 0.1))
     if inconnuerotation == 300:
         sens =0
     if inconnuerotation == -300:
         sens =1
-        sens = 0
     if sens == 1:
         inconnuerotation += 1
         tick +=1
@@ -164,41 +207,53 @@ while fini == 0:
     # DESSIN
     glClearColor(0, 0.2, 0.4, 0.8) # jaune
     glClear(GL_COLOR_BUFFER_BIT) # fill  
-    
+
     glUseProgram(shader_program)
-    
-    
-    
-    
+
+
+
+
     #translation = t*farray((0.010, 0.015, 0))
     #loc_translation = glGetUniformLocation(shader_program, 'translation')
     #glUniform3fv(loc_translation, 1, translation)
-    
+
     P = PerspectiveMatrix(45*(1), 1.0 * 1280/720, 0.01, 10)
-        
+
     # build view matrix (lookAt)
-    V = LookAtMatrix((0.15)*vec3(2,0,1), (0, 0, 0), (0, 0, 1))    
-    
-    T = TranslationMatrix(farray((0.010, 0.015, 0.02)))
-    S = ScaleMatrix(t*0.0055*0.08)
-    R = RotationMatrix(20*t, (0,0,1))
+    V = LookAtMatrix(vec3(4,0,2), (0, 0, 0), (0, 0, 1))
+
+    T = TranslationMatrix(farray((0, 0, u/60 * 1)))
+    S = ScaleMatrix(0.10)
+    R = RotationMatrix(2*t, (0,0,1))
     M = R @ T @ S
     glUniformMatrix4fv(glGetUniformLocation(shader_program, 'thematrix'), 1, True, P @ V @ M)
-    
+
     #loc_grand = glGetUniformLocation(shader_program, 'grand')
     # glUniform1f(loc_grand, 0.7)
-    
+
     glBindVertexArray(vertex_array_object)
     glDrawArrays(GL_TRIANGLES, 0, len(vertices) // 3) # on a 3 points, on commence au point numéro 0, faire des TRIANGLES.
     glBindVertexArray(0)
-    
-    glUseProgram(0)    
+
+    glUseProgram(0)
+
+    glUseProgram(shader_program_sol)
+
+    glBindVertexArray(VAO2)
+    for i in range(1):
+        for j in range(1):
+            T = TranslationMatrix(i, j, 0)
+            glUniformMatrix4fv(glGetUniformLocation(shader_program_sol, 'thematrix'), 1, True, P @ V @ T)
+            glDrawArrays(GL_TRIANGLES, 0, len(vertices_sol))
+    glBindVertexArray(0)
+    glUseProgram(0)
+
     # pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
     # pygame.draw.circle(ecran, BLEU, [100,200], 20)
     # pygame.draw.circle(ecran, VERT, [150, 80], 10)
-    
+
     pygame.display.flip()
-    
+
     clock.tick(60)
     
 pygame.quit()

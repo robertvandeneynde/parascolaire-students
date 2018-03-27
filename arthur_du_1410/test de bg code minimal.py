@@ -16,6 +16,7 @@ VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 score = 0
 clock = pygame.time.Clock()
+nbmaxbombe = 10
 
 class Boule:
     pass
@@ -27,11 +28,11 @@ y = 20
 b = Boule()
 b.x = x
 b.y = y
-b.bombe = 1
-b.rayon = 10
+b.bombe = 0
+b.rayon = 15
 la_liste_de_boules.append(b)
-while x <500 or y <500 :
-    if x < 500:
+while y <500 :
+    if x < 450:
      x = x + 50
     else:
       x = 20
@@ -39,10 +40,14 @@ while x <500 or y <500 :
     b = Boule()
     b.x = x
     b.y = y
-    b.bombe = random.randint(0,1)
-    b.rayon = 10
+    b.bombe  = 0
+    b.rayon = 15
     la_liste_de_boules.append(b)
-
+v = 1
+while v < nbmaxbombe :
+    nbaleatoire = random.randint(0,len(la_liste_de_boules))
+    la_liste_de_boules[nbaleatoire].bombe = 1
+    v = v + 1
 fini = 0
 while fini == 0:
 
@@ -58,7 +63,7 @@ while fini == 0:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             j = 0
             while j < len(la_liste_de_boules):
-                if abs(event.pos[0]- la_liste_de_boules[j].x)< 10 and abs (event.pos[1]-la_liste_de_boules[j].y) < 10 :
+                if abs(event.pos[0]- la_liste_de_boules[j].x)< la_liste_de_boules[j].rayon and abs (event.pos[1]-la_liste_de_boules[j].y) < la_liste_de_boules[j].rayon :
                     if la_liste_de_boules [j].bombe == 0 :
                         score += 1
                         la_liste_de_boules.pop(j)

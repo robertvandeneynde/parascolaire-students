@@ -34,8 +34,9 @@ while fini == 0:
         if event.type == pygame.QUIT:
             fini = 1
         elif event.type == pygame.KEYDOWN:
-            print("La touche numero", event.key, "e")     
-    
+            print("La touche numero", event.key, "e") 
+            
+            
     pressed = pygame.key.get_pressed()
     
     # TICK
@@ -57,9 +58,9 @@ while fini == 0:
     # DESSIN
     ecran.fill(BLANC)
     
-    
+    #print(px,py)
     pygame.draw.rect(ecran, BLEU, [90, 200, x, y])    
-    pygame.draw.circle(ecran, VERT, [px,py], 24)
+    pygame.draw.circle(ecran, VERT, [int(px),int(py)], 24)
     pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
     
     pygame.display.flip()
