@@ -12,6 +12,7 @@ bleu = [0, 0, 255]
 rouge = [255, 0, 0]
 blanc = [255, 255, 255]
 couleur_de_pd = [244, 11, 239]
+
 class Perso:
     pass
 
@@ -30,6 +31,14 @@ KEY_Z = 119
 KEY_S = 115
 KEY_C = 99
 KEY_V = 118
+
+def distance(a,b,c,d):
+    """
+    >>> distance(50,50, 100,200)
+    158.11388300841898
+    """
+    from math import sqrt
+    return sqrt((c-a) ** 2 + (d-b) ** 2)
 
 
 #musique = pygame.mixer.Sound("Megalovania.ogg")
@@ -53,8 +62,8 @@ while fini == 0:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
             print("Clic en", event.pos[0], event.pos[1])
-            listeDeBalles.append(balle(blanc, 12,event.pos[0], event.pos[1]))
-
+            # listeDeBalles.append(balle(blanc, 12,event.pos[0], event.pos[1]))
+    
     pressed = pygame.key.get_pressed()
 
     if pressed[KEY_C]:
@@ -115,7 +124,7 @@ while fini == 0:
     if balle.y < grosseur:
         balle.y = grosseur
     
-    
+    print(balle.x)
     
     # dessin
     ecran.fill(blanc)
@@ -124,7 +133,12 @@ while fini == 0:
     pygame.draw.circle(ecran, blanc, [bu.x, bu.y], grosseur-5)
     pygame.draw.circle(ecran, rouge, [balle.x, balle.y], grosseur)
     pygame.draw.circle(ecran, couleur_de_pd, [balle.x, balle.y], grosseur-5)
-    pygame.draw.circle(ecran, 
+    #pygame.draw.circle(ecran, 
+    
+    if (grosseur + grosseur+5) >  distance(bu.x, bu.y, balle.x, balle.y):
+        pygame.draw.circle(ecran, [255,0,0], [0,0], 10)
+            
+    
     pygame.display.flip()
 
     clock.tick(60)

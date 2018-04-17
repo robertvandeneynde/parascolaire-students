@@ -226,6 +226,19 @@ while fini == 0:
         pygame.draw.rect(ecran, BLANC, [les_ennemis[i].X1, les_ennemis[i].Y1, Knife.get_width(), Knife.get_height()], 1)
         ecran.blit(Knife, [les_ennemis[i].X1, les_ennemis[i].Y1])
         i = i + 1
+        
+    les_ennemis[1].X1 = les_ennemis[1].X1 + 4
+    les_ennemis[2].Y1 = les_ennemis[2].Y1 + 5
+    les_ennemis[3].X1 = les_ennemis[3].X1 + 2
+    les_ennemis[0].Y1 = les_ennemis[0].Y1 + 3 
+    if les_ennemis[1].X1 >= 700:
+        les_ennemis[1].X1 = 0
+    if les_ennemis[2].Y1 >= 500:
+        les_ennemis[2].Y1 = 0    
+    if les_ennemis[3].X1 >= 700:
+        les_ennemis[3].X1 = 0
+    if les_ennemis[0].Y1 >= 500:
+        les_ennemis[0].Y1 = 0        
 
     
     ecran.blit(Coeur, [Frisk.X1, Frisk.Y1])
@@ -235,7 +248,7 @@ while fini == 0:
 
     pygame.draw.rect(ecran, ROUGE, [255,400, 99,16])
     pygame.draw.rect(ecran, JAUNE, [255,400, PV,16])
-
+    #cucurbitace
     image_PV = font.render(str(PV) + "/99", True, BLANC)
     ecran.blit(image_PV, [370,395])
     
