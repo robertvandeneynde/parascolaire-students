@@ -21,7 +21,12 @@ livecount = 100
 
 clock = pygame.time.Clock()
 
+image_drone = pygame.image.load('Drone_quad.png').convert_alpha()
+image_drone = pygame.transform.smoothscale(image_drone, (20,20))
+
 countspawn = 0
+
+font = pygame.font.SysFont('Calibri', 25)
 
 class Player:
     pass
@@ -144,15 +149,21 @@ while fini == 0:
     ecran.fill(NOIR)
 
     pygame.draw.circle(ecran, BLEU, [player.x, player.y], player.size)
-    
+
     #pygame.draw.rect(ecran, ROUGE, [gérard.x, gérard.y, gérard.size, gérard.size])
     #pygame.draw.rect(ecran, ROUGE, [mobs[1].x, mobs[1].y, mobs[1].size, mobs[1].size])
     #pygame.draw.rect(ecran, ROUGE, [m.x, m.y, m.size, m.size])
 
     i = 0
     while i < len(mobs):
-        pygame.draw.rect(ecran, ROUGE, [mobs[i].x, mobs[i].y, mobs[i].size, mobs[i].size])
+        # pygame.draw.rect(ecran, ROUGE, [mobs[i].x, mobs[i].y, mobs[i].size, mobs[i].size])
+        ecran.blit(image_drone, [mobs[i].x, mobs[i].y])
         i += 1
+
+    image = font.render("Paul", True, ROUGE)
+    ecran.blit(image, [0,0])
+    life_image = font.render("Life : " + str(livecount), True, VERT)
+    ecran.blit(life_image, [600,0])
 
     pygame.display.flip()
 
