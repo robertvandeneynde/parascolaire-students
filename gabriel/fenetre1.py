@@ -6,7 +6,7 @@ pygame.init()
 
 #variables
 NOIR = [0, 0, 0]
-BLAN_________________________________________________________________________C = [255, 255, 255]
+BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
@@ -104,8 +104,6 @@ while fini == 0:
         egg += 1
 
 
-    if p[pygame.K_F15]:
-        print("egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu egu ")
     if p[pygame.K_UP]:
         ma_position_2 -= 10
     if p[274]:

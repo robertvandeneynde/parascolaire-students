@@ -1,0 +1,10 @@
+from turtle import *
+shape("turtle")
+
+# Écris ton code ci dessous ! 
+speed (10)
+
+color("blue")
+
+for i in range (180):
+   lt(90)
