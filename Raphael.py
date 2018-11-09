@@ -1,12 +1,10 @@
 a=2
 b=6
 c=1
-if a<b<c:
+if a<12 :
     print(a)
-if b<c>a:
+if b<12 :
     print(b)
-if c>b>a:
+if c<12 :
     print(c)
     
-
-

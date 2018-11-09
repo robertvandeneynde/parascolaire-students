@@ -1,4 +1,4 @@
-vie = 75
+vie = 1
 vie = vie + 50
 if vie > 100:
     vie = 100

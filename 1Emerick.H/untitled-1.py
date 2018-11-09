@@ -8,15 +8,3 @@ else:
     print(h)
     print(m+1)
     
- 
-
-#if h==15:
-    #print(h)
-    
-#if m==m:
-    #print(m+1)
-    
-#if m+1==60:
-    #print(h+1)
-#if m==60:
-    #print(m-60)

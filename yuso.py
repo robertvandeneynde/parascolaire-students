@@ -1,7 +1,6 @@
-h=15
+h=12
 m=59
-a=1
-if m+a<=59:
-    print(h,m)
+if m+1<=59:
+    print(h,m+1)
 else:
-    print(h+1)
+    print(h+1,00)

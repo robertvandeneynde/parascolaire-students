@@ -4,8 +4,6 @@ from __future__ import print_function, division
 
 import pygame
 pygame.init()
-Bd = 70  
-Bd = 50
 
 XD_X = 100
 XD_Y = 100
@@ -20,7 +18,7 @@ BLANC = [255, 255, 255]
 VERT = [159, 200, 52]
 NOIR = [0, 0, 0]
 BLEU = [0, 0, 255]
-
+JAUNE = [255,215,0]
 clock = pygame.time.Clock()
 
 fini = 0
@@ -53,9 +51,9 @@ while fini == 0:
         SCORE = SCORE + 1
         
     ecran.fill(BLANC)
-    
+    pygame.draw.rect(ecran, NOIR , [])
     pygame.draw.rect(ecran, VERT , [XD_X,XD_Y,40,50])
-    pygame.draw.rect(ecran, NOIR , [NOIR_X,NOIR_Y,30,25])
+    pygame.draw.rect(ecran, JAUNE , [NOIR_X,NOIR_Y,30,25])
     pygame.display.flip()
     
     clock.tick(60)
