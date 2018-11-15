@@ -3,7 +3,7 @@ from __future__ import print_function, division
 
 import pygame
 pygame.init()
-a=100
+
 
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
@@ -15,7 +15,9 @@ VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
 # DÉBUT
-
+a=100
+i=650
+f=0
 clock = pygame.time.Clock()
 
 fini = 0
@@ -26,17 +28,16 @@ while fini == 0:
             fini = 1
     
     # TICK
-   
+    a=a+2
+    if a>650 :
+        while f>650:
+            a=a-4
+            f=f+1
 
     # DESSIN
-    ecran.fill(BLANC) 
-    while (a<650) :
-        pygame.draw.circle(ecran, NOIR, [150,80], 10)
-        a = a+1
-   
-    
+    ecran.fill(BLANC)
+    pygame.draw.circle(ecran, BLEU, [a,200], 20)
     pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
-    pygame.draw.circle(ecran, NOIR, [150,80], 10)
     pygame.draw.circle(ecran, BLEU, [100,200], 20)
     pygame.draw.rect(ecran, VERT, [150,150, 40,60])
     
