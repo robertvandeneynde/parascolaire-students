@@ -7,8 +7,8 @@ pygame.init()
 
 XD_X = 100
 XD_Y = 100
-NOIR_X = 100
-NOIR_Y = 45
+NOIR_X = 325
+NOIR_Y = 250
 SCORE = 1 
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
@@ -19,6 +19,7 @@ VERT = [159, 200, 52]
 NOIR = [0, 0, 0]
 BLEU = [0, 0, 255]
 JAUNE = [255,215,0]
+
 clock = pygame.time.Clock()
 
 fini = 0
@@ -46,12 +47,12 @@ while fini == 0:
     if XD_Y >= 450 : #bordure bas
         XD_Y = 450
         
-    if  NOIR_X - 40 <= XD_X <= NOIR_X +30 and 0 <= XD_Y - NOIR_Y <= 25:
+    if  NOIR_X - 40 <= XD_X <= NOIR_X +30 and -50 <= XD_Y - NOIR_Y <= 25:
         print(SCORE)
         SCORE = SCORE + 1
         
-    ecran.fill(BLANC)
-    pygame.draw.rect(ecran, NOIR , [])
+    ecran.fill(NOIR)
+    pygame.draw.rect(ecran, BLANC , [50,50,600,400])
     pygame.draw.rect(ecran, VERT , [XD_X,XD_Y,40,50])
     pygame.draw.rect(ecran, JAUNE , [NOIR_X,NOIR_Y,30,25])
     pygame.display.flip()

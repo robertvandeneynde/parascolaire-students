@@ -14,4 +14,10 @@ if minute > 50:
         print("Hum")
        
     print(a)
+    i = 0
+    while i < 20:
+        print("Hello", 3 * i + 6)
+        i = i + 4
+i = 7; print
+
 

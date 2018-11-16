@@ -9,9 +9,9 @@ ecran = pygame.display.set_mode(taille)
 
 NOIR = [0, 0, 0]
 BLANC = [255, 255, 255]
-ROUGE = [255, 0, 0]
-VERT = [0, 255, 0]
-BLEU = [0, 0, 255]
+CACA = [85, 56, 45]
+SARAH = [52, 218, 201]
+CACTUS = [215, 36, 215]
 
 # DÉBUT
 
@@ -29,9 +29,9 @@ while fini == 0:
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
-    pygame.draw.circle(ecran, BLEU, [100,200], 20)
-    pygame.draw.circle(ecran, VERT, [150, 80], 10)
+    pygame.draw.rect(ecran, CACTUS, [100,400, 60,100])
+    pygame.draw.circle(ecran,SARAH, [100,200], 40)
+    pygame.draw.circle(ecran, CACA, [150, 50], 9)
     
     pygame.display.flip()
     

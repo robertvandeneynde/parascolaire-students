@@ -1,9 +1,7 @@
-from __future__ import print_function, division
-
 import pygame
 pygame.init()
 
-taille = [1200, 700]
+taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
 
 NOIR = [0, 0, 0]
@@ -11,11 +9,22 @@ BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
-x=20
-y=100
+
+class perso:
+    def __init__(self,X, Y, couleur):
+        self.X = X
+        self.Y = Y
+        self.couleur = couleur   
+    
+    def dessiner(self,ecran):
+        pygame.draw.circle(ecran, self.couleur, [self.X, self.Y], 10)
+    
+
 # DÉBUT
 
 clock = pygame.time.Clock()
+
+nom_perso = perso(0,0,NOIR)
 
 fini = 0
 while fini == 0:
@@ -23,18 +32,16 @@ while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
-    
+            
+    pressed = pygame.key.get_pressed()
+
+
     # TICK
-    x=x+20
-    if x>1200:
-        x=0
-    # DESSIN
+    
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
-    pygame.draw.circle(ecran, BLEU, [x,y], 20)
-    pygame.draw.circle(ecran, VERT, [150, 80], 10)
-    
+    # DESSIN
+    nom_perso.dessiner(ecran)
     pygame.display.flip()
     
     clock.tick(60)
