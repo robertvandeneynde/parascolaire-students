@@ -16,36 +16,37 @@ BLEU = [0, 0, 255]
 # DÉBUT
 
 clock = pygame.time.Clock()
-x = 200
-y = 100
-change = 0
-bouge = 0
+image_perso = pygame.image.load('SOV.png').convert_alpha()
+image_perso2 = pygame.image.load('AEB.png').convert_alpha()
+maposition = 10
 fini = 0
-ma_position = 0
 while fini == 0:
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
-    
+        elif event.type == pygame.KEYDOWN:
+            print("La touche numero", event.key)
+            if event.key == 276: # touche gauch
+                maposition = maposition - 100
+            elif event.key == 275: # touche droite
+                maposition = maposition + 100
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # event.pos est une liste de taille 2 contenant le x et le y
+                print("Clic en", event.pos[0], event.pos[1])
+                maposition = event.pos[0]         
     # TICK
-     
+
     # DESSIN
     ecran.fill(BLANC)
-    
-    pygame.draw.rect(ecran, ROUGE, [200,100, 40,80])
-    pygame.draw.circle(ecran, BLEU, [x,100], 20)
+    pygame.draw.rect(ecran, ROUGE, [100,200, 20,40])
+    pygame.draw.circle(ecran, BLEU, [100,200], 20)
     pygame.draw.circle(ecran, VERT, [150, 80], 10)
-    if change == 0:
-        pygame.draw.polygon(ecran, ROUGE, [[x , y ], [x + 50, y],  [x +50 , y+ 50][x,y +50 ]])
-        x += 1
-        y += 1
-    else:
-        pygame.draw.polygon(ecran, VERT, [[x + 100 - 50, 80 + 50 - 50],  [x + 0 - 50, 80 + 0 - 50],  [x+ 0 - 50, 80 + 100 - 50]])
-        change = 0
+    ecran.blit(image_perso, [maposition, 200])
+    ecran.blit(image_perso2, [10,300])
     pygame.display.flip()
-    
+    image_perso_petite = pygame.transform.smoothscale(image_perso, [400,600])    
+    print("Taille :", image_perso.get_width(), image_perso.get_height())
     clock.tick(60)
     
 pygame.quit()
-# exercice 12
