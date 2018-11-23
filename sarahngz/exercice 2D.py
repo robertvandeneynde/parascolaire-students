@@ -9,12 +9,12 @@ ecran = pygame.display.set_mode(taille)
 
 NOIR = [0, 0, 0]
 BLANC = [255, 255, 255]
-CACA = [85, 56, 45]
+BRUN = [85, 56, 45]
 SARAH = [52, 218, 201]
 CACTUS = [215, 36, 215]
 
 # DÉBUT
-
+a=100
 clock = pygame.time.Clock()
 
 fini = 0
@@ -25,13 +25,14 @@ while fini == 0:
             fini = 1
     
     # TICK
-
+    a=a+5
++   if a <
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, CACTUS, [100,400, 60,100])
-    pygame.draw.circle(ecran,SARAH, [100,200], 40)
-    pygame.draw.circle(ecran, CACA, [150, 50], 9)
+    pygame.draw.rect(ecran, CACTUS, [a,400, 60,100])
+    pygame.draw.circle(ecran,SARAH, [100,300], 40)
+    pygame.draw.circle(ecran, BRUN, [a, 50], 9)
     
     pygame.display.flip()
     

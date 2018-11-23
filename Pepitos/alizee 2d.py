@@ -1,6 +1,3 @@
-#!coding: utf-8
-from __future__ import print_function, division
-
 import pygame
 pygame.init()
 
@@ -13,10 +10,11 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
-# DÃ‰BUT
+# DÉBUT
 a=100
 clock = pygame.time.Clock()
-
+b=100
+c=100
 fini = 0
 while fini == 0:
     
@@ -25,16 +23,19 @@ while fini == 0:
             fini = 1
     
     # TICK
-    a=a+1
+    a=a+2
+    b=b+3
+    c=c+1
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [150,100, 20,40])
-    pygame.draw.circle(ecran, BLEU, [100,200], 20)
-    pygame.draw.circle(ecran, VERT, [a, 80], 10)
+    pygame.draw.rect(ecran, BLEU, [c,200,20,25])
+    pygame.draw.circle(ecran, BLEU, [b,100], 15)
+    pygame.draw.circle(ecran, BLEU, [a, 80], 40)
     
     pygame.display.flip()
     
     clock.tick(60)
     
 pygame.quit()
+sens=-3

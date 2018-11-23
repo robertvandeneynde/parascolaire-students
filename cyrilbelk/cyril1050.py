@@ -10,6 +10,7 @@ XD_Y = 100
 NOIR_X = 325
 NOIR_Y = 250
 SCORE = 1 
+WIN = 0
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
 
@@ -48,9 +49,14 @@ while fini == 0:
         XD_Y = 450
         
     if  NOIR_X - 40 <= XD_X <= NOIR_X +30 and -50 <= XD_Y - NOIR_Y <= 25:
-        print(SCORE)
-        SCORE = SCORE + 1
-        
+        if WIN == 0 :
+                 SCORE = SCORE + 1
+        if SCORE <= 1000  and WIN == 0 :
+           print(SCORE)
+    if SCORE >= 1000 and WIN == 0 :
+        # PAsse gagne de 0 a 1 et tu va prin gg wp
+        WIN = 1 
+        print ("gg wp")
     ecran.fill(NOIR)
     pygame.draw.rect(ecran, BLANC , [50,50,600,400])
     pygame.draw.rect(ecran, VERT , [XD_X,XD_Y,40,50])

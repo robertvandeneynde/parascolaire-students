@@ -14,6 +14,8 @@ BLEU = [0, 0, 255]
 
 # DÉBUT
 a = 100
+b = 100
+c = 100
 clock = pygame.time.Clock()
 
 fini = 0
@@ -25,12 +27,14 @@ while fini == 0:
     
     # TICK
     a = a+1
+    b = b+2
+    c = c+3
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [300,200, 15,40])
-    pygame.draw.circle(ecran, BLEU, [100,150], 20)
-    pygame.draw.circle(ecran, VERT, [a, 90], 10)
+    pygame.draw.rect(ecran, ROUGE, [500,b,15,40])
+    pygame.draw.circle(ecran, ROUGE, [300,c], 15)
+    pygame.draw.circle(ecran, ROUGE, [90, a], 20)
     
     pygame.display.flip()
     
