@@ -34,8 +34,7 @@ while fini == 0:
     if x>180:
         x=x-5
         y=y-2
-    if pygame.KEYLEFT:
-          x=50
+
     # DESSIN
     ecran.fill(BLANC)
     pygame.draw.circle(ecran, BLEU, [x,y], 20)

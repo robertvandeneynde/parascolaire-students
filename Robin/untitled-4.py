@@ -23,6 +23,13 @@ while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
+        elif event.type == pygame.KEYDOWN:
+            print("La touche numero", event.key)
+            if event.key == 276: # touche gauche
+                print("La touche numero", event.key)
+            elif event.key == 275: # touche droite
+                print("La touche numero", event.key)
+            
     
     # TICK
 
