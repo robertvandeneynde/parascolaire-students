@@ -33,8 +33,8 @@ while fini == 0:
     ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, ROUGE, [500,b,15,40])
-    pygame.draw.circle(ecran, ROUGE, [300,c], 15)
-    pygame.draw.circle(ecran, ROUGE, [90, a], 20)
+    pygame.draw.circle(ecran, ROUGE, [c,300,], 35)
+    pygame.draw.circle(ecran, ROUGE, [90, a], 25)
     
     pygame.display.flip()
     

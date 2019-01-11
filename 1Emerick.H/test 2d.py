@@ -4,16 +4,16 @@ from __future__ import print_function, division
 import pygame
 pygame.init()
 
-taille = [8192,4320]
+taille = [1200,900]
 ecran = pygame.display.set_mode(taille)
 
 
 
 NOIR = (0, 0, 0)
 BLANC = [255, 255, 255]
-ROUGE = (255, 0, 0)
-VERT = (0, 255, 0)
-BLEU = [0, 0, 255]
+ROUGE = (163, 163, 163)
+VERT = (200, 200, 200)
+BLEU = [100, 100, 100]
 
 # DÉBUT
 a=b=c=d=e=f=100
@@ -29,26 +29,26 @@ while fini == 0:
             fini = 1
     
     # TICK
-    a=a+2
-    b=b+4
-    c=c+6
-    d=d+4
+    a=a+0.02
+    b=b+0.04
+    c=c+0.06
+    d=d+0.04
   
     
-    if a>=8300:
+    if a>=1200:
         a=-50        
-    if b>=8300:
+    if b>=1200:
         b=-50
-    if c>=8300:
+    if c>=1200:
         c=-50
-    if d>=4400:
+    if d>=900:
        d=-50
         
         
 
 
     # DESSIN
-    ecran.fill(NOIR)
+    ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, ROUGE, [int(c),int(d), int(e),int(f)])
     pygame.draw.circle(ecran, BLEU, [int(b),int(d)], int(e))
@@ -58,6 +58,6 @@ while fini == 0:
     
     pygame.display.flip()
     
-    clock.tick(1000)
+    clock.tick(1440)
     
 pygame.quit()

@@ -25,8 +25,7 @@ while fini == 0:
             fini = 1
     
     # TICK
-    a=a+5
-+   if a <
+
     # DESSIN
     ecran.fill(BLANC)
     
