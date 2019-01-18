@@ -34,12 +34,16 @@ while fini == 0:
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran,NOIR , [10 ,456, 20,40])
-                            
-                       
-    pygame.draw.circle(ecran, BLEU, [b,200], 20)
-    pygame.draw.circle(ecran, VERT, [a, 80], 78)
+    pygame.draw.rect(ecran,NOIR , [2,700,52,500])
     
+    pygame.draw.circle(ecran,bleu,200)
+    
+    
+                       
+   pygame.draw.circle(ecran, BLEU, [b,352],122)
+                
+    pygame.draw.circle(ecran, VERT, [a, 62],45)
+                    
     
     pygame.display.flip()
     

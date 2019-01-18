@@ -29,12 +29,12 @@ while fini == 0:
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, CACTUS, [a,400, 60,100])
-    pygame.draw.circle(ecran,SARAH, [100,300], 40)
-    pygame.draw.circle(ecran, BRUN, [a, 50], 9)
+    pygame.draw.rect(ecran, CACTUS, [a,400, 100,100])
+    pygame.draw.circle(ecran,SARAH, [250,100], 40)
+    pygame.draw.circle(ecran, BRUN, [a, 100], 19)
     
     pygame.display.flip()
     
     clock.tick(60)
     
-pygame.quit()
+    

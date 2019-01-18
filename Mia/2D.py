@@ -38,13 +38,14 @@ while fini == 0:
     if a> 700:
         sens = -1
     if a<0:
+        sens=1
     # à compléter !
     
     # 7) DESSIN
     
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [a+100,200, 20,40]) # coin en haut à gauche : x=100 y=200, taille 20x40
+    pygame.draw.rect(ecran, ROUGE, [100,0, 20,40]) # coin en haut à gauche : x=100 y=200, taille 20x40
     pygame.draw.circle(ecran, BLEU, [a+10,200], 20) # centre : x=100 y=200, rayon=20
     pygame.draw.circle(ecran, VERT, [a,a], 10) # un cercle vert
     
@@ -56,59 +57,4 @@ while fini == 0:
     
 # 10) quitter... ça peut servir
 pygame.quit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

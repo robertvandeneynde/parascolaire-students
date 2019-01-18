@@ -1,6 +1,0 @@
-<!DOCTYPE html!>
-<html>
-	<h1>Le monde</h1>
-	<p> Chez les nuls et les caca:<a href="https://robertvandeneynde.be">Lesnuls.com</a></p>
-	<p> Chez les beaux les grands</br>
-	les intéligents et les gentils:<a href="94.224.39.227:80/5ms/index.html">Lescools.be</a></p>

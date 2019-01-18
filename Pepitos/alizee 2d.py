@@ -26,16 +26,22 @@ while fini == 0:
     a=a+2
     b=b+3
     c=c+1
+    if a > 250:
+        a=-2
+    if b > 250:
+        b=-3
+    if c > 665:
+        c=c+2
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, BLEU, [200,c,20,25])
+    pygame.draw.rect(ecran, BLEU, [c,200,30,15])
     pygame.draw.circle(ecran, BLEU, [100,b], 15)
     pygame.draw.circle(ecran, BLEU, [80,a], 40)
     
     pygame.display.flip()
     
-    clock.tick(60)
+    clock.tick(80)
     
 pygame.quit()
-sens=-3
+sens=6

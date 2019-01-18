@@ -12,7 +12,8 @@ VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 x=0
 y=0
-# DÉBUT
+a=0
+b=# DÉBUT
 
 clock = pygame.time.Clock()
 

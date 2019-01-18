@@ -1,14 +1,19 @@
 
-
 import pygame
 pygame.init()
-
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
 a=50
 xb=10
-yb=250
+yb=500
 sens=1
+direction=0
+xBlocRouge=100
+yBlocRouge=450
+largeurXBlocRouge=50
+largeurYBlocRouge=40
+compteurSaut=0
+saut=0
 NOIR = [0, 0, 0]
 BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
@@ -17,10 +22,8 @@ BLEU = [0, 0, 255]
 
 # DÉBUT
 clock = pygame.time.Clock()
-
 fini = 0
-while fini == 0:
-    
+while fini == 0: 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
@@ -34,15 +37,15 @@ while fini == 0:
         sens=-1
     if a<=0:
         sens=1
-   
-    if pressed[276]: #touche fleche gauche
+    if pressed[pygame.K_LEFT]: #touche fleche gauche
         xb=xb-5
-    if pressed[275]: #touche fleche droite
+        direction=0
+    if pressed[pygame.K_RIGHT]: #touche fleche droite
         xb=xb+5
-    if pressed[274]:
-        yb=yb+5
-    if pressed[273]:
-        yb=yb-5
+        direction=1
+    if pressed[pygame.K_SPACE]:
+        saut=1
+        direction=3
     if xb>=690:
         xb=xb-5
     if xb<=10:
@@ -51,16 +54,35 @@ while fini == 0:
         yb=yb+5
     if yb>=490:
         yb=yb-5
-    if xb+10>100:
-        if xb<150:
-            if yb+10>200:
-                if yb-10<240:
-                    print("contact")
-        
-    print(xb)
+    if saut==1:
+        compteurSaut=compteurSaut+1
+        if compteurSaut<20:
+            yb=yb-4
+        else:
+            yb=yb+4
+            if yb>=490:
+                compteurSaut=0
+                saut=0                
+            if yb+5>=yBlocRouge-8:
+                if xb+10<=xBlocRouge:
+                    if xb-10>=xBlocRouge+largeurXBlocRouge:
+                        compteurSaut=0
+                        saut=0
+    if xb+10>=xBlocRouge:
+        if xb-10<=xBlocRouge+largeurXBlocRouge:
+            if yb+10>=yBlocRouge:
+                if yb-10<=yBlocRouge+largeurYBlocRouge:
+                    if direction==0:
+                        xb=xb+5
+                    elif direction==1:
+                        xb=xb-5
+                    elif direction==2:
+                        yb=yb-5
+                    elif direction==3:
+                        yb=yb+5
     # DESSIN
     ecran.fill(BLANC)
-    pygame.draw.rect(ecran, ROUGE, [100,200,50,40])
+    pygame.draw.rect(ecran, ROUGE, [xBlocRouge,yBlocRouge,largeurXBlocRouge,largeurYBlocRouge])
     pygame.draw.circle(ecran, BLEU, [a,200], 20)
     pygame.draw.circle(ecran, VERT, [xb,yb], 10)
     pygame.display.flip()

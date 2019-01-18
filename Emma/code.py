@@ -29,8 +29,9 @@ while fini == 0:
     a = a+1
     b = b+2
     c = c+3
+        if c < 
     # DESSIN
-    ecran.fill(BLANC)
+    ecran.fill(BLANC)/
     
     pygame.draw.rect(ecran, ROUGE, [500,b,15,40])
     pygame.draw.circle(ecran, ROUGE, [c,300,], 35)

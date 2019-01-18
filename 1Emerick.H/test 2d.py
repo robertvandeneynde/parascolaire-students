@@ -16,7 +16,7 @@ VERT = (200, 200, 200)
 BLEU = [100, 100, 100]
 
 # DÉBUT
-a=b=c=d=e=f=100
+a=b=c=d=e=f=50
 
 
 clock = pygame.time.Clock()
@@ -44,7 +44,6 @@ while fini == 0:
     if d>=900:
        d=-50
         
-        
 
 
     # DESSIN
@@ -58,6 +57,6 @@ while fini == 0:
     
     pygame.display.flip()
     
-    clock.tick(1440)
+    clock.tick(99999)
     
 pygame.quit()
