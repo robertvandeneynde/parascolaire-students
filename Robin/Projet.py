@@ -6,7 +6,11 @@ ecran = pygame.display.set_mode(taille)
 a=50
 xb=10
 yb=500
+dxb=0
+dyb=0
 sens=1
+isVersHaut=0
+isVersBas=0
 direction=0
 xBlocRouge=100
 yBlocRouge=450
@@ -28,24 +32,70 @@ while fini == 0:
         if event.type == pygame.QUIT:
             fini = 1
     pressed = pygame.key.get_pressed() 
+    
     # TICK
     if sens==1:
         a=a+5
     else:
         a=a-5
+    
     if a>=690:
         sens=-1
+        
     if a<=0:
         sens=1
+    dxb = 0
     if pressed[pygame.K_LEFT]: #touche fleche gauche
-        xb=xb-5
-        direction=0
+        dxb = dxb - 5
+        direction = 0
+        
     if pressed[pygame.K_RIGHT]: #touche fleche droite
-        xb=xb+5
-        direction=1
+        dxb = dxb + 5
+        direction = 1  
+        
     if pressed[pygame.K_SPACE]:
-        saut=1
-        direction=3
+        saut = 1
+        direction = 3
+    dyb=0
+    if saut==1:
+        compteurSaut=compteurSaut+1
+        if compteurSaut<20:
+            dyb=-4
+        else:
+            dyb=4
+            if yb>=490:
+                compteurSaut = 0
+                saut = 0                
+            if yb+5 >= yBlocRouge - 8:
+                if xb + 10 <= xBlocRouge:
+                    if xb - 10 >= xBlocRouge + largeurXBlocRouge:
+                        compteurSaut = 0
+                        saut = 0
+    if(yb+4<=yBlocRouge and xb+10>=xBlocRouge and xb-10<=xBlocRouge+largeurXBlocRouge):
+        isVersHaut=1
+        isVersBas=0
+    else : 
+        isVersHaut=0
+    
+    if (xb+10>=xBlocRouge
+        and xb-10<=xBlocRouge+largeurXBlocRouge
+        and yb+10>=yBlocRouge
+        and yb-10<=yBlocRouge+largeurYBlocRouge):
+        if direction==0:
+            if(isVersHaut==0):
+                xb=xb+5
+            if(isVersHaut==1):
+                dyb=0            
+        elif direction==1:
+            if(isVersHaut==0):           
+                xb=xb-5
+            if(isVersHaut==1):
+                dyb=0            
+        elif direction==2:
+            yb=yb-5         
+        elif direction==3:
+            if(isVersHaut==0):
+                dyb=0         
     if xb>=690:
         xb=xb-5
     if xb<=10:
@@ -54,34 +104,11 @@ while fini == 0:
         yb=yb+5
     if yb>=490:
         yb=yb-5
-    if saut==1:
-        compteurSaut=compteurSaut+1
-        if compteurSaut<20:
-            yb=yb-4
-        else:
-            yb=yb+4
-            if yb>=490:
-                compteurSaut=0
-                saut=0                
-            if yb+5>=yBlocRouge-8:
-                if xb+10<=xBlocRouge:
-                    if xb-10>=xBlocRouge+largeurXBlocRouge:
-                        compteurSaut=0
-                        saut=0
-    if xb+10>=xBlocRouge:
-        if xb-10<=xBlocRouge+largeurXBlocRouge:
-            if yb+10>=yBlocRouge:
-                if yb-10<=yBlocRouge+largeurYBlocRouge:
-                    if direction==0:
-                        xb=xb+5
-                    elif direction==1:
-                        xb=xb-5
-                    elif direction==2:
-                        yb=yb-5
-                    elif direction==3:
-                        yb=yb+5
+    xb = xb + dxb
+    yb = yb + dyb          
     # DESSIN
     ecran.fill(BLANC)
+    print(dyb," ",dxb)
     pygame.draw.rect(ecran, ROUGE, [xBlocRouge,yBlocRouge,largeurXBlocRouge,largeurYBlocRouge])
     pygame.draw.circle(ecran, BLEU, [a,200], 20)
     pygame.draw.circle(ecran, VERT, [xb,yb], 10)

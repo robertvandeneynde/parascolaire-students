@@ -12,10 +12,31 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
+class Joueur:
+    pass
+
 # état des joueurs
-etatRobin = 1
-etatGuilhaime = 1
-etatMatteo = 1
+robin = Joueur()
+robin.etat = 1
+robin.x = 200
+robin.y = 200
+
+guilhaime = Joueur()
+guilhaime.etat = 1
+guilhaime.x = 450
+guilhaime.y = 350
+
+matteo = Joueur()
+matteo.etat = 1
+matteo.x = 200
+matteo.y = 300
+
+sadek = Joueur()
+sadek.etat = 1
+sadek.x = 400
+sadek.y = 300
+
+liste_ennemis = [robin, guilhaime, matteo, sadek]
 # état des munitions
 munitionsMax = 6
 munition = munitionsMax
@@ -35,18 +56,21 @@ while fini == 0:
             #print("Clic en", event.pos[0], event.pos[1])
             x = event.pos[0]
             y = event.pos[1]
-            if munition>0 :
-                if 200 <= x <= 300: # le clic touche robin
-                    if 200 <= y <= 300 :
+            if munition > 0:
+                if robin.x <= x <= robin.x + 50: # le clic touche robin
+                    if robin.y <= y <= robin.y + 50:
                         #print("robin disparait")
-                        etatRobin = 0
-                if 450 <= x <= 550 :
-                    if 300<=y<=400 :
-                        etatGuilhaime=0
-                if 200<=x<=300 :
-                    if 300<=y<=400 :
-                        etatMatteo=0
+                        liste_ennemis[0].etat  = 0
+                        
+                if 450 <= x <= 500 :
+                    if 350 <= y <= 400 :
+                        liste_ennemis[1].etat = 0 
+                        
+                if 200<=x<=250 :
+                    if 300<=y<=350 :
+                        liste_ennemis[2].etat = 0
                 munition = munition-1       
+        
         elif event.type == pygame.KEYDOWN :
             if event.key== pygame.K_SPACE :
                 munition = munitionsMax
@@ -62,31 +86,30 @@ while fini == 0:
     image_nom_joueur = font.render("Robin", True, noir)
     image_nom_joueurr = font.render("Mattéo", True, noir)
     image_nom_joueurrr = font.render("Guilhaime", True, noir)
+    image_nom_joueurrr = font.render("Sadek", True, noir)
+    
     image_munitions = font.render(str(munition), True, noir)
     ecran.fill(BLANC)
     
     # si le carré est rouge le personnage est vivant sinon il est mort
-    if etatRobin == 1 :
-        pygame.draw.rect(ecran, ROUGE, [200,200, 50,50]) #robin
-    else : 
-        pygame.draw.rect(ecran, noir, [200,200, 50,50]) #robin mort
-    if etatGuilhaime == 1 :
-        pygame.draw.rect(ecran, ROUGE, [450,350, 50,50]) #guilhaime
-    else :
-        pygame.draw.rect(ecran, noir, [450,350, 50,50]) #guilhaime mort
-    if etatMatteo ==1 :
-        pygame.draw.rect(ecran, ROUGE, [200,300, 50,50]) #matteo
-    else :
-        pygame.draw.rect(ecran, noir, [200,300, 50,50]) #matteo mort
+    i = 0
+    while i < len(liste_ennemis):
+        if liste_ennemis[i].etat == 1:
+            pygame.draw.rect(ecran, ROUGE, [liste_ennemis[i].x, liste_ennemis[i].y, 50,50]) #robin
+        else : 
+            pygame.draw.rect(ecran, noir, [liste_ennemis[i].x, liste_ennemis[i].y, 50,50]) #robin mort
+        i = i+1  
+    
     pygame.draw.rect(ecran, ROUGE, [x-50,y-5, 20,10])
     pygame.draw.circle(ecran, BLEU, [x,y],10)
     pygame.draw.rect(ecran, ROUGE, [x+30,y-5, 20,10])
     pygame.draw.rect(ecran, ROUGE, [x-3,y-50, 10,20])
     pygame.draw.rect(ecran, ROUGE, [x-3,y+25, 10,20])
-    ecran.blit(image_nom_joueur, [200,180])
-    ecran.blit(image_nom_joueurr, [190,280])
-    ecran.blit(image_nom_joueurrr, [425,330])
-    ecran.blit(image_nom_joueurrr, [425,330])
+    
+    ecran.blit(image_nom_joueur, [robin.x,robin.y-20])
+    ecran.blit(image_nom_joueurr, [matteo.x,matteo.y-20])
+    ecran.blit(image_nom_joueurrr, [guilhaime.x,guilhaime.y-20])
+    
     ecran.blit(image_munitions, [10,450])
     pygame.display.flip()
     
