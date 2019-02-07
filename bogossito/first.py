@@ -1,5 +1,3 @@
-from __future__ import print_function, division
-
 import pygame
 pygame.init()
 
@@ -12,33 +10,63 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
-class Joueur:
+class Ennemi:
     pass
 
 # état des joueurs
-robin = Joueur()
+robin = Ennemi()
 robin.etat = 1
 robin.x = 200
+robin.xx = 250
 robin.y = 200
+robin.yy = 250
+robin.l = 50
+robin.h = 50
+robin.nom = "Robiche"
 
-guilhaime = Joueur()
+guilhaime = Ennemi()
 guilhaime.etat = 1
 guilhaime.x = 450
+guilhaime.xx = 500
 guilhaime.y = 350
-
-matteo = Joueur()
+guilhaime.yy = 400
+guilhaime.l = 50
+guilhaime.h = 50
+guilhaime.nom = "guilhem le caillou"
+matteo = Ennemi()
 matteo.etat = 1
-matteo.x = 200
+matteo.x = 250
+matteo.xx = 350
 matteo.y = 300
+matteo.yy = 350
+matteo.l = 100
+matteo.h = 50
+matteo.nom = "Mattégro"
+print(len(matteo.nom))
 
-sadek = Joueur()
+sadek = Ennemi()
 sadek.etat = 1
 sadek.x = 400
-sadek.y = 300
+sadek.xx = 450
+sadek.y = 60
+sadek.yy= 110
+sadek.l = 50
+sadek.h = 50
+sadek.nom = "sadekonpas"
 
-liste_ennemis = [robin, guilhaime, matteo, sadek]
+florent = Ennemi()
+florent.etat = 1
+florent.x = 50
+florent.xx = 100
+florent.y = 350
+florent.yy = 450
+florent.l = 50
+florent.h = 100
+florent.nom = "fliflou le méga géant"
+
+liste_ennemis = [robin, guilhaime, matteo, sadek, florent]
 # état des munitions
-munitionsMax = 6
+munitionsMax = 7
 munition = munitionsMax
 # DÉBUT
 clock = pygame.time.Clock()
@@ -57,18 +85,13 @@ while fini == 0:
             x = event.pos[0]
             y = event.pos[1]
             if munition > 0:
-                if robin.x <= x <= robin.x + 50: # le clic touche robin
-                    if robin.y <= y <= robin.y + 50:
-                        #print("robin disparait")
-                        liste_ennemis[0].etat  = 0
+                i = 0
+                while i < len(liste_ennemis):
+                    if liste_ennemis[i].x <= x <= liste_ennemis[i].xx : # le clic touche 
+                        if liste_ennemis[i].y <= y <= liste_ennemis[i].yy :
+                            liste_ennemis[i].etat  = 0
+                    i = i + 1  
                         
-                if 450 <= x <= 500 :
-                    if 350 <= y <= 400 :
-                        liste_ennemis[1].etat = 0 
-                        
-                if 200<=x<=250 :
-                    if 300<=y<=350 :
-                        liste_ennemis[2].etat = 0
                 munition = munition-1       
         
         elif event.type == pygame.KEYDOWN :
@@ -83,34 +106,49 @@ while fini == 0:
     y = position_souris[1]
     
     # DESSIN
-    image_nom_joueur = font.render("Robin", True, noir)
-    image_nom_joueurr = font.render("Mattéo", True, noir)
-    image_nom_joueurrr = font.render("Guilhaime", True, noir)
-    image_nom_joueurrr = font.render("Sadek", True, noir)
+    
+        
+    image_nom_joueur = font.render("Robiche", True, noir)
+    image_nom_joueurr = font.render("Mattégro", True, noir)
+    image_nom_joueurrrr = font.render("sadekonpas", True, noir)
+    image_nom_joueurrr = font.render("guilhem le caillou", True, noir)
+    image_nom_joueurrrrr = font.render("fliflou le méga géant", True, noir)
+    image_nom_dieu = font.render("loic dieu", True, noir)
     
     image_munitions = font.render(str(munition), True, noir)
     ecran.fill(BLANC)
     
     # si le carré est rouge le personnage est vivant sinon il est mort
-    i = 0
-    while i < len(liste_ennemis):
-        if liste_ennemis[i].etat == 1:
-            pygame.draw.rect(ecran, ROUGE, [liste_ennemis[i].x, liste_ennemis[i].y, 50,50]) #robin
+    for e in liste_ennemis:
+        if e.etat == 1:
+            pygame.draw.rect(ecran, ROUGE, [e.x, e.y, e.l,e.h]) #robin
         else : 
-            pygame.draw.rect(ecran, noir, [liste_ennemis[i].x, liste_ennemis[i].y, 50,50]) #robin mort
-        i = i+1  
-    
+            pygame.draw.rect(ecran, noir, [e.x, e.y, e.l, e.h]) #robin mort 
+    #dieu
+    pygame.draw.rect(ecran, ROUGE, [400,250, 50,50])
+    # viseur 
     pygame.draw.rect(ecran, ROUGE, [x-50,y-5, 20,10])
     pygame.draw.circle(ecran, BLEU, [x,y],10)
     pygame.draw.rect(ecran, ROUGE, [x+30,y-5, 20,10])
     pygame.draw.rect(ecran, ROUGE, [x-3,y-50, 10,20])
-    pygame.draw.rect(ecran, ROUGE, [x-3,y+25, 10,20])
+    pygame.draw.rect(ecran, ROUGE, [x-5,y+25, 10,20])
     
-    ecran.blit(image_nom_joueur, [robin.x,robin.y-20])
-    ecran.blit(image_nom_joueurr, [matteo.x,matteo.y-20])
-    ecran.blit(image_nom_joueurrr, [guilhaime.x,guilhaime.y-20])
+    for e in liste_ennemis:
+        image_nom_joueur = font.render(e.nom, True, noir)
+        #image_nom_joueur.width, image_nom_joueur.height
+        ecran.blit(image_nom_joueur, [e.x, e.y-20])
+        
+    # ecran.blit(image_nom_joueur, [robin.x,robin.y-20])
+    # ecran.blit(image_nom_joueurr, [matteo.x,matteo.y-20])
+    # ecran.blit(image_nom_joueurrr, [guilhaime.x-50,guilhaime.y-20])
+    # ecran.blit(image_nom_joueurrrr, [sadek.x-30,sadek.y-20])
+    # ecran.blit(image_nom_joueurrrrr, [florent.x-50,florent.y-30])
+    
+    
+    ecran.blit(image_nom_dieu, [400, 230])
     
     ecran.blit(image_munitions, [10,450])
+    
     pygame.display.flip()
     
     clock.tick(60)

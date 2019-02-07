@@ -16,6 +16,9 @@ BLEU = [0, 0, 255]
 a = 100
 b = 100
 c = 100
+ma_position = 600
+sens = 1
+
 clock = pygame.time.Clock()
 
 fini = 0
@@ -29,9 +32,11 @@ while fini == 0:
     a = a+1
     b = b+2
     c = c+3
-        if c < 
+    if c > 665: 
+        c=c-3 
+
     # DESSIN
-    ecran.fill(BLANC)/
+    ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, ROUGE, [500,b,15,40])
     pygame.draw.circle(ecran, ROUGE, [c,300,], 35)

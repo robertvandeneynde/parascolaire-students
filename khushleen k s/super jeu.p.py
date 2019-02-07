@@ -1,5 +1,4 @@
 #!coding: utf-8
-from __future__ import print_function, division
 
 import pygame
 pygame.init()
@@ -16,7 +15,7 @@ BLEU = [0, 0, 255]
 # DÉBUT
 a= 1
 b= 4
-if
+c= 0
 clock = pygame.time.Clock()
 
 fini = 0
@@ -30,12 +29,15 @@ while fini == 0:
     
     a = a+1
     b = b+2
+    if c <= 700 :
+        c = c+3
+        
      # DESSIN
     ecran.fill(BLANC)
     
     pygame.draw.rect(ecran, ROUGE, [a,200, 20,40])
     pygame.draw.circle(ecran, BLEU, [b,200], 20)
-    pygame.draw.circle(ecran, VERT, [150, 80], 10)
+    pygame.draw.circle(ecran, VERT, [c, 80], 10)
     
     pygame.display.flip()
     

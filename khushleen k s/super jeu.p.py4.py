@@ -1,3 +1,5 @@
+#!coding: utf-8
+
 import pygame
 pygame.init()
 
@@ -10,12 +12,12 @@ ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
-# DÉBUT
-a=100
+# DÃ‰BUT
+a= 1
+b= 4
+c= 0
 clock = pygame.time.Clock()
-b=100
-c=100
-sens 
+
 fini = 0
 while fini == 0:
     
@@ -23,27 +25,23 @@ while fini == 0:
         if event.type == pygame.QUIT:
             fini = 1
     
-    # TICK
-    a=a+2
-    b=b+3
-    c=c+1
-    if a > 250:
-        a=-2
-    if b > 250:
-        b=-3
-    if c > 665:
-        c=c+2
-    # DESSIN
+     # TICK 
+    if a <= 690:
+        a = a+1
+    if b <= 686:
+        b = b+2
+    if c <= 686 :
+        c = c+3
+    
+     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, BLEU, [c,200,30,15])
-    pygame.draw.circle(ecran, BLEU, [100,b], 15)
-    pygame.draw.circle(ecran, BLEU, [80,a], 40)
+    pygame.draw.rect(ecran, ROUGE, [a,200, 20,40])
+    pygame.draw.circle(ecran, BLEU, [b,200], 20)
+    pygame.draw.circle(ecran, VERT, [c, 80], 10)
     
     pygame.display.flip()
     
     clock.tick(60)
     
-pygame.quit()
-sens=6
-                       
+    

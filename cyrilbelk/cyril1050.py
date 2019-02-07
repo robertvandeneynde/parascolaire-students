@@ -56,7 +56,11 @@ while fini == 0:
     if SCORE >= 1000 and WIN == 0 :
         WIN = 1 
         print ("GG WP")
-            
+    if 50 < XD_X < 410 or 90 < XD_Y < 650 :
+        SCORE = SCORE + 0
+    else:
+        SCORE = SCORE - 1 
+        print (SCORE)
     ecran.fill(NOIR)
     pygame.draw.rect(ecran, BLANC , [50,50,600,400])
     pygame.draw.rect(ecran, VERT , [XD_X,XD_Y,40,50])
