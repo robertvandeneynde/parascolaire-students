@@ -13,6 +13,7 @@ SCORE = 1
 WIN = 0
 taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
+font = pygame.font.SysFont('Calibri', 50)
 
 NOIR = [0, 0, 0]
 BLANC = [255, 255, 255]
@@ -56,15 +57,20 @@ while fini == 0:
     if SCORE >= 1000 and WIN == 0 :
         WIN = 1 
         print ("GG WP")
-    if 50 < XD_X < 410 or 90 < XD_Y < 650 :
+    if 50 < XD_X < 610 and 50 < XD_Y < 400 :
         SCORE = SCORE + 0
     else:
         SCORE = SCORE - 1 
         print (SCORE)
+    
     ecran.fill(NOIR)
+    
+    image=font.render(str(SCORE), True, BLEU)
+    
     pygame.draw.rect(ecran, BLANC , [50,50,600,400])
     pygame.draw.rect(ecran, VERT , [XD_X,XD_Y,40,50])
     pygame.draw.rect(ecran, JAUNE , [NOIR_X,NOIR_Y,30,25])
+    ecran.blit(image,[0,0])
     pygame.display.flip()
     
     clock.tick(60)

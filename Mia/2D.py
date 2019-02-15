@@ -17,6 +17,7 @@ BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
+ORANGE =[244, 209, 66]
 
 clock = pygame.time.Clock()
 
@@ -45,10 +46,10 @@ while fini == 0:
     
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [100,0, 20,40]) # coin en haut à gauche : x=100 y=200, taille 20x40
+    pygame.draw.rect(ecran, ROUGE, [100,a, 20,40]) # coin en haut à gauche : x=100 y=200, taille 20x40
     pygame.draw.circle(ecran, BLEU, [a+10,200], 20) # centre : x=100 y=200, rayon=20
     pygame.draw.circle(ecran, VERT, [a,a], 10) # un cercle vert
-    
+    pygame.draw.rect(ecran, ORANGE, [0,0, 20,30])
     # 8) mettre à jour les dessins
     pygame.display.flip()
     

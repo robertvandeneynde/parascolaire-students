@@ -12,9 +12,9 @@ BLANC = [255, 255, 255]
 BLEUC = [128, 191, 255]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
-
+VIOLET = [128,0,255]
 # DÉBUT
-a=100
+pos=100
 
 clock = pygame.time.Clock()
 
@@ -26,17 +26,22 @@ while fini == 0:
             fini = 1
     
     # TICK
-    a+1
-    
+    pos=pos-5
+    print(pos)
+
+if pos<700:
+    pos=0
+
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, BLEUC, [0,0, 80,40])
+    pygame.draw.rect(ecran, BLEUC, [350,0, 80,40])
     pygame.draw.circle(ecran, BLEU, [100,200], 20)
-    pygame.draw.circle(ecran, VERT, [150, 80], 50)
+    pygame.draw.circle(ecran, VERT, [pos, 250], 50)
+    
     
     pygame.display.flip()
-    
+
     clock.tick(60)
     
-pygame.quit()
+                    

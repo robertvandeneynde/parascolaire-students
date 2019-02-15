@@ -13,9 +13,10 @@ VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
 # DÉBUT
-a= 1
+a= 350
 b= 4
 c= 0
+sens = 1
 clock = pygame.time.Clock()
 
 fini = 0
@@ -27,12 +28,19 @@ while fini == 0:
     
      # TICK 
     if a <= 690:
-        a = a+1
+        a = a-1
     if b <= 686:
         b = b+2
     if c <= 686 :
         c = c+3
+    else:
+            a = a +2
+            
+    if a < 350:
+        sens = 1
+    print(sens, a)
     
+
      # DESSIN
     ecran.fill(BLANC)
     

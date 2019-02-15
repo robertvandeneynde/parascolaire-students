@@ -14,35 +14,37 @@ BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
+BLEUCLAIR = [51,255,153]
+VERTCLAIR = [52,254,154]
 score = 0
 clock = pygame.time.Clock()
 nbmaxbombe = 10
 
 class Boule:
     pass
-
-la_liste_de_boules = []
-
-x = 20
-y = 20
-b = Boule()
-b.x = x
-b.y = y
-b.bombe = 0
-b.rayon = 15
-la_liste_de_boules.append(b)
-while y <500 :
-    if x < 450:
-        x = x + 50
-    else:
-        x = 20
-        y = y + 50
+def bombe_generation():
+    la_liste_de_boules = []    
+    x = 20
+    y = 20
     b = Boule()
     b.x = x
     b.y = y
     b.bombe = 0
     b.rayon = 15
     la_liste_de_boules.append(b)
+    while y < taille [1]:
+        if x < taille[0]:
+            x = x + 50
+        else:
+            x = 20
+            y = y + 50
+        b = Boule()
+        b.x = x
+        b.y = y
+        b.bombe = 0
+        b.rayon = 15
+        la_liste_de_boules.append(b)
+    return la_liste_de_boules
 
 v = 1
 while v < nbmaxbombe:
@@ -85,11 +87,11 @@ while fini == 0:
 
     i = 0
     while i < len(la_liste_de_boules):
-        if b.bombe == 1:
-            pygame.draw.circle(ecran, ROUGE ,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
-            
-        pygame.draw.circle(ecran, VERT, [la_liste_de_boules[i].x, la_liste_de_boules[i].y], la_liste_de_boules[i].rayon)
-        
+        if la_liste_de_boules[i].bombe == 0:
+            pygame.draw.circle(ecran, BLEUCLAIR,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
+        else:
+            pygame.draw.circle(ecran, VERTCLAIR,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
+                
         i = i + 1
     print(score)
 
@@ -99,38 +101,7 @@ while fini == 0:
     # x, 20 + 120 // p  = 3
     # x,  20 + 160 // p  = 4
     
-    font = pygame.font.SysFont('Calibri', 25)
-    
-    ma_position3 = 0
-    score = 0
-    
-    fini = 0
-    while fini == 0:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                fini = 1
-        
-        ma_position3 += 10
-        
-        if ma_position3 > 700:
-            ma_position3 = 0
-            score += 1
-        
-        # dessin
-        
-        pygame.draw.rect(ecran, ROUGE, [ma_position3, 500, 50,50])
-        
-        # On crée une image depuis la police et le texte
-        # True signifie "anti-aliasé" (c'est plus joli)
-        image_nom_joueur = font.render("Robert", True, NOIR)
-        image_score = font.render("Score: " + str(score), True, NOIR)
-        # Note: "Score: {}".format(score) est généralement plus clair et flexible que "Score: " + str(nombre)
-        # Le "{}" veut dire "je vais remplacer ça par une variable
-    
-        # on "blitte" l'image sur l'écran
-        ecran.blit(image_nom_joueur, [20,20])
-        ecran.blit(image_score, [600,20])    
-    
+  
 
     pygame.display.flip()
 

@@ -1,6 +1,6 @@
-from __future__ import print_function, division
 
 import pygame
+
 pygame.init()
 
 taille = [700, 500]
@@ -16,32 +16,24 @@ BLEU = [0, 0, 255]
 a = 100
 b = 100
 c = 100
-ma_position = 600
-sens = 1
+
 
 clock = pygame.time.Clock()
 
-fini = 0
+fini = 0 
 while fini == 0:
-    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
     
     # TICK
-    a = a+1
-    b = b+2
-    c = c+3
-    if c > 665: 
-        c=c-3 
-
+    a = a-1
+  
     # DESSIN
     ecran.fill(BLANC)
     
-    pygame.draw.rect(ecran, ROUGE, [500,b,15,40])
-    pygame.draw.circle(ecran, ROUGE, [c,300,], 35)
-    pygame.draw.circle(ecran, ROUGE, [90, a], 25)
-    
+    pygame.draw.rect(ecran, ROUGE, [5,a,15,40])
+   
     pygame.display.flip()
     
     clock.tick(60)
