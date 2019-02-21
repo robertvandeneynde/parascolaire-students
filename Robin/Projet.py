@@ -5,7 +5,7 @@ taille = [700, 500]
 ecran = pygame.display.set_mode(taille)
 a=50
 xb=10
-yb=500
+yb=400
 dxb=0
 dyb=0
 saut=1
@@ -13,6 +13,8 @@ sens=1
 isVersHaut=0
 isVersBas=0
 direction=0
+xBV=200
+yBV=350
 xBlocRouge=100
 yBlocRouge=450
 xBlocBleu=150
@@ -28,19 +30,15 @@ VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 
 # 0 veut dire pas sur un sol 1 oui
-def IsOnAFloor(x,y):
-    if y > 490:
+def IsOnAFloor(x,y,xBloc,yBloc,Largeurbloc,longueurBloc):
+    if y >= 490:
         print("Sur le fond en :", x,y)
         return 1
-    elif(y<=yBlocRouge-4  and y>=yBlocRouge-10 and x+10>=xBlocRouge and x-10<=xBlocRouge+largeurXBloc):
-        return 1
-    elif(y<=yBlocBleu-4  and y>=yBlocBleu-10 and x+10>=xBlocBleu and x-10<=xBlocBleu+largeurXBloc):
+    elif(y<=yBloc-4  and y>=yBloc-10 and x+10>=xBloc and x-10<=xBloc+Largeurbloc):
         #je suis sur le cube
-        print("sur cube")
         return 1
     else:
         return 0
-
 # DÉBUT
 clock = pygame.time.Clock()
 fini = 0
@@ -70,52 +68,41 @@ while fini == 0:
         dxb = dxb + 5
         direction = 1  
     if pressed[pygame.K_SPACE]:
-        if IsOnAFloor(xb, yb) == 1: # A modifier 
+        if IsOnAFloor(xb, yb,xBlocBleu,yBlocBleu,largeurXBloc,largeurYBloc)==1 or IsOnAFloor(xb, yb,xBlocRouge,yBlocRouge,largeurXBloc,largeurYBloc) == 1 or IsOnAFloor(xb, yb,xBV,yBV,largeurXBloc,largeurYBloc) == 1: # A modifier 
             saut = 1
     if saut==1:
         compteurSaut=compteurSaut+1
         dyb=-4
         if compteurSaut>=20:
             saut=0
-
-    elif IsOnAFloor(xb,yb)==1:
+            compteurSaut=0
+    elif IsOnAFloor(xb, yb,xBlocRouge,yBlocRouge,largeurXBloc,largeurYBloc)==1 or IsOnAFloor(xb, yb,xBlocBleu,yBlocBleu,largeurXBloc,largeurYBloc)==1 or IsOnAFloor(xb, yb,xBV,yBV,largeurXBloc,largeurYBloc)==1:
         dyb=0
     else :
         dyb=4
-    if IsOnAFloor(xb,yb)==1 and compteurSaut > 20:
-        compteurSaut = 0
-        saut=0
-    
-    if (xb+10>=xBlocRouge
-        and xb-10<=xBlocRouge+largeurXBloc
-        and yb+10>=yBlocRouge
-        and yb-10<=yBlocRouge+largeurYBloc):
-        if direction==0:
-            ...
-            #xb=xb+5       
-        elif direction==1:         
-            ...
-            #xb=xb-5 
+
+    xb=xb+dxb
+    yb=yb+dyb       
     if xb>=690:
         xb=xb-5
     if xb<=10:
         xb=xb+5 
     if yb<=10:
         yb=yb+5
-    if yb>=490:
-        ...
-        #yb=yb-5
-    xb=xb+dxb
-    yb=yb+dyb          
+    if yb>490:
+        yb=490
+            
     # DESSIN
     ecran.fill(BLANC)
-    pygame.draw.rect(ecran, ROUGE, [xBlocRouge,yBlocRouge,largeurXBloc,largeurYBloc])
-    pygame.draw.rect(ecran, BLEU, [xBlocBleu,yBlocBleu,largeurXBloc,largeurYBloc])
+    pygame.draw.rect(ecran, ROUGE, [xBlocRouge, yBlocRouge, largeurXBloc, largeurYBloc])
+    pygame.draw.rect(ecran, BLEU, [xBlocBleu, yBlocBleu, largeurXBloc, largeurYBloc])
+    pygame.draw.rect(ecran, VERT, [xBV, yBV, largeurXBloc, largeurYBloc])
     pygame.draw.circle(ecran, BLEU, [a,200], 20)
     pygame.draw.circle(ecran, VERT, [xb,yb], 10)
     pygame.display.flip()
     clock.tick(60)
-    print(saut)
+    print(yb)
+    
     
 pygame.quit()
 

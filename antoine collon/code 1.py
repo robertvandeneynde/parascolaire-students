@@ -1,5 +1,11 @@
 from __future__ import print_function, division
 
+def print(*args, **kwargs):
+    import builtins
+    import sys
+    builtins.print(*args, **kwargs)
+    sys.stdout.flush()    
+
 import pygame,random
 
 pygame.init()
@@ -22,31 +28,31 @@ nbmaxbombe = 10
 
 class Boule:
     pass
-def bombe_generation():
-    la_liste_de_boules = []    
-    x = 20
-    y = 20
+# def generate_boule():
+
+la_liste_de_boules = []    
+x = 20
+y = 20
+b = Boule()
+b.x = x
+b.y = y
+b.bombe = 0
+b.rayon = 15
+la_liste_de_boules.append(b)
+while y < taille[1]:
+    if x < taille[0]:
+        x = x + 50
+    else:
+        x = 20
+        y = y + 50
     b = Boule()
     b.x = x
     b.y = y
     b.bombe = 0
     b.rayon = 15
     la_liste_de_boules.append(b)
-    while y < taille [1]:
-        if x < taille[0]:
-            x = x + 50
-        else:
-            x = 20
-            y = y + 50
-        b = Boule()
-        b.x = x
-        b.y = y
-        b.bombe = 0
-        b.rayon = 15
-        la_liste_de_boules.append(b)
-    return la_liste_de_boules
 
-v = 1
+v = 0
 while v < nbmaxbombe:
     nbaleatoire = random.randrange(0, len(la_liste_de_boules))
     la_liste_de_boules[nbaleatoire].bombe = 1
@@ -54,7 +60,6 @@ while v < nbmaxbombe:
 
 fini = 0
 while fini == 0:
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             fini = 1
@@ -65,12 +70,23 @@ while fini == 0:
             elif event.key == 275:  # touche droite
                 ma_position2 = ma_position2 + 100
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            # event.pos est une liste de taille 2
+            # le premier element (event.pos[0]) est la position en x DU CLIC
+            # le deuxieme element (event.pos[1]) est la position en y DU CLIC
+            souris_x = event.pos[0]
+            souris_y = event.pos[1]
+            print("yolo")
             j = 0
             while j < len(la_liste_de_boules):
-                if abs(event.pos[0]- la_liste_de_boules[j].x)< la_liste_de_boules[j].rayon and abs (event.pos[1]-la_liste_de_boules[j].y) < la_liste_de_boules[j].rayon :
-                    if la_liste_de_boules [j].bombe == 0 :
+                # si le clic de souris touche la boule j
+                if abs(souris_x - la_liste_de_boules[j].x) < la_liste_de_boules[j].rayon and abs(souris_y - la_liste_de_boules[j].y) < la_liste_de_boules[j].rayon:
+                    if la_liste_de_boules[j].bombe == 0:  # si la boule j n'est pas une bombe
                         score += 1
                         la_liste_de_boules.pop(j)
+                    else: 
+                        # c'est une bombe  
+                        print("fini")
+                        la_liste_de_boules.clear()
                 j += 1
     if sens == + 1:
         ma_position = ma_position + 5
@@ -90,7 +106,7 @@ while fini == 0:
         if la_liste_de_boules[i].bombe == 0:
             pygame.draw.circle(ecran, BLEUCLAIR,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
         else:
-            pygame.draw.circle(ecran, VERTCLAIR,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
+            pygame.draw.circle(ecran, ROUGE,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
                 
         i = i + 1
     print(score)

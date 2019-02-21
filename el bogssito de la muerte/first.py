@@ -1,4 +1,5 @@
 import pygame
+import random
 pygame.init()
 
 taille = [700, 500]
@@ -13,6 +14,10 @@ BLEU = [0, 0, 255]
 class Ennemi:
     pass
 
+def Move(ennemis, vitesse):
+    if ennemis.etat==1 :
+        ennemis.x = ennemis.x+vitesse
+    
 # état des joueurs
 robin = Ennemi()
 robin.etat = 1
@@ -87,8 +92,8 @@ while fini == 0:
             if munition > 0:
                 i = 0
                 while i < len(liste_ennemis):
-                    if liste_ennemis[i].x <= x <= liste_ennemis[i].xx : # le clic touche 
-                        if liste_ennemis[i].y <= y <= liste_ennemis[i].yy :
+                    if liste_ennemis[i].x <= x <= liste_ennemis[i].x + liste_ennemis[i].l : # le clic touche 
+                        if liste_ennemis[i].y <= y <= liste_ennemis[i].y + liste_ennemis[i].h :
                             liste_ennemis[i].etat  = 0
                     i = i + 1  
                         
@@ -98,7 +103,20 @@ while fini == 0:
             if event.key== pygame.K_SPACE :
                 munition = munitionsMax
             
-              
+    # mouvement des ennemis
+    i=0
+    while i < len(liste_ennemis) :
+        Move(liste_ennemis[i], i+0.5)
+        i = i+1
+    
+    #endgame
+    i = 0
+    while i< len(liste_ennemis) :
+        if liste_ennemis[i].x == 750 :
+            if liste_ennemis[i].etat == 1 :
+                fini = 1
+        i=i+1
+    
     position_souris = pygame.mouse.get_pos() # liste de taille 2 avec x,y 
     
     # TICK
@@ -152,5 +170,20 @@ while fini == 0:
     pygame.display.flip()
     
     clock.tick(60)
+
     
+  
+fini = 0
+while fini == 0:
+    #event
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            fini = 1
+    
+    ecran.fill(ROUGE)
+    pygame.display.flip()
+    clock.tick(1)
+    
+
 pygame.quit()
