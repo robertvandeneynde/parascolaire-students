@@ -6,12 +6,17 @@ def print(*args, **kwargs):
     builtins.print(*args, **kwargs)
     sys.stdout.flush()    
 
-import pygame,random
+def xy_to_i(x, y):
+    return x + y * 10
+
+import pygame, random
+random.seed(1)
 
 pygame.init()
 
-taille = [500, 550]
-ecran = pygame.display.set_mode(taille)
+taille_fenetre = [500, 550]
+taille = [500, 500]
+ecran = pygame.display.set_mode(taille_fenetre)
 ma_position2 = 100
 ma_position = 100
 sens = + 1
@@ -25,38 +30,41 @@ VERTCLAIR = [52,254,154]
 score = 0
 clock = pygame.time.Clock()
 nbmaxbombe = 10
+font = pygame.font.SysFont('Calibri', 25)
 
 class Boule:
     pass
+
 # def generate_boule():
 
 la_liste_de_boules = []    
 x = 20
 y = 20
-b = Boule()
-b.x = x
-b.y = y
-b.bombe = 0
-b.rayon = 15
-la_liste_de_boules.append(b)
+
 while y < taille[1]:
-    if x < taille[0]:
-        x = x + 50
-    else:
-        x = 20
-        y = y + 50
     b = Boule()
     b.x = x
     b.y = y
     b.bombe = 0
     b.rayon = 15
+    b.numero = 0
     la_liste_de_boules.append(b)
+    
+    if x + 50 < taille[0]:
+        x = x + 50
+    else:
+        x = 20
+        y = y + 50    
 
 v = 0
 while v < nbmaxbombe:
     nbaleatoire = random.randrange(0, len(la_liste_de_boules))
     la_liste_de_boules[nbaleatoire].bombe = 1
     v = v + 1
+
+# pour chaque bombe:
+  # pour chaque boule voisine:
+    # faire +1 au numero
 
 fini = 0
 while fini == 0:
@@ -75,7 +83,6 @@ while fini == 0:
             # le deuxieme element (event.pos[1]) est la position en y DU CLIC
             souris_x = event.pos[0]
             souris_y = event.pos[1]
-            print("yolo")
             j = 0
             while j < len(la_liste_de_boules):
                 # si le clic de souris touche la boule j
@@ -104,12 +111,20 @@ while fini == 0:
     i = 0
     while i < len(la_liste_de_boules):
         if la_liste_de_boules[i].bombe == 0:
-            pygame.draw.circle(ecran, BLEUCLAIR,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
+            pygame.draw.circle(ecran, BLEU, [la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
         else:
-            pygame.draw.circle(ecran, ROUGE,[la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
+            pygame.draw.circle(ecran, ROUGE, [la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
+        n = la_liste_de_boules[i].numero
+        r = la_liste_de_boules[i].rayon
+        image_numero = font.render(str(n), True, BLANC)
+        ecran.blit(image_numero, [la_liste_de_boules[i].x - r/2, la_liste_de_boules[i].y - r/2])
                 
         i = i + 1
-    print(score)
+    # print(score)
+    image_score = font.render("Score: " + str(score), True, BLANC)
+    ecran.blit(image_score, [20,500])
+    
+    
 
     # 20, 20 + 0 // p  = 0
     # 20, 20 + 40 // p  = 1

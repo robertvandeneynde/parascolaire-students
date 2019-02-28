@@ -17,7 +17,9 @@ class Ennemi:
 def Move(ennemis, vitesse):
     if ennemis.etat==1 :
         ennemis.x = ennemis.x+vitesse
-    
+# fond d'écran
+image = pygame.image.load("fonddujeu.jpg").convert_alpha()
+image = pygame.transform.smoothscale(image, taille)
 # état des joueurs
 robin = Ennemi()
 robin.etat = 1
@@ -135,6 +137,7 @@ while fini == 0:
     
     image_munitions = font.render(str(munition), True, noir)
     ecran.fill(BLANC)
+    ecran.blit(image,[0, 0] )
     
     # si le carré est rouge le personnage est vivant sinon il est mort
     for e in liste_ennemis:
@@ -182,6 +185,8 @@ while fini == 0:
             fini = 1
     
     ecran.fill(ROUGE)
+    image_noob = font.render("U ARE NOOOOOB", True, noir)
+    ecran.blit(image_noob, [320, 200])
     pygame.display.flip()
     clock.tick(1)
     
