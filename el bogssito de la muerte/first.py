@@ -18,7 +18,7 @@ def Move(ennemis, vitesse):
     if ennemis.etat==1 :
         ennemis.x = ennemis.x+vitesse
 # fond d'écran
-image = pygame.image.load("fonddujeu.jpg").convert_alpha()
+image = pygame.image.load("thumb.jpg").convert_alpha()
 image = pygame.transform.smoothscale(image, taille)
 # état des joueurs
 robin = Ennemi()
@@ -142,11 +142,11 @@ while fini == 0:
     # si le carré est rouge le personnage est vivant sinon il est mort
     for e in liste_ennemis:
         if e.etat == 1:
-            pygame.draw.rect(ecran, ROUGE, [e.x, e.y, e.l,e.h]) #robin
+            pygame.draw.rect(ecran, BLEU, [e.x, e.y, e.l,e.h]) #robin
         else : 
             pygame.draw.rect(ecran, noir, [e.x, e.y, e.l, e.h]) #robin mort 
     #dieu
-    pygame.draw.rect(ecran, ROUGE, [400,250, 50,50])
+    pygame.draw.rect(ecran, BLEU, [400,250, 50,50])
     # viseur 
     pygame.draw.rect(ecran, ROUGE, [x-50,y-5, 20,10])
     pygame.draw.circle(ecran, BLEU, [x,y],10)

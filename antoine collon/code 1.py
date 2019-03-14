@@ -10,7 +10,7 @@ def xy_to_i(x, y):
     return x + y * 10
 
 import pygame, random
-random.seed(1)
+random.seed()
 
 pygame.init()
 
@@ -65,7 +65,12 @@ while v < nbmaxbombe:
 # pour chaque bombe:
   # pour chaque boule voisine:
     # faire +1 au numero
-
+i = 0
+while i < len(la_liste_de_boules):
+    if la_liste_de_boules[i].bombe == 1:
+        print("j'ai trouvé une bombe")
+    
+    i = i + 1
 fini = 0
 while fini == 0:
     for event in pygame.event.get():
@@ -92,7 +97,7 @@ while fini == 0:
                         la_liste_de_boules.pop(j)
                     else: 
                         # c'est une bombe  
-                        print("fini")
+                        print("GAME OVER")
                         la_liste_de_boules.clear()
                 j += 1
     if sens == + 1:

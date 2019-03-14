@@ -3,7 +3,7 @@ import random
 import pygame
 pygame.init()
 
-taille = [700, 500]
+taille = [800, 600]
 ecran = pygame.display.set_mode(taille)
 
 NOIR = [0, 0, 0]
@@ -11,11 +11,13 @@ BLANC = [255, 255, 255]
 ROUGE = [255, 0, 0]
 VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
-couleur[BLEU,VERT,ROUGE,ROUGE,VERT,BLANC]
+couleur = [BLEU,VERT,ROUGE,ROUGE,VERT,BLANC]
+couleur = couleur 
 # DÉBUT
 
 clock = pygame.time.Clock()
 
+step = 20
 fini = 0
 gauche = False
 droite = False
@@ -24,12 +26,16 @@ bas = False
 class boule:
     pass
 tete = boule()
-tete.x = 350
-tete.y = 250
+tete.x = 340
+tete.y = 240
 queue = boule()
-queue.x = 330
-queue.y = 250
+queue.x = 320
+queue.y = 240
 membre = [tete,queue]
+Nbsegments = 6
+piece = boule()
+piece.y = random.randint(0,30)*20
+piece.x = random.randint(0,40)*20
 while fini == 0:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -64,34 +70,45 @@ while fini == 0:
             # ma_position = event.pos[0]
     if gauche == True:
         ajout = boule()
-        ajout.x = membre[0].x - 20
+        ajout.x = membre[0].x - step
         ajout.y = membre[0].y
         membre.insert(0,ajout)
     elif droite == True:
         ajout = boule()
-        ajout.x = membre[0].x + 20
+        ajout.x = membre[0].x + step
         ajout.y = membre[0].y
         membre.insert(0,ajout)             
     elif haut == True:
         ajout = boule()
         ajout.x = membre[0].x 
-        ajout.y = membre[0].y - 20
+        ajout.y = membre[0].y - step
         membre.insert(0,ajout)             
     elif bas == True:
         ajout = boule()
         ajout.x = membre[0].x 
-        ajout.y = membre[0].y + 20
+        ajout.y = membre[0].y + step
         membre.insert(0,ajout) 
-    if len(membre) > 6:    
+    if len(membre) > Nbsegments:    
         membre.pop()
+    if membre[0].x == piece.x and membre[0].y == piece.y :
+        piece.x = random.randint(0,40)*20
+        piece.y = random.randint(0,30)*20
+        Nbsegments += 1
+    t = 0    
+    while t >= len(membre): 
+        if membre[0].x == membre[t].x :
+            r = 10
+        t += 1
+        
     # TICK
 
     # DESSIN
     ecran.fill(NOIR)
     i = 0
     while i < len(membre):
-        pygame.draw.circle(ecran, couleur[i], [membre[i].x, membre[i].y], 15)
+        pygame.draw.circle(ecran, couleur[i%len(couleur)], [membre[i].x, membre[i].y], 15)
         i += 1
+    pygame.draw.circle(ecran, ROUGE, [piece.x , piece.y], 5)
     pygame.display.flip()
     clock.tick(5)
     
