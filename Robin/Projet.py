@@ -15,6 +15,7 @@ isVersBas=0
 direction=0
 xBV=200
 yBV=350
+speedBouge=5
 xBlocRouge=100
 yBlocRouge=450
 image_bowser = pygame.image.load('Bowser.png').convert_alpha()
@@ -43,6 +44,9 @@ def IsOnAFloor(x,y,xBloc,yBloc,Largeurbloc,longueurBloc):
         return 1
     else:
         return 0
+def contactEnnemi(xJoueur, yJoueur, xEnnemi, yEnnemi, longueurEnnemi, hauteurEnnemi):
+    if xJoueur+5>xEnnemi and xJoueur<xEnnemi+longueurEnnemi:
+        ...
 # DÉBUT
 clock = pygame.time.Clock()
 fini = 0
@@ -57,9 +61,13 @@ while fini == 0:
     # TICK
     b=b+1
     if sens==1:
-        a=a+5
+        if speedBouge<0:
+            speedBouge=-speedBouge
+        a=a+speedBouge
     else:
-        a=a-5
+        if speedBouge >0:
+            speedBouge=-speedBouge
+        a=a+speedBouge
     if a>=700-largeurXBloc:
         sens=-1
     if a<=0:
@@ -84,8 +92,10 @@ while fini == 0:
     elif IsOnAFloor(xb, yb,xBlocRouge,yBlocRouge,largeurXBloc,largeurYBloc)==1 or IsOnAFloor(xb, yb,xBlocBleu,yBlocBleu,largeurXBloc,largeurYBloc)==1 or IsOnAFloor(xb, yb,xBV,yBV,largeurXBloc,largeurYBloc)==1 or IsOnAFloor(xb, yb,a,300,largeurXBloc,largeurYBloc)==1 or IsOnAFloor(xb, yb,0,500,700,0) == 1:
         dyb=0
         if IsOnAFloor(xb, yb, a, 300, largeurXBloc, largeurYBloc)==1:
-            xb=a+25
-            print("oui")
+            if speedBouge>0:
+                xb=xb+5
+            else :
+                xb=xb-5
     else :
         dyb=4
     if saut==1:
@@ -102,8 +112,6 @@ while fini == 0:
         yb=yb+5
     if b > 625:
         b=0
-#    if yb>490:
-#       yb=490
             
     # DESSIN
     ecran.fill(NOIR)

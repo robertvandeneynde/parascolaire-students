@@ -1,3 +1,4 @@
+#!coding:utf-8
 from __future__ import print_function, division
 import random
 import pygame
@@ -13,10 +14,11 @@ VERT = [0, 255, 0]
 BLEU = [0, 0, 255]
 couleur = [BLEU,VERT,ROUGE,ROUGE,VERT,BLANC]
 couleur = couleur 
-# D�BUT
+# DÃ‰BUT
 
 clock = pygame.time.Clock()
 
+t = 0    
 step = 20
 fini = 0
 gauche = False
@@ -94,21 +96,27 @@ while fini == 0:
         piece.x = random.randint(0,40)*20
         piece.y = random.randint(0,30)*20
         Nbsegments += 1
-    t = 0    
-    while t >= len(membre): 
+    
+    t = 0
+    d = False
+    while t < len(membre): 
         if membre[0].x == membre[t].x :
-            r = 10
+            if membre[0].y == membre[t].y :
+                d = True
         t += 1
         
     # TICK
 
     # DESSIN
     ecran.fill(NOIR)
-    i = 0
-    while i < len(membre):
-        pygame.draw.circle(ecran, couleur[i%len(couleur)], [membre[i].x, membre[i].y], 15)
-        i += 1
-    pygame.draw.circle(ecran, ROUGE, [piece.x , piece.y], 5)
+    if d == True:
+        print("Vous Ãªtes mort")
+    else:
+        i = 0
+        while i < len(membre):
+            pygame.draw.circle(ecran, couleur[i%len(couleur)], [membre[i].x, membre[i].y], 15)
+            i += 1
+        pygame.draw.circle(ecran, ROUGE, [piece.x , piece.y], 5)
     pygame.display.flip()
     clock.tick(5)
     
