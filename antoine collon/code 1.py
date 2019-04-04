@@ -10,7 +10,7 @@ def xy_to_i(x, y):
     return x + y * 10
 
 import pygame, random
-random.seed(45)
+#random.seed()
 
 pygame.init()
 
@@ -48,6 +48,7 @@ while y < taille[1]:
     b.bombe = 0
     b.rayon = 15
     b.numero = 0
+    b.devoile = 0
     la_liste_de_boules.append(b)
     
     if x + 50 < taille[0]:
@@ -69,18 +70,34 @@ i = 0
 while i < len(la_liste_de_boules):
     if la_liste_de_boules[i].bombe == 1:
         print("j'ai trouvé une bombe", i)
-        ligne_i = i // 10
+        
+        # Position col/ligne de la bombe
+        
+        ligne = i // 10
+        col = i%10
+        
+        # Position basse et gérer quan ligne = 1
+        
+        # Position
         
         n = i - 1
         ligne_n = n // 10
-        if ligne_i == ligne_n:
+        if ligne == ligne_n:
             la_liste_de_boules[n].numero += 1
         
         k = i + 1
         ligne_k = k // 10
-        if ligne_i == ligne_k:
+        if ligne == ligne_k :
             la_liste_de_boules[k].numero += 1
-    #nique ta mère si t'es pas sur la même ligne
+        
+        if i > 10 :
+            e = i - 10
+            la_liste_de_boules[e].numero +=1
+            
+        if i <= len(la_liste_de_boules)-10:
+            g = i + 10
+            la_liste_de_boules[g].numero += 1
+               
     
     i = i + 1
 fini = 0
@@ -95,6 +112,7 @@ while fini == 0:
             elif event.key == 275:  # touche droite
                 ma_position2 = ma_position2 + 100
         elif event.type == pygame.MOUSEBUTTONDOWN:
+            
             # event.pos est une liste de taille 2
             # le premier element (event.pos[0]) est la position en x DU CLIC
             # le deuxieme element (event.pos[1]) est la position en y DU CLIC
@@ -106,7 +124,8 @@ while fini == 0:
                 if abs(souris_x - la_liste_de_boules[j].x) < la_liste_de_boules[j].rayon and abs(souris_y - la_liste_de_boules[j].y) < la_liste_de_boules[j].rayon:
                     if la_liste_de_boules[j].bombe == 0:  # si la boule j n'est pas une bombe
                         score += 1
-                        la_liste_de_boules.pop(j)
+                        la_liste_de_boules[j].devoile = 1
+                        
                     else: 
                         # c'est une bombe  
                         print("GAME OVER")
@@ -127,14 +146,14 @@ while fini == 0:
 
     i = 0
     while i < len(la_liste_de_boules):
-        if la_liste_de_boules[i].bombe == 0:
+        laboule = la_liste_de_boules[i]
+        if (laboule.bombe == 0 and laboule.devoile == 0 ) or la_liste_de_boules[i].bombe == 1 :
             pygame.draw.circle(ecran, BLEU, [la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
-        else:
-            pygame.draw.circle(ecran, ROUGE, [la_liste_de_boules[i].x, la_liste_de_boules[i].y],  la_liste_de_boules[i].rayon)
-        n = la_liste_de_boules[i].numero
-        r = la_liste_de_boules[i].rayon
-        image_numero = font.render(str(n), True, BLANC)
-        ecran.blit(image_numero, [la_liste_de_boules[i].x - r/2, la_liste_de_boules[i].y - r/2])
+        elif la_liste_de_boules[i].bombe == 0 and la_liste_de_boules[i].devoile == 1  :
+            n = la_liste_de_boules[i].numero
+            r = la_liste_de_boules[i].rayon
+            image_numero = font.render(str(n), True, BLANC)
+            ecran.blit(image_numero, [la_liste_de_boules[i].x - r/2, la_liste_de_boules[i].y - r/2])
                 
         i = i + 1
     # print(score)

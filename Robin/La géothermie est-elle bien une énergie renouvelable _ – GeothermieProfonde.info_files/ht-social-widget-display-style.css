@@ -1,0 +1,120 @@
+/* ADMIN */
+
+.ht-icon-preview{
+    float: left;
+    display: block;
+    font-size: 30px;
+}
+
+ul#ht-social-widget-list li {
+    line-height: 50px;
+    height: 100px;
+    display: block;
+    clear: left;
+    border: 1px solid gray;
+}
+
+ul#ht-social-widget-list li  .wp-picker-input-wrap{
+
+}
+
+.ht-social-widget-item-enable.enabled{
+    color: blue;
+}
+
+li.ht-social-widget-item-enable{
+    display: block;
+    float: left;
+    font-size: 30px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    padding: 5px;
+}
+
+ul#ht-social-widget-selector-list li.sortable-placeholder{
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px dashed gray;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    float: left;
+}
+
+.ht-icon-preview{
+    cursor: move;
+    margin-right: 10px;
+}
+
+.ht-social-widget-item-name {
+    width: 180px;
+    font-size: 150%;
+}
+
+.ht-icon-preview, 
+.ht-social-widget-item-name, 
+.ht-social-widget-item-enabled, 
+.ht-social-widget-style-select, 
+.ht-social-widget-text-color, 
+.ht-social-widget-background-color, 
+.ht-social-widget-link-url, 
+.ht-social-widget-item-order,
+.ht-social-widget-item-reset{
+    display: block;
+    float: left;
+    margin-left: 10px;
+    line-height: 40px;
+}
+.ht-icon-preview input,
+.ht-social-widget-item-name input,
+.ht-social-widget-item-enabled input,
+.ht-social-widget-style-select input,
+.ht-social-widget-text-color div,
+.ht-social-widget-background-color div,
+.ht-social-widget-link-url input,
+.ht-social-widget-item-order input{
+    margin-left: 5px;
+}
+
+.ht-social-widget-item-order input {
+    /* hide this */
+    width: 30px;
+}
+
+.ht-social-widget-item-order{
+    display: none;
+}
+
+.ht-social-widget-item-reset .button {
+    margin-top: 5px;
+}
+
+.ht-social-widget-link-url{
+    clear: left;
+    margin-left: 65px;
+}
+.ht-social-widget-link-url input{
+    clear: left;
+    width: 500px;
+    
+}
+
+/* DISPLAY */
+
+ul.ht-social-media-list {
+   list-style-type: none;
+}
+
+ul.ht-social-media-list li {
+    font-size: 30px;
+    float: left;
+    margin-right: 2px;
+    padding: 5px;
+}
+
+ul.ht-social-media-list li:before{
+    content: '';
+}
